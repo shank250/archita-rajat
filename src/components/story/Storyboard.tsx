@@ -63,7 +63,6 @@ export const Storyboard: React.FC = () => {
   };
 
   const currentStory = storyData[page];
-  const currentImage = currentStory.images[0];
 
   return (
     <section id="our-story" className="relative py-20 px-4 max-w-4xl mx-auto z-10">
@@ -98,7 +97,7 @@ export const Storyboard: React.FC = () => {
         </div>
 
         {/* Carousel Content: Exactly Fixed Height (Zero Layout Shifts) */}
-        <div className="h-[520px] sm:h-[580px] flex flex-col justify-between py-2 overflow-hidden relative">
+        <div className="h-[510px] sm:h-[570px] flex flex-col justify-between py-2 overflow-hidden relative">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={page}
@@ -129,30 +128,61 @@ export const Storyboard: React.FC = () => {
                 </p>
               </div>
 
-              {/* Photo Viewport: Uniform Fixed Height for All Photos */}
-              <div className="relative bg-[#FAFAFA] p-3 sm:p-3.5 rounded-3xl shadow-sm border border-neutral-200/80 max-w-[270px] sm:max-w-[310px] w-full mx-auto my-auto transition-transform">
-                <div className="w-full h-72 sm:h-88 rounded-2xl overflow-hidden bg-neutral-100/90 relative flex items-center justify-center p-2">
-                  {/* Ambient background blur */}
-                  <img
-                    src={currentImage.src}
-                    alt=""
-                    aria-hidden="true"
-                    className="absolute inset-0 w-full h-full object-cover blur-xl opacity-25 scale-110 pointer-events-none"
-                  />
-                  {/* Full uncapped photo: 100% visible with object-contain */}
-                  <img
-                    src={currentImage.src}
-                    alt={currentImage.alt}
-                    draggable={false}
-                    className="relative z-10 max-h-full max-w-full w-auto h-auto object-contain object-center rounded-xl shadow-xs filter contrast-[1.02] brightness-98 hover:brightness-100 transition-all duration-300 pointer-events-none"
-                  />
+              {/* Photo Viewport: Dual Photos (Chapter 1) or Single Photo (Chapter 2 & 3) */}
+              {currentStory.images.length === 2 ? (
+                /* Dual Childhood Photos Side-by-Side on the Same Frame */
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-4 max-w-[540px] w-full mx-auto my-auto">
+                  {currentStory.images.map((img, idx) => (
+                    <div
+                      key={idx}
+                      className="relative bg-[#FAFAFA] p-2 sm:p-3 rounded-3xl shadow-sm border border-neutral-200/80 w-full"
+                    >
+                      <div className="w-full h-64 sm:h-80 rounded-2xl overflow-hidden bg-neutral-100/90 relative flex items-center justify-center p-1.5 sm:p-2">
+                        {/* Ambient background blur */}
+                        <img
+                          src={img.src}
+                          alt=""
+                          aria-hidden="true"
+                          className="absolute inset-0 w-full h-full object-cover blur-xl opacity-25 scale-110 pointer-events-none"
+                        />
+                        {/* 100% visible portrait */}
+                        <img
+                          src={img.src}
+                          alt={img.alt}
+                          draggable={false}
+                          className="relative z-10 max-h-full max-w-full w-auto h-auto object-contain object-center rounded-xl shadow-xs pointer-events-none"
+                        />
+                      </div>
+                      <p className="mt-2 font-sans text-center text-[11px] sm:text-xs text-neutral-700 font-medium leading-tight truncate px-1">
+                        "{img.caption}"
+                      </p>
+                    </div>
+                  ))}
                 </div>
-
-                {/* Single-line Friendly Caption */}
-                <p className="mt-2.5 font-sans text-center text-xs text-neutral-700 font-medium leading-tight truncate px-1">
-                  "{currentImage.caption}"
-                </p>
-              </div>
+              ) : (
+                /* Single Couple Photo Centered */
+                <div className="relative bg-[#FAFAFA] p-2.5 sm:p-3.5 rounded-3xl shadow-sm border border-neutral-200/80 max-w-[270px] sm:max-w-[310px] w-full mx-auto my-auto">
+                  <div className="w-full h-64 sm:h-80 rounded-2xl overflow-hidden bg-neutral-100/90 relative flex items-center justify-center p-2">
+                    {/* Ambient background blur */}
+                    <img
+                      src={currentStory.images[0].src}
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute inset-0 w-full h-full object-cover blur-xl opacity-25 scale-110 pointer-events-none"
+                    />
+                    {/* 100% visible portrait */}
+                    <img
+                      src={currentStory.images[0].src}
+                      alt={currentStory.images[0].alt}
+                      draggable={false}
+                      className="relative z-10 max-h-full max-w-full w-auto h-auto object-contain object-center rounded-xl shadow-xs pointer-events-none"
+                    />
+                  </div>
+                  <p className="mt-2.5 font-sans text-center text-xs text-neutral-700 font-medium leading-tight truncate px-1">
+                    "{currentStory.images[0].caption}"
+                  </p>
+                </div>
+              )}
 
               {/* Narration Box: Uniform 40px Footer Box */}
               <div className="h-10 flex items-center justify-center max-w-lg text-center px-4 w-full">

@@ -228,12 +228,12 @@ export const eventData: EventDetails = {
 
 export const storyData: StorySlide[] = [
   {
-    id: "archita-roots",
+    id: "childhood",
     chapterNumber: "01",
-    chapterBadge: "01 — ARCHITA'S ROOTS",
+    chapterBadge: "01 — CHILDHOOD CHRONICLES",
     title: "Where It All Began",
-    subtitle: "Growing up with laughter & big dreams",
-    narration: "A cheerful soul with a bright smile, ready to conquer the world.",
+    subtitle: "Growing up miles apart with big dreams",
+    narration: "Different schools, different paths, but destined to meet.",
     images: [
       {
         src: "/images/archita-childhood.jpg",
@@ -241,16 +241,6 @@ export const storyData: StorySlide[] = [
         alt: "Archita childhood photo",
         rotation: 0,
       },
-    ],
-  },
-  {
-    id: "rajat-roots",
-    chapterNumber: "02",
-    chapterBadge: "02 — RAJAT'S ROOTS",
-    title: "Days of Innocence",
-    subtitle: "Curious eyes & boyhood adventures",
-    narration: "Always exploring, smiling, and finding joy in little moments.",
-    images: [
       {
         src: "/images/rajat-childhood.jpg",
         caption: "Rajat — School days & curious eyes",
@@ -261,8 +251,8 @@ export const storyData: StorySlide[] = [
   },
   {
     id: "the-spark",
-    chapterNumber: "03",
-    chapterBadge: "03 — WHEN PATHS CROSSED",
+    chapterNumber: "02",
+    chapterBadge: "02 — WHEN PATHS CROSSED",
     title: "A Casual Hello",
     subtitle: "From strangers to best friends",
     narration: "One conversation turned into endless late-night talks.",
@@ -277,8 +267,8 @@ export const storyData: StorySlide[] = [
   },
   {
     id: "forever",
-    chapterNumber: "04",
-    chapterBadge: "04 — FOREVER TOGETHER",
+    chapterNumber: "03",
+    chapterBadge: "03 — FOREVER TOGETHER",
     title: "Hand in Hand",
     subtitle: "Two hearts, one new beginning",
     narration: "Ready for our greatest journey together.",
