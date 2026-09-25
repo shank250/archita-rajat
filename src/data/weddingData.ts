@@ -1,4 +1,4 @@
-import { CoupleProfile, EventDetails, StorySlide, ItineraryItem, WishEntry } from '../types/wedding';
+import { CoupleProfile, EventDetails, StorySlide, ItineraryItem } from '../types/wedding';
 
 export const coupleData: CoupleProfile = {
   groom: {
@@ -168,38 +168,5 @@ export const itineraryData: ItineraryItem[] = [
     description: "Indulge in an exquisite multi-course royal spread of Awadhi, Mughlai, and continental delicacies.",
     iconName: "UtensilsCrossed",
     highlight: false,
-  },
-];
-
-export const defaultWishes: WishEntry[] = [
-  {
-    id: "w-1",
-    guestName: "Uncle Rajesh & Family",
-    recipient: "both",
-    message: "Heartiest congratulations to our dearest Rajat and lovely Archita! May God shower endless blessings, laughter, and joy on both of you always.",
-    attending: "yes",
-    guestCount: 4,
-    dietaryPreference: "vegetarian",
-    createdAt: "2026-09-24T14:30:00Z",
-  },
-  {
-    id: "w-2",
-    guestName: "Pooja & Sameer",
-    recipient: "bride",
-    message: "Archita you look like an absolute princess! So beyond thrilled for you and Rajat. Can't wait to tear up the dance floor!",
-    attending: "yes",
-    guestCount: 2,
-    dietaryPreference: "no-preference",
-    createdAt: "2026-09-25T09:15:00Z",
-  },
-  {
-    id: "w-3",
-    guestName: "Gaurav (College Gang)",
-    recipient: "groom",
-    message: "Bhai Rajat! Still can't believe our guy is getting hitched. Super happy for both of you, cheers to the best chapter ahead!",
-    attending: "yes",
-    guestCount: 1,
-    dietaryPreference: "non-vegetarian",
-    createdAt: "2026-09-25T11:45:00Z",
   },
 ];

@@ -1,37 +1,38 @@
 import { WishEntry } from '../types/wedding';
-import { defaultWishes } from '../data/weddingData';
 
-const WISHES_STORAGE_KEY = 'royal_vows_guestbook_wishes';
+const USER_RSVP_KEY = 'royal_vows_user_rsvp';
 
-export const getStoredWishes = (): WishEntry[] => {
-  if (typeof window === 'undefined') return defaultWishes;
+export const getStoredUserRsvp = (): WishEntry | null => {
+  if (typeof window === 'undefined') return null;
   try {
-    const raw = localStorage.getItem(WISHES_STORAGE_KEY);
-    if (!raw) {
-      localStorage.setItem(WISHES_STORAGE_KEY, JSON.stringify(defaultWishes));
-      return defaultWishes;
-    }
-    return JSON.parse(raw);
+    const raw = localStorage.getItem(USER_RSVP_KEY);
+    return raw ? JSON.parse(raw) : null;
   } catch (e) {
-    console.error("Failed to load wishes from localStorage", e);
-    return defaultWishes;
+    console.error("Failed to load user RSVP from localStorage", e);
+    return null;
   }
 };
 
-export const saveWish = (newWish: Omit<WishEntry, 'id' | 'createdAt'>): WishEntry => {
-  const wishes = getStoredWishes();
-  const wish: WishEntry = {
-    ...newWish,
-    id: `wish-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`,
+export const saveUserRsvp = (newRsvp: Omit<WishEntry, 'id' | 'createdAt'>): WishEntry => {
+  const rsvp: WishEntry = {
+    ...newRsvp,
+    id: `rsvp-${Date.now()}`,
     createdAt: new Date().toISOString(),
   };
 
-  const updated = [wish, ...wishes];
   try {
-    localStorage.setItem(WISHES_STORAGE_KEY, JSON.stringify(updated));
+    localStorage.setItem(USER_RSVP_KEY, JSON.stringify(rsvp));
   } catch (e) {
-    console.error("Failed to save wish to localStorage", e);
+    console.error("Failed to save user RSVP to localStorage", e);
   }
 
-  return wish;
+  return rsvp;
+};
+
+export const clearUserRsvp = (): void => {
+  try {
+    localStorage.removeItem(USER_RSVP_KEY);
+  } catch (e) {
+    console.error("Failed to clear user RSVP from localStorage", e);
+  }
 };

@@ -55,26 +55,26 @@ export const App: React.FC = () => {
             {/* Section 7: Interactive Guestbook & RSVP */}
             <GuestbookSection />
 
-            {/* Google-Style Clean Celebratory Footer */}
-            <footer className="relative py-16 px-4 text-center border-t border-[#E8E2D5] bg-[#F5F1EB]">
-              <div className="w-10 h-10 mx-auto mb-3 p-1.5 rounded-2xl bg-white border border-[#E0DBD0] shadow-sm">
+            {/* Modern Minimalist Celebratory Footer */}
+            <footer className="relative py-16 px-4 text-center border-t border-neutral-200 bg-white">
+              <div className="w-10 h-10 mx-auto mb-3 p-1.5 rounded-2xl bg-[#FAFAFA] border border-neutral-200 shadow-sm">
                 <img src="/ganesha.svg" alt="Lord Ganesha" className="w-full h-full object-contain" />
               </div>
 
-              <h4 className="font-serif text-[#C5221F] text-2xl font-bold tracking-wider">
+              <h4 className="font-serif text-[#881337] text-2xl font-bold tracking-wider">
                 {coupleData.monogram}
               </h4>
 
-              <p className="font-sans text-xs tracking-wider text-[#5F6368] font-semibold mt-1 uppercase">
+              <p className="font-sans text-xs tracking-wider text-neutral-500 font-semibold mt-1 uppercase">
                 {coupleData.hashtag}
               </p>
 
-              <div className="flex items-center justify-center gap-1.5 text-xs font-sans text-[#5F6368] mt-4 font-medium">
+              <div className="flex items-center justify-center gap-1.5 text-xs font-sans text-neutral-600 mt-4 font-medium">
                 <span>With Love & Warm Regards from</span>
-                <span className="font-bold text-[#202124]">Sharma & Verma Families</span>
+                <span className="font-bold text-neutral-900">Sharma & Verma Families</span>
               </div>
 
-              <p className="text-[11px] font-sans text-[#80868B] mt-5">
+              <p className="text-[11px] font-sans text-neutral-400 mt-5">
                 Created with love for {coupleData.groom.firstName} & {coupleData.bride.firstName} • 2026
               </p>
             </footer>
