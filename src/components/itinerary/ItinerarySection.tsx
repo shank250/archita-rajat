@@ -29,22 +29,22 @@ export const ItinerarySection: React.FC = () => {
     <section id="itinerary" className="relative py-20 px-4 max-w-4xl mx-auto z-10">
       {/* Section Header */}
       <div className="text-center mb-10">
-        <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-gold-antique font-semibold">
+        <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-[#C5221F] font-bold">
           Order of Celebrations
         </span>
-        <h2 className="font-serif text-3xl sm:text-5xl text-white font-normal mt-1">
+        <h2 className="font-serif text-3xl sm:text-5xl text-[#202124] font-bold mt-1">
           The Evening Unfolds
         </h2>
-        <p className="text-xs sm:text-sm font-sans text-neutral-400 mt-1">
-          Explore each milestone of the evening by tapping the timeline nodes below
+        <p className="text-xs sm:text-sm font-sans text-[#5F6368] mt-1">
+          Explore each milestone of the evening by tapping the schedule nodes below
         </p>
-        <div className="w-12 h-0.5 bg-gold-antique/60 mx-auto mt-3" />
+        <div className="w-12 h-1 bg-[#C5221F] rounded-full mx-auto mt-3" />
       </div>
 
       {/* Horizontal Time Scrubber Track */}
       <div className="relative py-4 px-2 mb-8 overflow-x-auto no-scrollbar">
-        {/* Continuous Track Line */}
-        <div className="absolute top-1/2 left-8 right-8 -translate-y-1/2 h-0.5 bg-neutral-800 pointer-events-none" />
+        {/* Track Line */}
+        <div className="absolute top-1/2 left-8 right-8 -translate-y-1/2 h-0.5 bg-[#E8E2D5] pointer-events-none" />
 
         <div className="flex items-center justify-between min-w-[500px] sm:min-w-0 sm:justify-around px-4">
           {itineraryData.map((item) => {
@@ -57,10 +57,10 @@ export const ItinerarySection: React.FC = () => {
               >
                 {/* Node Pill with Time */}
                 <span
-                  className={`text-[11px] font-sans font-semibold mb-2 px-3 py-1 rounded-full border transition-all duration-300 ${
+                  className={`text-xs font-sans font-bold mb-2 px-3 py-1 rounded-full border transition-all duration-300 ${
                     isActive
-                      ? 'bg-[#8E1722] text-white border-red-500/50 shadow-md scale-105'
-                      : 'bg-[#161620] text-neutral-400 border-white/10 group-hover:border-gold-antique/50'
+                      ? 'bg-[#C5221F] text-white border-[#C5221F] shadow-sm scale-105'
+                      : 'bg-white text-[#5F6368] border-[#E8E2D5] hover:bg-[#F8F9FA]'
                   }`}
                 >
                   {item.time} {item.period}
@@ -70,8 +70,8 @@ export const ItinerarySection: React.FC = () => {
                 <div
                   className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 ${
                     isActive
-                      ? 'bg-gold-antique text-black shadow-gold-glow scale-125'
-                      : 'bg-[#181822] border-2 border-neutral-700 text-neutral-500 group-hover:border-gold-antique'
+                      ? 'bg-[#C5221F] text-white shadow-sm scale-110'
+                      : 'bg-white border-2 border-[#DDD8CE] text-[#DDD8CE] group-hover:border-[#C5221F]'
                   }`}
                 >
                   <span className="w-2 h-2 rounded-full bg-current" />
@@ -79,8 +79,8 @@ export const ItinerarySection: React.FC = () => {
 
                 {/* Milestone Short Title below */}
                 <span
-                  className={`text-[11px] font-sans mt-2.5 max-w-[85px] text-center truncate transition-colors ${
-                    isActive ? 'text-white font-semibold' : 'text-neutral-400'
+                  className={`text-xs font-sans mt-2.5 max-w-[85px] text-center truncate transition-colors font-medium ${
+                    isActive ? 'text-[#202124] font-bold' : 'text-[#80868B]'
                   }`}
                 >
                   {item.title}
@@ -91,7 +91,7 @@ export const ItinerarySection: React.FC = () => {
         </div>
       </div>
 
-      {/* Active Event Showcase Card: Solid Crisp White Porcelain */}
+      {/* Active Event Showcase Card: Material 3 Card */}
       <div className="max-w-xl mx-auto">
         <AnimatePresence mode="wait">
           <motion.div
@@ -100,43 +100,43 @@ export const ItinerarySection: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
-            className="relative bg-white p-7 sm:p-9 rounded-3xl border border-neutral-200 shadow-2xl text-neutral-900 overflow-hidden"
+            className="relative bg-white p-7 sm:p-9 rounded-3xl border border-[#EBE6DC] shadow-google-card text-[#202124] overflow-hidden"
           >
             {/* Event Header */}
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#8E1722] text-white flex items-center justify-center shadow-md flex-shrink-0">
+              <div className="w-12 h-12 rounded-2xl bg-[#FCE8E6] text-[#C5221F] flex items-center justify-center shadow-sm flex-shrink-0">
                 {renderIcon(selectedItem.iconName, "w-6 h-6")}
               </div>
               <div>
-                <span className="text-xs font-sans uppercase tracking-widest text-[#8E1722] font-bold">
+                <span className="text-xs font-sans uppercase tracking-widest text-[#C5221F] font-bold">
                   {selectedItem.time} {selectedItem.period}
                 </span>
-                <h3 className="font-serif text-2xl sm:text-3xl text-neutral-950 font-bold leading-tight">
+                <h3 className="font-serif text-2xl sm:text-3xl text-[#202124] font-bold leading-tight">
                   {selectedItem.title}
                 </h3>
               </div>
             </div>
 
             {/* Subtitle */}
-            <p className="font-sans text-xs sm:text-sm font-semibold text-neutral-600 mb-3">
+            <p className="font-sans text-xs sm:text-sm font-semibold text-[#5F6368] mb-3">
               ✦ {selectedItem.subtitle}
             </p>
 
             {/* Detailed Description */}
-            <p className="font-sans text-sm sm:text-base text-neutral-700 leading-relaxed">
+            <p className="font-sans text-sm sm:text-base text-[#3C4043] leading-relaxed">
               {selectedItem.description}
             </p>
 
             {/* Next Milestone preview button */}
-            <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-sans text-neutral-500">
-              <span>Program Segment</span>
+            <div className="mt-6 pt-4 border-t border-[#F0EBE1] flex items-center justify-between text-xs font-sans text-[#5F6368]">
+              <span>Selected Segment</span>
               <button
                 onClick={() => {
                   const currIdx = itineraryData.findIndex((i) => i.id === selectedItem.id);
                   const nextIdx = (currIdx + 1) % itineraryData.length;
                   setSelectedId(itineraryData[nextIdx].id);
                 }}
-                className="text-[#8E1722] hover:text-black font-semibold underline flex items-center gap-1"
+                className="text-[#C5221F] hover:text-[#8C2127] font-bold underline flex items-center gap-1"
               >
                 <span>Next Milestone →</span>
               </button>

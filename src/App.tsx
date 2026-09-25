@@ -15,8 +15,8 @@ export const App: React.FC = () => {
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen bg-[#0A0A0E] text-[#F8F8FA] overflow-x-hidden antialiased">
-      {/* Background Stardust Particles & Ambient Glow */}
+    <div className="relative min-h-screen bg-[#FDFBF7] text-[#202124] overflow-x-hidden antialiased font-sans">
+      {/* Background Micro-Confetti & Soft Sunbeam Glow */}
       <BackgroundFX />
 
       {/* Floating Audio Controls */}
@@ -34,10 +34,10 @@ export const App: React.FC = () => {
           <motion.main
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8 }}
             className="relative z-10"
           >
-            {/* Section 2: Formal Invitation Porcelain Card */}
+            {/* Section 2: Formal Invitation Card */}
             <FormalCard />
 
             {/* Section 3: Interactive Visual Storyboard */}
@@ -55,26 +55,26 @@ export const App: React.FC = () => {
             {/* Section 7: Interactive Guestbook & RSVP */}
             <GuestbookSection />
 
-            {/* Modern 21st-Century Royal Footer */}
-            <footer className="relative py-16 px-4 text-center border-t border-white/10 bg-[#0C0C10] backdrop-blur-xl">
-              <div className="w-10 h-10 mx-auto mb-3 opacity-90 filter drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">
+            {/* Google-Style Clean Celebratory Footer */}
+            <footer className="relative py-16 px-4 text-center border-t border-[#E8E2D5] bg-[#F5F1EB]">
+              <div className="w-10 h-10 mx-auto mb-3 p-1.5 rounded-2xl bg-white border border-[#E0DBD0] shadow-sm">
                 <img src="/ganesha.svg" alt="Lord Ganesha" className="w-full h-full object-contain" />
               </div>
 
-              <h4 className="font-decorative text-gold-gradient text-xl font-bold tracking-widest">
+              <h4 className="font-serif text-[#C5221F] text-2xl font-bold tracking-wider">
                 {coupleData.monogram}
               </h4>
 
-              <p className="font-sans text-xs tracking-wider text-gold-light mt-1 uppercase">
+              <p className="font-sans text-xs tracking-wider text-[#5F6368] font-semibold mt-1 uppercase">
                 {coupleData.hashtag}
               </p>
 
-              <div className="flex items-center justify-center gap-1.5 text-xs font-sans text-neutral-400 mt-4">
+              <div className="flex items-center justify-center gap-1.5 text-xs font-sans text-[#5F6368] mt-4 font-medium">
                 <span>With Love & Warm Regards from</span>
-                <span className="font-semibold text-white">Sharma & Verma Families</span>
+                <span className="font-bold text-[#202124]">Sharma & Verma Families</span>
               </div>
 
-              <p className="text-[11px] font-sans text-neutral-500 mt-5">
+              <p className="text-[11px] font-sans text-[#80868B] mt-5">
                 Created with love for {coupleData.groom.firstName} & {coupleData.bride.firstName} • 2026
               </p>
             </footer>

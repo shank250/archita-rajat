@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useGuest } from '../../context/GuestContext';
 import { WishEntry, RecipientSide } from '../../types/wedding';
 import { getStoredWishes, saveWish } from '../../utils/storage';
-import { triggerHeartBurst } from '../../utils/confetti';
+import { triggerCelebrationFireworks } from '../../utils/confetti';
 import { Send, Heart, User, CheckCircle2, MessageSquareHeart } from 'lucide-react';
 
 export const GuestbookSection: React.FC = () => {
@@ -49,7 +49,7 @@ export const GuestbookSection: React.FC = () => {
 
     setWishes((prev) => [saved, ...prev]);
     setIsSubmitted(true);
-    triggerHeartBurst();
+    triggerCelebrationFireworks();
 
     setMessage('');
 
@@ -66,27 +66,27 @@ export const GuestbookSection: React.FC = () => {
   return (
     <section id="guestbook" className="relative py-20 px-4 max-w-4xl mx-auto z-10">
       {/* Section Header */}
-      <div className="text-center mb-12">
-        <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-gold-antique font-semibold">
+      <div className="text-center mb-10">
+        <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-[#C5221F] font-bold">
           Blessings & RSVP
         </span>
-        <h2 className="font-serif text-3xl sm:text-5xl text-white font-normal mt-1">
+        <h2 className="font-serif text-3xl sm:text-5xl text-[#202124] font-bold mt-1">
           Send Your Heartfelt Wishes
         </h2>
-        <p className="text-xs sm:text-sm font-sans text-neutral-400 mt-1">
+        <p className="text-xs sm:text-sm font-sans text-[#5F6368] mt-1">
           Share your love and confirm your presence with Rajat & Archita
         </p>
-        <div className="w-12 h-0.5 bg-gold-antique/60 mx-auto mt-3" />
+        <div className="w-12 h-1 bg-[#C5221F] rounded-full mx-auto mt-3" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Left Column: RSVP & Wish Form (Solid White Modern Card) */}
-        <div className="lg:col-span-6 bg-white p-7 sm:p-9 rounded-3xl border border-neutral-200 shadow-2xl text-neutral-900">
-          <div className="flex items-center gap-2.5 mb-5 pb-4 border-b border-neutral-100">
-            <div className="w-8 h-8 rounded-xl bg-[#8E1722] text-white flex items-center justify-center shadow-sm">
-              <MessageSquareHeart className="w-4 h-4" />
+        {/* Left Column: RSVP & Wish Form (Google Forms / Material 3 Style) */}
+        <div className="lg:col-span-6 bg-white p-7 sm:p-9 rounded-3xl border border-[#EBE6DC] shadow-google-card text-[#202124]">
+          <div className="flex items-center gap-3 mb-5 pb-4 border-b border-[#F0EBE1]">
+            <div className="w-9 h-9 rounded-2xl bg-[#FCE8E6] text-[#C5221F] flex items-center justify-center shadow-sm">
+              <MessageSquareHeart className="w-5 h-5" />
             </div>
-            <h3 className="font-serif text-xl sm:text-2xl text-neutral-950 font-bold">
+            <h3 className="font-serif text-xl sm:text-2xl text-[#202124] font-bold">
               Guestbook & RSVP
             </h3>
           </div>
@@ -94,7 +94,7 @@ export const GuestbookSection: React.FC = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Guest Name */}
             <div>
-              <label className="block text-[11px] font-sans font-semibold uppercase tracking-wider text-neutral-700 mb-1">
+              <label className="block text-xs font-sans font-bold uppercase tracking-wider text-[#3C4043] mb-1.5">
                 Your Name / Family Name *
               </label>
               <div className="relative">
@@ -104,21 +104,21 @@ export const GuestbookSection: React.FC = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g., Uncle Rajesh & Family"
-                  className="w-full px-4 py-3 rounded-2xl border border-neutral-200 bg-neutral-50 text-neutral-900 text-sm font-sans focus:outline-none focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900 transition-all"
+                  className="w-full px-4 py-3 rounded-2xl border border-[#E0DBD0] bg-[#FDFBF7] text-[#202124] text-sm font-sans focus:outline-none focus:border-[#C5221F] focus:ring-2 focus:ring-[#C5221F]/15 transition-all"
                 />
-                <User className="absolute right-3.5 top-3.5 w-4 h-4 text-neutral-400 pointer-events-none" />
+                <User className="absolute right-3.5 top-3.5 w-4 h-4 text-[#80868B] pointer-events-none" />
               </div>
             </div>
 
             {/* Recipient Dropdown */}
             <div>
-              <label className="block text-[11px] font-sans font-semibold uppercase tracking-wider text-neutral-700 mb-1">
+              <label className="block text-xs font-sans font-bold uppercase tracking-wider text-[#3C4043] mb-1.5">
                 Recipient *
               </label>
               <select
                 value={targetRecipient}
                 onChange={(e) => setTargetRecipient(e.target.value as RecipientSide)}
-                className="w-full px-4 py-3 rounded-2xl border border-neutral-200 bg-neutral-50 text-neutral-900 text-sm font-sans focus:outline-none focus:border-neutral-900 transition-all cursor-pointer"
+                className="w-full px-4 py-3 rounded-2xl border border-[#E0DBD0] bg-[#FDFBF7] text-[#202124] text-sm font-sans focus:outline-none focus:border-[#C5221F] transition-all cursor-pointer"
               >
                 <option value="both">Both Families (Rajat & Archita)</option>
                 <option value="groom">Team Groom (Only Rajat)</option>
@@ -128,17 +128,17 @@ export const GuestbookSection: React.FC = () => {
 
             {/* RSVP Attending Radio */}
             <div>
-              <label className="block text-[11px] font-sans font-semibold uppercase tracking-wider text-neutral-700 mb-1.5">
+              <label className="block text-xs font-sans font-bold uppercase tracking-wider text-[#3C4043] mb-1.5">
                 Will you be attending? *
               </label>
-              <div className="grid grid-cols-2 gap-2 bg-neutral-100 p-1.5 rounded-2xl">
+              <div className="grid grid-cols-2 gap-2 bg-[#F1F3F4] p-1.5 rounded-2xl">
                 <button
                   type="button"
                   onClick={() => setAttending('yes')}
-                  className={`py-2.5 px-3 rounded-xl text-xs font-sans font-semibold flex items-center justify-center gap-1.5 transition-all ${
+                  className={`py-2.5 px-3 rounded-xl text-xs font-sans font-bold flex items-center justify-center gap-1.5 transition-all ${
                     attending === 'yes'
-                      ? 'bg-[#8E1722] text-white shadow-sm'
-                      : 'text-neutral-600 hover:text-neutral-950'
+                      ? 'bg-[#C5221F] text-white shadow-sm'
+                      : 'text-[#5F6368] hover:text-[#202124]'
                   }`}
                 >
                   <span>🎉 Joyfully Accept</span>
@@ -146,10 +146,10 @@ export const GuestbookSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setAttending('no')}
-                  className={`py-2.5 px-3 rounded-xl text-xs font-sans font-semibold flex items-center justify-center gap-1.5 transition-all ${
+                  className={`py-2.5 px-3 rounded-xl text-xs font-sans font-bold flex items-center justify-center gap-1.5 transition-all ${
                     attending === 'no'
-                      ? 'bg-neutral-800 text-white shadow-sm'
-                      : 'text-neutral-600 hover:text-neutral-950'
+                      ? 'bg-[#202124] text-white shadow-sm'
+                      : 'text-[#5F6368] hover:text-[#202124]'
                   }`}
                 >
                   <span>🙏 Regretfully Decline</span>
@@ -161,7 +161,7 @@ export const GuestbookSection: React.FC = () => {
             {attending === 'yes' && (
               <div className="grid grid-cols-2 gap-3 pt-1">
                 <div>
-                  <label className="block text-[11px] font-sans font-semibold text-neutral-700 mb-1">
+                  <label className="block text-xs font-sans font-bold text-[#3C4043] mb-1">
                     Number of Guests
                   </label>
                   <input
@@ -170,17 +170,17 @@ export const GuestbookSection: React.FC = () => {
                     max={12}
                     value={guestCount}
                     onChange={(e) => setGuestCount(Math.max(1, parseInt(e.target.value) || 1))}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 bg-neutral-50 text-sm font-sans focus:outline-none focus:border-neutral-900"
+                    className="w-full px-3.5 py-2.5 rounded-2xl border border-[#E0DBD0] bg-[#FDFBF7] text-sm font-sans focus:outline-none focus:border-[#C5221F]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-sans font-semibold text-neutral-700 mb-1">
+                  <label className="block text-xs font-sans font-bold text-[#3C4043] mb-1">
                     Dietary Choice
                   </label>
                   <select
                     value={dietary}
                     onChange={(e) => setDietary(e.target.value as any)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 bg-neutral-50 text-xs font-sans focus:outline-none focus:border-neutral-900 cursor-pointer"
+                    className="w-full px-3.5 py-2.5 rounded-2xl border border-[#E0DBD0] bg-[#FDFBF7] text-xs font-sans focus:outline-none focus:border-[#C5221F] cursor-pointer"
                   >
                     <option value="vegetarian">Vegetarian</option>
                     <option value="non-vegetarian">Non-Vegetarian</option>
@@ -193,7 +193,7 @@ export const GuestbookSection: React.FC = () => {
 
             {/* Message Field */}
             <div>
-              <label className="block text-[11px] font-sans font-semibold uppercase tracking-wider text-neutral-700 mb-1">
+              <label className="block text-xs font-sans font-bold uppercase tracking-wider text-[#3C4043] mb-1.5">
                 Heartfelt Wish for the Couple *
               </label>
               <textarea
@@ -202,14 +202,14 @@ export const GuestbookSection: React.FC = () => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Write your heartfelt blessings, funny advice, or warm wishes here..."
-                className="w-full px-4 py-3 rounded-2xl border border-neutral-200 bg-neutral-50 text-neutral-900 text-sm font-sans focus:outline-none focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900 transition-all"
+                className="w-full px-4 py-3 rounded-2xl border border-[#E0DBD0] bg-[#FDFBF7] text-[#202124] text-sm font-sans focus:outline-none focus:border-[#C5221F] focus:ring-2 focus:ring-[#C5221F]/15 transition-all"
               />
             </div>
 
             {/* Submit CTA Button */}
             <button
               type="submit"
-              className="w-full py-3.5 px-6 rounded-full bg-[#8E1722] hover:bg-[#A8202D] text-white font-sans text-sm font-semibold tracking-wider shadow-md active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-3.5 px-6 rounded-full bg-[#C5221F] hover:bg-[#8C2127] text-white font-sans text-sm font-bold tracking-wider shadow-sm active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Send Your Wishes</span>
               <Send className="w-4 h-4 text-white" />
@@ -222,24 +222,24 @@ export const GuestbookSection: React.FC = () => {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-sans font-medium flex items-center gap-2"
+                  className="p-3.5 rounded-2xl bg-[#E6F4EA] border border-[#CEEAD6] text-[#137333] text-xs font-sans font-bold flex items-center gap-2"
                 >
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                  <span>Your heartfelt wish and RSVP have been blessed and recorded! ❤️</span>
+                  <CheckCircle2 className="w-4 h-4 text-[#137333] flex-shrink-0" />
+                  <span>Your wish and RSVP have been recorded! Thank you! ❤️</span>
                 </motion.div>
               )}
             </AnimatePresence>
           </form>
         </div>
 
-        {/* Right Column: Live Guestbook Wishes Wall (Solid Dark Cards) */}
+        {/* Right Column: Live Guestbook Wishes Wall (Clean Light Material Cards) */}
         <div className="lg:col-span-6 flex flex-col">
           <div className="flex items-center justify-between mb-5">
-            <h3 className="font-serif text-xl sm:text-2xl text-white font-bold flex items-center gap-2">
-              <Heart className="w-4 h-4 text-red-500 fill-current" />
+            <h3 className="font-serif text-xl sm:text-2xl text-[#202124] font-bold flex items-center gap-2">
+              <Heart className="w-4 h-4 text-[#EA4335] fill-current" />
               <span>Wishes from Loved Ones</span>
             </h3>
-            <span className="text-xs font-sans text-neutral-400">
+            <span className="text-xs font-sans text-[#5F6368] font-medium">
               {filteredWishes.length} wishes shared
             </span>
           </div>
@@ -250,10 +250,10 @@ export const GuestbookSection: React.FC = () => {
               <button
                 key={f}
                 onClick={() => setFilterSide(f)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-sans transition-all capitalize ${
+                className={`px-4 py-1.5 rounded-full text-xs font-sans font-bold transition-all capitalize ${
                   filterSide === f
-                    ? 'bg-white text-neutral-900 font-semibold shadow-sm'
-                    : 'bg-[#161620] text-neutral-400 border border-white/10 hover:border-white/30'
+                    ? 'bg-[#202124] text-white shadow-sm'
+                    : 'bg-white text-[#5F6368] border border-[#E8E2D5] hover:bg-[#F8F9FA]'
                 }`}
               >
                 {f === 'all' ? 'All Wishes' : f === 'both' ? 'Both' : `Team ${f}`}
@@ -268,29 +268,29 @@ export const GuestbookSection: React.FC = () => {
                 key={item.id}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-[#121218] border border-white/10 rounded-2xl p-5 shadow-lg backdrop-blur-md"
+                className="bg-white border border-[#EBE6DC] rounded-2xl p-5 shadow-sm"
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <span className="font-sans text-sm font-bold text-white">
+                    <span className="font-sans text-sm font-bold text-[#202124]">
                       {item.guestName}
                     </span>
                     {item.attending === 'yes' && (
-                      <span className="text-[10px] font-sans px-2.5 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-medium">
+                      <span className="text-[10px] font-sans px-2.5 py-0.5 rounded-full bg-[#E6F4EA] border border-[#CEEAD6] text-[#137333] font-bold">
                         Attending {item.guestCount ? `(${item.guestCount})` : ''}
                       </span>
                     )}
                   </div>
-                  <span className="text-[10px] font-sans text-neutral-400 uppercase tracking-wider">
+                  <span className="text-[10px] font-sans text-[#80868B] uppercase tracking-wider font-semibold">
                     To: {item.recipient === 'both' ? 'Couple' : item.recipient}
                   </span>
                 </div>
 
-                <p className="font-serif text-sm sm:text-base text-neutral-200 leading-relaxed italic">
+                <p className="font-serif text-sm sm:text-base text-[#3C4043] leading-relaxed italic">
                   "{item.message}"
                 </p>
 
-                <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-[10px] text-neutral-500 font-sans">
+                <div className="mt-3 pt-2.5 border-t border-[#F0EBE1] flex items-center justify-between text-[10px] text-[#80868B] font-sans">
                   <span>✦ Warm wishes</span>
                   <span>{new Date(item.createdAt).toLocaleDateString()}</span>
                 </div>

@@ -4,9 +4,9 @@ import { RoyalMonogram } from './RoyalMonogram';
 import { WaxSeal } from './WaxSeal';
 import { useGuest } from '../../context/GuestContext';
 import { useAudio } from '../../context/AudioContext';
-import { triggerGoldSparkles } from '../../utils/confetti';
+import { triggerCelebrationFireworks } from '../../utils/confetti';
 import { coupleData, eventData } from '../../data/weddingData';
-import { Sparkles, ChevronDown, Calendar, MapPin } from 'lucide-react';
+import { Sparkles, ChevronDown, Calendar, MapPin, Heart } from 'lucide-react';
 
 interface HeroSectionProps {
   isOpen: boolean;
@@ -18,16 +18,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
   const { playAudio } = useAudio();
   const [isAnimating, setIsAnimating] = useState(false);
 
-  const handleSealClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSealClick = () => {
     if (isOpen || isAnimating) return;
 
     setIsAnimating(true);
-
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (rect.left + rect.width / 2) / window.innerWidth;
-    const y = (rect.top + rect.height / 2) / window.innerHeight;
-
-    triggerGoldSparkles({ x, y });
+    triggerCelebrationFireworks();
     playAudio();
 
     setTimeout(() => {
@@ -39,92 +34,101 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
         if (formalSection) {
           formalSection.scrollIntoView({ behavior: 'smooth' });
         }
-      }, 750);
+      }, 700);
     }, 450);
   };
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-between pt-12 pb-14 px-4 text-center z-10 max-w-4xl mx-auto">
       
-      {/* 1. Auspicious Shloka & Subtle Ganesha Silhouette */}
+      {/* 1. Auspicious Shloka & Cute Flat Ganesha Icon */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: -15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.1 }}
+        transition={{ duration: 0.8 }}
         className="flex flex-col items-center"
       >
-        <div className="w-11 h-11 mb-2.5 opacity-90 filter drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">
+        {/* Flat Friendly Ganesha Icon */}
+        <div className="w-12 h-12 mb-2 p-1.5 rounded-2xl bg-white border border-[#EBE6DC] shadow-google-card">
           <img src="/ganesha.svg" alt="Lord Ganesha" className="w-full h-full object-contain" />
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="h-[1px] w-10 sm:w-16 bg-gradient-to-r from-transparent to-gold-antique/50" />
-          <p className="text-gold-antique font-serif text-xs sm:text-sm tracking-[0.3em] font-medium uppercase">
+        {/* Sacred Sanskrit Greeting */}
+        <div className="flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#EA4335]" />
+          <p className="text-[#C5221F] font-sans text-xs tracking-widest font-bold uppercase">
             ॥ श्री गणेशाय नमः ॥
           </p>
-          <div className="h-[1px] w-10 sm:w-16 bg-gradient-to-l from-transparent to-gold-antique/50" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#34A853]" />
         </div>
       </motion.div>
 
-      {/* 2. Main 21st-Century Editorial Typography */}
+      {/* 2. Google-Style Main Typography & Couple Announcement */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.1, delay: 0.15 }}
+        transition={{ duration: 0.9, delay: 0.1 }}
         className="my-3 flex flex-col items-center"
       >
-        <span className="text-[10px] sm:text-xs font-sans tracking-[0.35em] uppercase text-gold-light/80 font-semibold mb-2">
-          The Celebration of Love
+        <span className="text-xs font-sans tracking-widest uppercase text-[#5F6368] font-bold mb-1.5 flex items-center gap-1.5">
+          <span>The Wedding Celebration of</span>
+          <Heart className="w-3.5 h-3.5 text-[#EA4335] fill-current" />
         </span>
 
-        <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl text-white font-normal tracking-tight leading-none drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
-          {coupleData.groom.firstName} <span className="font-serif italic text-gold-antique font-light">&</span> {coupleData.bride.firstName}
+        <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl text-[#202124] font-bold tracking-tight leading-tight">
+          {coupleData.groom.firstName} <span className="text-[#C5221F] font-normal">&</span> {coupleData.bride.firstName}
         </h1>
 
-        <div className="flex items-center gap-2.5 mt-3 text-xs sm:text-sm font-sans tracking-[0.2em] text-neutral-300 uppercase">
-          <span>30 November 2026</span>
-          <span className="text-gold-antique">✦</span>
-          <span>Moradabad</span>
+        {/* Friendly Material Date Chips */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mt-3">
+          <span className="px-3.5 py-1 rounded-full bg-white border border-[#E8E2D5] shadow-sm text-xs font-sans font-semibold text-[#3C4043] flex items-center gap-1.5">
+            <Calendar className="w-3.5 h-3.5 text-[#EA4335]" />
+            <span>Monday, 30 November 2026</span>
+          </span>
+          <span className="px-3.5 py-1 rounded-full bg-white border border-[#E8E2D5] shadow-sm text-xs font-sans font-semibold text-[#3C4043] flex items-center gap-1.5">
+            <MapPin className="w-3.5 h-3.5 text-[#34A853]" />
+            <span>{eventData.venue.city}</span>
+          </span>
         </div>
       </motion.div>
 
-      {/* 3. Bespoke Royal Monogram Crest */}
+      {/* 3. Cute Celebratory Badge */}
       <RoyalMonogram />
 
-      {/* 4. Modern Frosted Glass Personalization Capsule */}
+      {/* 4. Google Material Style Guest Personalization Pill */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.96 }}
+        initial={{ opacity: 0, scale: 0.94 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.25 }}
-        className="my-3 px-6 py-2.5 rounded-full glass-pill shadow-xl flex items-center gap-2.5"
+        transition={{ duration: 0.7, delay: 0.2 }}
+        className="my-3 px-6 py-2.5 rounded-full bg-[#FEF7E0] border border-[#FEEFC3] shadow-sm flex items-center gap-2 text-[#7A4B04]"
       >
-        <Sparkles className="w-3.5 h-3.5 text-gold-antique animate-pulse" />
-        <p className="font-sans text-xs sm:text-sm text-neutral-200 tracking-wide">
+        <Sparkles className="w-4 h-4 text-[#F9AB00] animate-spin" style={{ animationDuration: '8s' }} />
+        <p className="font-sans text-xs sm:text-sm font-medium">
           {isPersonalized ? (
             <>
-              Invitation For <span className="font-semibold text-white underline decoration-gold-antique/60 decoration-1 underline-offset-4">{guestName}</span>
+              Special Invitation For <span className="font-bold text-[#202124]">{guestName}</span>
             </>
           ) : (
             <>
-              Cordially Welcoming <span className="font-semibold text-white">Family & Friends</span>
+              Cordially Inviting <span className="font-bold text-[#202124]">Family & Friends</span>
             </>
           )}
         </p>
-        <Sparkles className="w-3.5 h-3.5 text-gold-antique animate-pulse" />
+        <Sparkles className="w-4 h-4 text-[#F9AB00] animate-spin" style={{ animationDuration: '8s' }} />
       </motion.div>
 
-      {/* 5. Modern Solid Obsidian Envelope & Wax Seal Unboxing */}
+      {/* 5. Solid Celebratory Envelope & Wax Stamp Unboxing */}
       <div className="relative w-full max-w-[360px] sm:max-w-[420px] mx-auto mt-2 mb-4 perspective-1000">
         
-        {/* Envelope Outer Shell: Solid Obsidian Cardstock */}
-        <div className="relative bg-[#14141A] rounded-2xl p-6 sm:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-white/10 overflow-hidden">
+        {/* Envelope Outer Shell: Solid Festive Terracotta Cardstock */}
+        <div className="relative bg-[#8C2127] rounded-3xl p-6 sm:p-8 shadow-google-elevated border-2 border-[#73181D] overflow-hidden text-white">
           
-          {/* Hairline Gold Foil Framing */}
-          <div className="absolute inset-2 border border-gold-antique/30 rounded-xl pointer-events-none" />
+          {/* Subtle Clean Inner Border */}
+          <div className="absolute inset-2.5 border border-white/25 rounded-2xl pointer-events-none" />
 
           {/* 3D Envelope Flap */}
           <motion.div
-            className="absolute top-0 inset-x-0 h-32 origin-top preserve-3d shadow-2xl z-30"
+            className="absolute top-0 inset-x-0 h-32 origin-top preserve-3d shadow-md z-30"
             style={{
               clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
             }}
@@ -132,43 +136,39 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
               rotateX: isOpen ? -180 : 0,
               opacity: isOpen ? 0.2 : 1,
             }}
-            transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.85, ease: [0.4, 0, 0.2, 1] }}
           >
-            {/* Front of Flap: Solid Deep Charcoal */}
-            <div className="w-full h-full bg-[#1B1B24] border-b border-gold-antique/40 shadow-md relative">
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-gold-antique/60 text-xs">
+            {/* Front of Flap: Solid Terracotta */}
+            <div className="w-full h-full bg-[#9E252D] border-b border-[#73181D] shadow-sm relative">
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-white/50 text-xs">
                 ✦
               </div>
             </div>
 
-            {/* Back of Flap (Revealed on Open): Sleek Geometric Gold Foil Pattern */}
+            {/* Back of Flap (Revealed on Open): Clean Festive Tonal Cream Pattern */}
             <div 
-              className="absolute inset-0 damask-gold-pattern backface-hidden"
+              className="absolute inset-0 bg-[#F5EEDB] backface-hidden flex items-center justify-center"
               style={{ transform: 'rotateY(180deg)' }}
-            />
+            >
+              <span className="text-amber-800/30 text-2xl font-serif">✨</span>
+            </div>
           </motion.div>
 
           {/* Front Content Inside Envelope */}
           <div className="relative z-20 pt-4 pb-2 flex flex-col items-center">
-            <span className="text-[9px] font-sans tracking-[0.3em] uppercase text-gold-light/80 mb-1 font-semibold">
-              Royal Invitation
+            <span className="text-[9.5px] font-sans tracking-widest uppercase text-amber-200 font-bold mb-1">
+              Official Wedding Invitation
             </span>
             
-            <h2 className="font-serif text-2xl sm:text-3xl text-gold-gradient font-bold tracking-wide">
+            <h2 className="font-serif text-2xl sm:text-3xl text-white font-bold tracking-wide">
               {coupleData.ceremonyTitle}
             </h2>
 
             {/* Event Key Badges */}
-            <div className="flex items-center gap-3 mt-3 mb-2 text-xs font-sans text-neutral-300">
-              <span className="flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-gold-antique" />
-                <span>30 Nov 2026</span>
-              </span>
-              <span className="text-neutral-500">•</span>
-              <span className="flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-gold-antique" />
-                <span>{eventData.venue.city}</span>
-              </span>
+            <div className="flex items-center gap-2 mt-3 mb-2 text-xs font-sans text-amber-100 font-medium">
+              <span>Nov 30, 2026</span>
+              <span>•</span>
+              <span>6:30 PM Onwards</span>
             </div>
 
             {/* 3D Wax Seal Button */}
@@ -186,26 +186,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ y: 20, opacity: 0, scale: 0.95 }}
+              initial={{ y: 25, opacity: 0, scale: 0.95 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="mt-6 p-5 rounded-2xl bg-white text-neutral-900 border border-neutral-200 shadow-2xl text-center"
+              transition={{ type: "spring", damping: 20, stiffness: 200, delay: 0.2 }}
+              className="mt-6 p-5 rounded-3xl bg-white text-[#202124] border border-[#EBE6DC] shadow-google-card text-center"
             >
-              <span className="text-[10px] font-sans uppercase tracking-widest text-amber-900 font-bold">
-                Invitation Unveiled
+              <span className="text-[10px] font-sans uppercase tracking-widest text-[#C5221F] font-bold">
+                Invitation Unveiled 🎉
               </span>
-              <p className="font-serif text-base font-bold text-neutral-900 mt-0.5">
-                With the Blessings of Our Families
+              <p className="font-serif text-lg font-bold text-[#202124] mt-0.5">
+                Welcome to Our Wedding Celebration!
               </p>
-              <p className="text-xs font-sans text-neutral-600 mt-1">
-                Scroll down to read the formal invitation and celebrate our journey.
+              <p className="text-xs font-sans text-[#5F6368] mt-1">
+                Scroll down to read our story, scratch the wedding date, and RSVP.
               </p>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
 
-      {/* 6. Smooth Scroll Indicator */}
+      {/* 6. Cute Scroll Down Indicator */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -218,10 +218,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
               el?.scrollIntoView({ behavior: 'smooth' });
             }}
           >
-            <span className="text-xs font-sans text-gold-light tracking-widest uppercase font-medium">
-              Explore Royal Invitation Below
+            <span className="text-xs font-sans font-semibold text-[#5F6368] tracking-wider uppercase">
+              Explore Invitation Below
             </span>
-            <ChevronDown className="w-5 h-5 text-gold-antique animate-bounce" />
+            <ChevronDown className="w-5 h-5 text-[#C5221F] animate-bounce" />
           </motion.div>
         )}
       </AnimatePresence>

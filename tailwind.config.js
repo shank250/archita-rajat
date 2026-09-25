@@ -7,89 +7,100 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Modern 21st-century Obsidian Palette
-        obsidian: {
-          DEFAULT: '#0A0A0E',
-          dark: '#050507',
-          light: '#131318',
-          surface: '#181820',
-          card: '#1F1F2A',
-          border: 'rgba(255, 255, 255, 0.08)',
+        // Google Material Clean Palette
+        canvas: {
+          DEFAULT: '#FDFBF7',
+          pure: '#FFFFFF',
+          tonal: '#F5F1EB',
+          subtle: '#EFEBE4',
+          dark: '#202124',
         },
-        // Alias espresso to modern obsidian for compatibility
+        ink: {
+          DEFAULT: '#202124',
+          sub: '#5F6368',
+          muted: '#80868B',
+          light: '#F8F9FA',
+        },
+        festive: {
+          red: '#C5221F',
+          redSoft: '#FCE8E6',
+          amber: '#D97706',
+          amberSoft: '#FEF3D6',
+          green: '#137333',
+          greenSoft: '#E6F4EA',
+          blue: '#1A73E8',
+          blueSoft: '#E8F0FE',
+          terracotta: '#8C2127',
+          terracottaDark: '#2C1518',
+        },
+        // Backward-compatible aliases
         espresso: {
-          DEFAULT: '#0A0A0E',
-          dark: '#050507',
-          light: '#131318',
-          surface: '#181820',
-          card: '#1F1F2A',
-        },
-        // Modern 21st-century Solid Porcelain
-        porcelain: {
-          DEFAULT: '#F8F8FA',
-          cream: '#FCFCFD',
+          DEFAULT: '#FDFBF7',
+          dark: '#202124',
+          light: '#F5F1EB',
+          surface: '#FFFFFF',
           card: '#FFFFFF',
-          dark: '#EBEBEF',
         },
-        // Alias parchment to solid crisp porcelain
         parchment: {
-          DEFAULT: '#F8F8FA',
+          DEFAULT: '#FFFFFF',
           cream: '#FFFFFF',
-          dark: '#EBEBEF',
+          dark: '#F5F1EB',
         },
-        // Solid Metallic Champagne Gold
         gold: {
-          antique: '#D4AF37',
-          light: '#F3DB94',
-          dark: '#A68214',
-          dust: 'rgba(212, 175, 55, 0.25)',
-          glow: 'rgba(212, 175, 55, 0.35)',
+          antique: '#D97706',
+          light: '#F59E0B',
+          dark: '#B45309',
+          dust: 'rgba(217, 119, 6, 0.2)',
+          glow: 'rgba(217, 119, 6, 0.25)',
         },
-        // Solid Carmine Crimson Wax
         crimson: {
-          wax: '#8E1722',
-          dark: '#5C0D15',
-          light: '#B0202D',
-          glow: 'rgba(142, 23, 34, 0.45)',
+          wax: '#C5221F',
+          dark: '#8C2127',
+          light: '#E03D3A',
+          glow: 'rgba(197, 34, 31, 0.25)',
         },
         charcoal: {
-          bronze: '#0F0F14',
-          muted: '#525260',
+          bronze: '#202124',
+          muted: '#5F6368',
         },
         champagne: {
-          DEFAULT: '#F8F8FA',
-          muted: '#9494A4',
+          DEFAULT: '#202124',
+          muted: '#5F6368',
         },
       },
       fontFamily: {
-        serif: ['"Cormorant Garamond"', 'serif'],
+        sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        serif: ['"Playfair Display"', '"Cormorant Garamond"', 'serif'],
         display: ['"Playfair Display"', 'serif'],
         decorative: ['"Cinzel Decorative"', 'serif'],
-        sans: ['"Montserrat"', '"Inter"', 'sans-serif'],
       },
       boxShadow: {
-        'gold-glow': '0 0 25px rgba(212, 175, 55, 0.3)',
-        'wax-seal': '0 12px 25px -4px rgba(142, 23, 34, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.3)',
-        'modern-card': '0 20px 50px -12px rgba(0, 0, 0, 0.8), 0 0 1px rgba(255, 255, 255, 0.1)',
-        'parchment': '0 20px 45px -10px rgba(0, 0, 0, 0.5), 0 0 1px rgba(212, 175, 55, 0.3)',
+        'google-card': '0 1px 3px 0 rgba(60,64,67,0.1), 0 4px 14px 0 rgba(60,64,67,0.06)',
+        'google-elevated': '0 4px 12px 0 rgba(60,64,67,0.12), 0 12px 28px 0 rgba(60,64,67,0.08)',
+        'google-fab': '0 3px 5px -1px rgba(0,0,0,0.15), 0 6px 10px 0 rgba(0,0,0,0.1), 0 1px 18px 0 rgba(0,0,0,0.08)',
       },
-      backgroundImage: {
-        'gold-gradient': 'linear-gradient(135deg, #FFF0BE 0%, #D4AF37 50%, #A68214 100%)',
-        'crimson-gradient': 'linear-gradient(145deg, #B0202D 0%, #8E1722 55%, #5C0D15 100%)',
-        'obsidian-gradient': 'linear-gradient(180deg, #131318 0%, #0A0A0E 100%)',
+      borderRadius: {
+        '3xl': '24px',
+        '4xl': '32px',
       },
       animation: {
-        'float-slow': 'float 6s ease-in-out infinite',
-        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+        'bounce-subtle': 'bounceSubtle 3s ease-in-out infinite',
+        'wiggle': 'wiggle 2.5s ease-in-out infinite',
+        'float-gentle': 'floatGentle 4s ease-in-out infinite',
       },
       keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-8px)' },
+        bounceSubtle: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-6px)' },
         },
-        pulseGlow: {
-          '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
-          '50%': { opacity: '1', transform: 'scale(1.04)' },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(-3deg)' },
+          '75%': { transform: 'rotate(3deg)' },
+        },
+        floatGentle: {
+          '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+          '50%': { transform: 'translateY(-8px) rotate(1.5deg)' },
         },
       },
     },

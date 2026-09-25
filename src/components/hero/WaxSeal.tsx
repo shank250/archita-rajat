@@ -16,50 +16,43 @@ export const WaxSeal: React.FC<WaxSealProps> = ({
     <motion.button
       type="button"
       onClick={onClick}
-      aria-label="Unveil royal invitation"
-      whileHover={{ scale: 1.06 }}
-      whileTap={{ scale: 0.94 }}
+      aria-label="Open wedding invitation"
+      whileHover={{ scale: 1.08, rotate: [-1, 2, -1, 0] }}
+      whileTap={{ scale: 0.92 }}
       className="relative group cursor-pointer focus:outline-none select-none"
     >
-      {/* Outer Molten Solid Carmine Wax Ring */}
-      <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-[#9E1B26] via-[#7D121C] to-[#4F0A11] p-1 shadow-[0_12px_28px_rgba(0,0,0,0.8),inset_0_2px_4px_rgba(255,255,255,0.2)] flex items-center justify-center border border-red-950/60">
+      {/* Solid Festive Vermilion Circular Seal */}
+      <div className="relative w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-[#C5221F] p-1.5 shadow-google-elevated flex items-center justify-center border-2 border-[#A51A18] transition-transform">
         
-        {/* Subtle Organic Wax Contours */}
-        <span className="absolute -top-1 left-4 w-4 h-3 bg-[#8C1620] rounded-full opacity-90" />
-        <span className="absolute -bottom-1 right-4 w-5 h-3.5 bg-[#660C14] rounded-full opacity-90" />
-
-        {/* Debossed Stamped Medallion */}
-        <div className="w-full h-full rounded-full bg-gradient-to-br from-[#590C13] via-[#75111B] to-[#43080E] border border-amber-950/80 shadow-[inset_0_3px_8px_rgba(0,0,0,0.85)] flex flex-col items-center justify-center p-2 relative overflow-hidden">
+        {/* Subtle decorative scalloped outline */}
+        <div className="w-full h-full rounded-full bg-[#A51A18] border border-[#8C1413] flex flex-col items-center justify-center p-1 relative overflow-hidden">
           
-          {/* Subtle gold metallic sheen inside relief */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-gold-antique/15 to-transparent pointer-events-none group-hover:opacity-100 transition-opacity" />
-
           {/* Stamped Monogram */}
-          <span className="font-decorative text-gold-light text-base sm:text-lg font-bold tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+          <span className="font-serif text-white text-lg sm:text-xl font-bold tracking-wider">
             R & A
           </span>
 
-          {/* Perimeter Hashtag Stamp */}
-          <span className="text-[7.5px] font-sans font-bold text-amber-200/90 tracking-wider text-center uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] mt-0.5">
+          {/* Hashtag Ring */}
+          <span className="text-[7.5px] font-sans font-bold text-amber-200 tracking-wider text-center uppercase mt-0.5">
             {hashtag}
           </span>
         </div>
 
-        {/* Pulsing subtle halo */}
+        {/* Pulsing ring */}
         {!isOpening && (
-          <span className="absolute -inset-1 rounded-full border border-gold-antique/40 animate-ping pointer-events-none opacity-30" />
+          <span className="absolute -inset-1 rounded-full border-2 border-red-400 animate-ping pointer-events-none opacity-40" />
         )}
       </div>
 
-      {/* Modern 21st-century Floating Prompt Tag */}
+      {/* Cute Floating Prompt Tag */}
       {!isOpening && (
         <motion.div
-          animate={{ y: [0, 3, 0] }}
+          animate={{ y: [0, 4, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1 rounded-full bg-black/80 border border-gold-antique/40 text-[10.5px] font-sans font-medium text-gold-light shadow-xl backdrop-blur-md flex items-center gap-1.5"
+          className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap px-3.5 py-1 rounded-full bg-white border border-[#E8E2D5] text-xs font-sans font-semibold text-[#8C2127] shadow-google-card flex items-center gap-1.5"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-gold-antique animate-pulse" />
-          <span>Tap to Unveil Invite</span>
+          <span>Tap to Unveil</span>
+          <span>💌</span>
         </motion.div>
       )}
     </motion.button>

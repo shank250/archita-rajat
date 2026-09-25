@@ -9,33 +9,19 @@ interface FiligreeBorderProps {
 export const FiligreeBorder: React.FC<FiligreeBorderProps> = ({
   children,
   className = '',
-  variant = 'parchment',
 }) => {
-  const isParchment = variant === 'parchment';
-
   return (
     <div
-      className={`relative p-6 sm:p-10 rounded-2xl sm:rounded-3xl ${
-        isParchment 
-          ? 'bg-white text-charcoal-bronze shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-neutral-200/80' 
-          : 'bg-obsidian-surface text-champagne shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/10'
-      } ${className}`}
+      className={`relative p-6 sm:p-10 rounded-3xl bg-white text-[#202124] border border-[#EBE6DC] shadow-google-card ${className}`}
     >
-      {/* Outer hairline border */}
-      <div className="absolute inset-2.5 sm:inset-3.5 border border-gold-antique/35 rounded-xl sm:rounded-2xl pointer-events-none" />
-      
-      {/* Inner subtle border */}
-      <div className="absolute inset-4 sm:inset-5 border border-gold-antique/20 rounded-lg sm:rounded-xl pointer-events-none" />
+      {/* Clean hairline inner border */}
+      <div className="absolute inset-3 sm:inset-4 border border-[#F0EBE1] rounded-2xl pointer-events-none" />
 
-      {/* Modern 21st Century Geometric Corner Notches */}
-      {/* Top Left */}
-      <div className="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 w-3 h-3 border-t-2 border-l-2 border-gold-antique pointer-events-none" />
-      {/* Top Right */}
-      <div className="absolute top-2.5 right-2.5 sm:top-3.5 sm:right-3.5 w-3 h-3 border-t-2 border-r-2 border-gold-antique pointer-events-none" />
-      {/* Bottom Left */}
-      <div className="absolute bottom-2.5 left-2.5 sm:bottom-3.5 sm:left-3.5 w-3 h-3 border-b-2 border-l-2 border-gold-antique pointer-events-none" />
-      {/* Bottom Right */}
-      <div className="absolute bottom-2.5 right-2.5 sm:bottom-3.5 sm:right-3.5 w-3 h-3 border-b-2 border-r-2 border-gold-antique pointer-events-none" />
+      {/* Cute Colorful Corner Dots (Google celebratory theme) */}
+      <span className="absolute top-3 left-3 sm:top-4 sm:left-4 w-2 h-2 rounded-full bg-[#EA4335] pointer-events-none" />
+      <span className="absolute top-3 right-3 sm:top-4 sm:right-4 w-2 h-2 rounded-full bg-[#FBBC05] pointer-events-none" />
+      <span className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 w-2 h-2 rounded-full bg-[#34A853] pointer-events-none" />
+      <span className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 w-2 h-2 rounded-full bg-[#4285F4] pointer-events-none" />
 
       {/* Card Content */}
       <div className="relative z-10">{children}</div>
