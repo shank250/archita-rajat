@@ -43,7 +43,7 @@ export const Storyboard: React.FC = () => {
         </div>
 
         {/* Carousel Content Animated with AnimatePresence */}
-        <div className="min-h-[460px] sm:min-h-[480px] flex flex-col justify-between py-6">
+        <div className="min-h-[580px] sm:min-h-[640px] flex flex-col justify-between py-6">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStory.id}
@@ -70,14 +70,22 @@ export const Storyboard: React.FC = () => {
                     key={idx}
                     whileHover={{ scale: 1.02, rotate: 0 }}
                     style={{ transform: `rotate(${img.rotation || 0}deg)` }}
-                    className="relative bg-[#FAFAFA] p-3.5 sm:p-4 rounded-3xl shadow-sm border border-neutral-200/80 max-w-[260px] sm:max-w-[280px] w-full transition-transform duration-300"
+                    className="relative bg-[#FAFAFA] p-3.5 sm:p-4 rounded-3xl shadow-sm border border-neutral-200/80 max-w-[270px] sm:max-w-[310px] w-full transition-transform duration-300"
                   >
-                    {/* Clean Image Viewport */}
-                    <div className="w-full h-56 sm:h-64 rounded-2xl overflow-hidden bg-neutral-100">
+                    {/* Clean Image Viewport accommodating tall vertical portraits fully */}
+                    <div className="w-full h-80 sm:h-96 rounded-2xl overflow-hidden bg-neutral-100/90 relative flex items-center justify-center p-2">
+                      {/* Ambient background blur for gallery depth */}
+                      <img
+                        src={img.src}
+                        alt=""
+                        aria-hidden="true"
+                        className="absolute inset-0 w-full h-full object-cover blur-xl opacity-20 scale-110 pointer-events-none"
+                      />
+                      {/* Full uncapped photo - 100% visible */}
                       <img
                         src={img.src}
                         alt={img.alt}
-                        className="w-full h-full object-cover object-center filter contrast-[1.02] brightness-98 hover:brightness-100 transition-all duration-300"
+                        className="relative z-10 max-h-full max-w-full w-auto h-auto object-contain object-center rounded-xl shadow-xs filter contrast-[1.02] brightness-98 hover:brightness-100 transition-all duration-300"
                       />
                     </div>
 
