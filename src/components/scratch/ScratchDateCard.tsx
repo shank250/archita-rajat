@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { weddingEvents, venuesList } from '../../data/weddingData';
 import { triggerSubtleRevealSparkle } from '../../utils/confetti';
-import { Sparkles, Calendar, MapPin, ExternalLink, RotateCcw, Heart, CheckCircle2 } from 'lucide-react';
+import { Sparkles, Calendar, MapPin, ExternalLink, Heart } from 'lucide-react';
 
 export const ScratchDateCard: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -198,17 +198,15 @@ export const ScratchDateCard: React.FC = () => {
         <div className="w-12 h-0.5 bg-[#881337] rounded-full mx-auto mt-3" />
       </div>
 
-      {/* Quick Action Bar Above Card */}
-      <div className="flex items-center justify-between mb-3 px-2">
-        <span className="text-xs font-sans text-neutral-500 font-medium">
-          {isRevealed
-            ? "✦ All Celebration Dates Unveiled ✦"
-            : scratchedPercent > 0
+      {/* Quick Action Bar Above Card (Only displayed before reveal) */}
+      {!isRevealed && (
+        <div className="flex items-center justify-between mb-3 px-2">
+          <span className="text-xs font-sans text-neutral-500 font-medium">
+            {scratchedPercent > 0
               ? `${scratchedPercent}% Uncovered (or tap to reveal)`
               : "Tap anywhere on card or swipe to unveil"}
-        </span>
+          </span>
 
-        {!isRevealed ? (
           <button
             onClick={instantReveal}
             className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#881337] text-white text-xs font-sans font-bold hover:bg-[#70102E] transition-all shadow-sm cursor-pointer"
@@ -216,16 +214,8 @@ export const ScratchDateCard: React.FC = () => {
             <Sparkles className="w-3.5 h-3.5" />
             <span>Instant Reveal All</span>
           </button>
-        ) : (
-          <button
-            onClick={initCanvas}
-            className="flex items-center gap-1 text-xs font-sans font-semibold text-neutral-700 hover:text-neutral-950 transition-colors cursor-pointer"
-          >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span>Scratch Again</span>
-          </button>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* The Big Reveal Panel Container */}
       <div
@@ -236,11 +226,6 @@ export const ScratchDateCard: React.FC = () => {
         <div className="p-5 sm:p-8 text-neutral-900">
           {/* Header of Revealed Schedule */}
           <div className="text-center pb-6 border-b border-neutral-100">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-[#881337] text-[11px] font-sans font-bold mb-2">
-              <CheckCircle2 className="w-3.5 h-3.5" />
-              <span>All Celebrations Unveiled</span>
-            </div>
-
             <h3 className="font-serif text-2xl sm:text-3xl text-neutral-950 font-bold">
               Celebration Program & Auspicious Dates
             </h3>
