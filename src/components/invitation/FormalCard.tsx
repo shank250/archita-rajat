@@ -93,58 +93,10 @@ export const FormalCard: React.FC = () => {
             </div>
           </div>
 
-          {/* Multi-Date Celebration Highlights */}
-          <div className="mt-6 pt-5 border-t border-neutral-100 text-neutral-900">
-            <span className="text-[10px] font-sans font-bold uppercase tracking-[0.25em] text-[#881337] block mb-3">
-              Celebration Program & Venues
-            </span>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-left">
-              {/* Event 1: Engagement */}
-              <div className="p-3 rounded-2xl bg-[#FAFAFA] border border-neutral-200/80">
-                <span className="text-[10px] font-sans font-bold text-[#881337] block">
-                  23 OCT 2026
-                </span>
-                <p className="font-serif font-bold text-xs sm:text-sm text-neutral-900">
-                  Engagement Ceremony
-                </p>
-                <p className="text-[11px] font-sans text-neutral-500 mt-0.5">
-                  Elegance Hotel
-                </p>
-              </div>
-
-              {/* Event 2: Pre-wedding Rasams */}
-              <div className="p-3 rounded-2xl bg-[#FAFAFA] border border-neutral-200/80">
-                <span className="text-[10px] font-sans font-bold text-[#881337] block">
-                  28 & 29 NOV 2026
-                </span>
-                <p className="font-serif font-bold text-xs sm:text-sm text-neutral-900">
-                  Mehndi & Sangeet
-                </p>
-                <p className="text-[11px] font-sans text-neutral-500 mt-0.5">
-                  Shital Niwas (Our Home)
-                </p>
-              </div>
-
-              {/* Event 3: Grand Wedding */}
-              <div className="p-3 rounded-2xl bg-[#FAFAFA] border border-neutral-200/80">
-                <span className="text-[10px] font-sans font-bold text-[#881337] block">
-                  30 NOV 2026
-                </span>
-                <p className="font-serif font-bold text-xs sm:text-sm text-neutral-900">
-                  The Grand Wedding
-                </p>
-                <p className="text-[11px] font-sans text-neutral-500 mt-0.5">
-                  Krishna Lawn
-                </p>
-              </div>
-            </div>
-          </div>
-
           {/* Downward Prompt */}
           <div className="mt-8 pt-4 flex flex-col items-center gap-1 opacity-70">
             <span className="text-[10px] font-sans tracking-widest uppercase text-neutral-400 font-bold">
-              Keep Scrolling for Our Story
+              Scroll Down for Our Story & Auspicious Dates
             </span>
             <ChevronDown className="w-4 h-4 text-neutral-400 animate-bounce" />
           </div>

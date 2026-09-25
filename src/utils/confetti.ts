@@ -28,33 +28,28 @@ export const triggerGoldSparkles = (origin?: { x: number; y: number }) => {
   });
 };
 
+export const triggerSubtleRevealSparkle = (origin?: { x: number; y: number }) => {
+  confetti({
+    particleCount: 22,
+    spread: 45,
+    origin: origin || { x: 0.5, y: 0.5 },
+    colors: ['#D4AF37', '#881337', '#F3E5AB'],
+    scalar: 0.9,
+    ticks: 100,
+    gravity: 1.1,
+  });
+};
+
 export const triggerCelebrationFireworks = () => {
-  const duration = 2.5 * 1000;
-  const animationEnd = Date.now() + duration;
-  const colors = ['#D4AF37', '#FFD700', '#F3E5AB', '#85222B', '#E5C378'];
-
-  const frame = () => {
-    confetti({
-      particleCount: 4,
-      angle: 60,
-      spread: 55,
-      origin: { x: 0, y: 0.7 },
-      colors: colors,
-    });
-    confetti({
-      particleCount: 4,
-      angle: 120,
-      spread: 55,
-      origin: { x: 1, y: 0.7 },
-      colors: colors,
-    });
-
-    if (Date.now() < animationEnd) {
-      requestAnimationFrame(frame);
-    }
-  };
-
-  frame();
+  confetti({
+    particleCount: 35,
+    spread: 60,
+    origin: { x: 0.5, y: 0.6 },
+    colors: ['#D4AF37', '#881337', '#F3E5AB', '#FAF1E4'],
+    scalar: 1.0,
+    ticks: 120,
+    gravity: 1.0,
+  });
 };
 
 export const triggerHeartBurst = (origin?: { x: number; y: number }) => {
