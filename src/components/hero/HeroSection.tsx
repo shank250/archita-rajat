@@ -5,8 +5,8 @@ import { WaxSeal } from './WaxSeal';
 import { useGuest } from '../../context/GuestContext';
 import { useAudio } from '../../context/AudioContext';
 import { triggerCelebrationFireworks } from '../../utils/confetti';
-import { coupleData, eventData } from '../../data/weddingData';
-import { ChevronDown, Calendar, MapPin } from 'lucide-react';
+import { coupleData } from '../../data/weddingData';
+import { ChevronDown } from 'lucide-react';
 
 interface HeroSectionProps {
   isOpen: boolean;
@@ -77,18 +77,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
         <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl text-neutral-900 font-bold tracking-tight leading-tight">
           {coupleData.groom.firstName} <span className="text-[#881337] font-normal">&</span> {coupleData.bride.firstName}
         </h1>
-
-        {/* Clean Date Chips */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mt-3.5">
-          <span className="px-4 py-1.5 rounded-full bg-white border border-neutral-200 shadow-sm text-xs font-sans font-semibold text-neutral-700 flex items-center gap-1.5">
-            <Calendar className="w-3.5 h-3.5 text-neutral-500" />
-            <span>Monday, 30 November 2026</span>
-          </span>
-          <span className="px-4 py-1.5 rounded-full bg-white border border-neutral-200 shadow-sm text-xs font-sans font-semibold text-neutral-700 flex items-center gap-1.5">
-            <MapPin className="w-3.5 h-3.5 text-neutral-500" />
-            <span>{eventData.venue.city}</span>
-          </span>
-        </div>
       </motion.div>
 
       {/* 3. Bespoke Clean Monogram Crest */}
@@ -157,12 +145,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
               {coupleData.ceremonyTitle}
             </h2>
 
-            {/* Event Key Badges */}
-            <div className="flex items-center gap-2 mt-3 mb-2 text-xs font-sans text-rose-100 font-medium">
-              <span>Nov 30, 2026</span>
-              <span>•</span>
-              <span>6:30 PM Onwards</span>
-            </div>
+            <p className="text-xs font-sans text-rose-100/90 font-medium mt-2 mb-1">
+              Together with their families
+            </p>
 
             {/* 3D Wax Seal Button */}
             <div className="mt-5 mb-1 z-40">
