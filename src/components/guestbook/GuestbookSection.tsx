@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGuest } from '../../context/GuestContext';
-import { WishEntry, RecipientSide } from '../../types/wedding';
+import { WishEntry } from '../../types/wedding';
 import { getStoredUserRsvp, saveUserRsvp } from '../../utils/storage';
 import { triggerCelebrationFireworks } from '../../utils/confetti';
 import { Send, User, CheckCircle2, HeartHandshake, Edit3, Calendar } from 'lucide-react';
@@ -34,7 +34,7 @@ const celebrationEvents = [
 ];
 
 export const GuestbookSection: React.FC = () => {
-  const { guestName, recipientSide, isPersonalized } = useGuest();
+  const { guestName, isPersonalized } = useGuest();
 
   // Form State
   const [name, setName] = useState('');
@@ -44,7 +44,6 @@ export const GuestbookSection: React.FC = () => {
     'sangeet',
     'wedding',
   ]);
-  const [targetRecipient, setTargetRecipient] = useState<RecipientSide>('both');
   const [message, setMessage] = useState('');
 
   const [submittedRsvp, setSubmittedRsvp] = useState<WishEntry | null>(null);
@@ -76,15 +75,11 @@ export const GuestbookSection: React.FC = () => {
           setSelectedEvents(['sangeet']);
         }
       }
-      setTargetRecipient(existing.recipient);
       setMessage(existing.message);
     } else if (isPersonalized && guestName) {
       setName(guestName);
-      if (recipientSide) {
-        setTargetRecipient(recipientSide);
-      }
     }
-  }, [guestName, recipientSide, isPersonalized]);
+  }, [guestName, isPersonalized]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -102,7 +97,7 @@ export const GuestbookSection: React.FC = () => {
 
     const saved = saveUserRsvp({
       guestName: name.trim(),
-      recipient: targetRecipient,
+      recipient: 'both',
       eventsAttending: selectedEvents,
       eventAttendance: eventAttendanceText,
       message: message.trim(),
@@ -310,21 +305,6 @@ export const GuestbookSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Recipient Dropdown */}
-              <div>
-                <label className="block text-xs font-sans font-bold uppercase tracking-wider text-neutral-700 mb-1.5">
-                  Blessings For
-                </label>
-                <select
-                  value={targetRecipient}
-                  onChange={(e) => setTargetRecipient(e.target.value as RecipientSide)}
-                  className="w-full px-4 py-3 rounded-2xl border border-neutral-200 bg-[#FAFAFA] text-neutral-900 text-sm font-sans focus:outline-none focus:border-neutral-900 transition-all cursor-pointer"
-                >
-                  <option value="both">Both (Archita & Rajat)</option>
-                  <option value="bride">Archita (Bride's Family)</option>
-                  <option value="groom">Rajat (Groom)</option>
-                </select>
-              </div>
 
               {/* Message Field */}
               <div>
