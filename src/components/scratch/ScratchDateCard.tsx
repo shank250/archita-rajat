@@ -10,6 +10,7 @@ export const ScratchDateCard: React.FC = () => {
   const [isRevealed, setIsRevealed] = useState(false);
   const [scratchedPercent, setScratchedPercent] = useState(0);
   const isDrawingRef = useRef(false);
+  const touchStartPos = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
   // Initialize canvas with clean deep wine matte finish and gold accents
   const initCanvas = useCallback(() => {
@@ -51,17 +52,17 @@ export const ScratchDateCard: React.FC = () => {
     ctx.fillText('ARCHITA & RAJAT', width / 2, centerY - 30);
 
     // Callout text on surface
-    ctx.font = '600 14px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = '#F3E5AB';
-    ctx.fillText('SCRATCH TO REVEAL ALL DATES & VENUES', width / 2, centerY + 8);
+    ctx.fillText('TAP OR SWIPE TO REVEAL DATES', width / 2, centerY + 8);
 
     ctx.font = '12px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
     ctx.fillText('✦ 4 Auspicious Celebrations • Engagement to Vivah ✦', width / 2, centerY + 36);
 
     ctx.font = '11px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-    ctx.fillText('Swipe across here or tap Instant Reveal below', width / 2, centerY + 64);
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+    ctx.fillText('Tap anywhere on the card to reveal instantly', width / 2, centerY + 64);
 
     setIsRevealed(false);
     setScratchedPercent(0);
@@ -96,8 +97,8 @@ export const ScratchDateCard: React.FC = () => {
       const percent = Math.min(100, Math.round((transparentPixels / totalPixels) * 100));
       setScratchedPercent(percent);
 
-      // Reveal once ~28% is scratched - smooth and effortless
-      if (percent >= 28 && !isRevealed) {
+      // Reveal once ~8% is cleared (e.g. 1 quick swipe) - effortless!
+      if (percent >= 8 && !isRevealed) {
         setIsRevealed(true);
         triggerSubtleRevealSparkle();
       }
@@ -105,6 +106,12 @@ export const ScratchDateCard: React.FC = () => {
       console.warn("Scratch check prevented:", e);
     }
   }, [isRevealed]);
+
+  const instantReveal = () => {
+    setIsRevealed(true);
+    setScratchedPercent(100);
+    triggerSubtleRevealSparkle();
+  };
 
   const scratch = (clientX: number, clientY: number) => {
     const canvas = canvasRef.current;
@@ -119,7 +126,7 @@ export const ScratchDateCard: React.FC = () => {
 
     ctx.globalCompositeOperation = 'destination-out';
     ctx.beginPath();
-    ctx.arc(x, y, 36, 0, Math.PI * 2);
+    ctx.arc(x, y, 65, 0, Math.PI * 2);
     ctx.fill();
 
     calculateScratchedArea();
@@ -127,6 +134,7 @@ export const ScratchDateCard: React.FC = () => {
 
   const handleMouseDown = (e: React.MouseEvent) => {
     isDrawingRef.current = true;
+    touchStartPos.current = { x: e.clientX, y: e.clientY };
     scratch(e.clientX, e.clientY);
   };
 
@@ -135,13 +143,19 @@ export const ScratchDateCard: React.FC = () => {
     scratch(e.clientX, e.clientY);
   };
 
-  const handleMouseUp = () => {
+  const handleMouseUp = (e: React.MouseEvent) => {
     isDrawingRef.current = false;
+    const dist = Math.hypot(e.clientX - touchStartPos.current.x, e.clientY - touchStartPos.current.y);
+    // If it was a tap/click (minimal movement), reveal immediately!
+    if (dist < 20 && !isRevealed) {
+      instantReveal();
+    }
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
     isDrawingRef.current = true;
     if (e.touches.length > 0) {
+      touchStartPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
       scratch(e.touches[0].clientX, e.touches[0].clientY);
     }
   };
@@ -153,14 +167,16 @@ export const ScratchDateCard: React.FC = () => {
     }
   };
 
-  const handleTouchEnd = () => {
+  const handleTouchEnd = (e: React.TouchEvent) => {
     isDrawingRef.current = false;
-  };
-
-  const instantReveal = () => {
-    setIsRevealed(true);
-    setScratchedPercent(100);
-    triggerSubtleRevealSparkle();
+    const touch = e.changedTouches[0];
+    if (touch && !isRevealed) {
+      const dist = Math.hypot(touch.clientX - touchStartPos.current.x, touch.clientY - touchStartPos.current.y);
+      // If it was a tap (finger lifted with minimal drag), reveal immediately!
+      if (dist < 25) {
+        instantReveal();
+      }
+    }
   };
 
   // Google Calendar URL for the Grand Wedding
@@ -177,7 +193,7 @@ export const ScratchDateCard: React.FC = () => {
           The Auspicious Celebrations
         </h2>
         <p className="text-xs sm:text-sm font-sans text-neutral-500 mt-1 max-w-lg mx-auto">
-          Scratch the card or tap reveal to unveil all four celebration dates and venues
+          Tap anywhere or swipe across the card to reveal all celebration dates & venues
         </p>
         <div className="w-12 h-0.5 bg-[#881337] rounded-full mx-auto mt-3" />
       </div>
@@ -187,7 +203,9 @@ export const ScratchDateCard: React.FC = () => {
         <span className="text-xs font-sans text-neutral-500 font-medium">
           {isRevealed
             ? "✦ All Celebration Dates Unveiled ✦"
-            : `${scratchedPercent}% Uncovered (Scratch 28% to unveil)`}
+            : scratchedPercent > 0
+              ? `${scratchedPercent}% Uncovered (or tap to reveal)`
+              : "Tap anywhere on card or swipe to unveil"}
         </span>
 
         {!isRevealed ? (
