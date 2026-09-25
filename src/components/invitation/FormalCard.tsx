@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FiligreeBorder } from '../common/FiligreeBorder';
 import { useGuest } from '../../context/GuestContext';
-import { ChevronDown, Sparkles } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 export const FormalCard: React.FC = () => {
   const { guestName, isPersonalized } = useGuest();
@@ -16,10 +16,12 @@ export const FormalCard: React.FC = () => {
         transition={{ duration: 0.8 }}
       >
         <FiligreeBorder className="text-center">
-          {/* Header Icon */}
+          {/* Auspicious Om Symbol */}
           <div className="flex justify-center mb-3">
-            <div className="w-10 h-10 rounded-2xl bg-neutral-100 border border-neutral-200 flex items-center justify-center text-neutral-600 shadow-sm">
-              <Sparkles className="w-5 h-5" />
+            <div className="w-12 h-12 rounded-2xl bg-neutral-100 border border-neutral-200/90 flex items-center justify-center text-[#881337] shadow-sm">
+              <span className="font-serif text-2xl font-bold leading-none select-none text-[#881337]">
+                ॐ
+              </span>
             </div>
           </div>
 
