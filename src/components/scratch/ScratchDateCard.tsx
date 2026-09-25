@@ -273,7 +273,7 @@ export const ScratchDateCard: React.FC = () => {
                   <span>Timing & Key Rituals</span>
                 </div>
                 <p className="font-serif text-base font-bold text-white">
-                  6:30 PM Onwards
+                  8:00 PM Onwards
                 </p>
                 <p className="text-xs font-sans text-rose-100/80">
                   Baraat Swagat • Varmala • Sacred Vedic Pheras
