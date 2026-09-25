@@ -118,6 +118,7 @@ export interface WishEntry {
   message: string;
   attending?: 'yes' | 'no' | 'undecided';
   eventsAttending?: string[]; // e.g. ['all'] or ['engagement', 'rasam', 'wedding']
+  eventAttendance?: string; // Selected event option from dropdown
   guestCount?: number;
   dietaryPreference?: 'vegetarian' | 'non-vegetarian' | 'jain' | 'no-preference';
   createdAt: string;

@@ -4,13 +4,25 @@ import { useGuest } from '../../context/GuestContext';
 import { WishEntry, RecipientSide } from '../../types/wedding';
 import { getStoredUserRsvp, saveUserRsvp } from '../../utils/storage';
 import { triggerCelebrationFireworks } from '../../utils/confetti';
-import { Send, User, CheckCircle2, HeartHandshake, Edit3 } from 'lucide-react';
+import { Send, User, CheckCircle2, HeartHandshake, Edit3, Calendar } from 'lucide-react';
+
+const eventOptions = [
+  { value: 'all', label: 'All Celebrations (23 Oct, 28, 29 & 30 Nov)' },
+  { value: 'wedding', label: 'The Grand Wedding only (30 Nov • Krishna Lawn)' },
+  { value: 'engagement', label: 'Engagement Ceremony only (23 Oct • Elegance Hotel)' },
+  { value: 'rasam', label: 'Mehndi & Haldi Rasam only (28 Nov • Shital Niwas)' },
+  { value: 'sangeet', label: 'Ladies Sangeet & Musical Night only (29 Nov • Shital Niwas)' },
+  { value: 'pre-wedding-and-wedding', label: 'Mehndi, Sangeet & Wedding (28–30 Nov)' },
+  { value: 'engagement-and-wedding', label: 'Engagement & Grand Wedding (23 Oct & 30 Nov)' },
+  { value: 'afar', label: 'Sending Warm Blessings from Afar' },
+];
 
 export const GuestbookSection: React.FC = () => {
   const { guestName, recipientSide, isPersonalized } = useGuest();
 
-  // Form State - Clean and Simple
+  // Form State
   const [name, setName] = useState('');
+  const [eventAttendance, setEventAttendance] = useState('all');
   const [targetRecipient, setTargetRecipient] = useState<RecipientSide>('both');
   const [message, setMessage] = useState('');
 
@@ -22,6 +34,9 @@ export const GuestbookSection: React.FC = () => {
     if (existing) {
       setSubmittedRsvp(existing);
       setName(existing.guestName);
+      if (existing.eventAttendance) {
+        setEventAttendance(existing.eventAttendance);
+      }
       setTargetRecipient(existing.recipient);
       setMessage(existing.message);
     } else if (isPersonalized && guestName) {
@@ -39,6 +54,7 @@ export const GuestbookSection: React.FC = () => {
     const saved = saveUserRsvp({
       guestName: name.trim(),
       recipient: targetRecipient,
+      eventAttendance,
       message: message.trim(),
     });
 
@@ -56,15 +72,15 @@ export const GuestbookSection: React.FC = () => {
       {/* Section Header */}
       <div className="text-center mb-8">
         <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-[#881337] font-bold">
-          Blessings & Wishes
+          RSVP & Wishes
         </span>
         <h2 className="font-serif text-3xl sm:text-4xl text-neutral-900 font-bold mt-1">
-          {submittedRsvp && !isEditing ? "Blessings Received" : "Send Your Heartfelt Blessings"}
+          {submittedRsvp && !isEditing ? "RSVP & Blessings Received" : "RSVP & Send Your Blessings"}
         </h2>
-        <p className="text-xs sm:text-sm font-sans text-neutral-500 mt-1">
+        <p className="text-xs sm:text-sm font-sans text-neutral-500 mt-1 max-w-md mx-auto">
           {submittedRsvp && !isEditing
-            ? "Your warm wishes have been conveyed to Archita & Rajat"
-            : "Leave a warm message and blessings for the couple as they begin their journey"}
+            ? "Your attendance and warm wishes have been conveyed to Archita & Rajat"
+            : "Select which celebrations you plan to attend and share your heartfelt blessings"}
         </p>
         <div className="w-12 h-0.5 bg-[#881337] rounded-full mx-auto mt-3" />
       </div>
@@ -85,7 +101,7 @@ export const GuestbookSection: React.FC = () => {
             </div>
 
             <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#881337]">
-              Message Sent
+              RSVP Confirmed
             </span>
 
             <h3 className="font-serif text-2xl sm:text-3xl text-neutral-950 font-bold mt-1">
@@ -93,17 +109,33 @@ export const GuestbookSection: React.FC = () => {
             </h3>
 
             <p className="text-xs font-sans text-neutral-500 mt-1">
-              Archita & Rajat are blessed to have you in their lives.
+              Archita & Rajat look forward to celebrating with you!
             </p>
 
-            {/* Message Details Box */}
-            <div className="my-6 p-5 rounded-2xl bg-[#FAFAFA] border border-neutral-200/90 text-left">
-              <span className="text-xs text-neutral-500 font-sans font-medium block mb-1">
-                Your Blessing:
-              </span>
-              <p className="font-serif text-sm sm:text-base text-neutral-800 italic leading-relaxed">
-                "{submittedRsvp.message}"
-              </p>
+            {/* Attendance & Message Details Box */}
+            <div className="my-6 p-5 rounded-2xl bg-[#FAFAFA] border border-neutral-200/90 text-left space-y-3.5">
+              <div>
+                <span className="text-[11px] text-neutral-400 font-sans font-bold uppercase tracking-wider block mb-1">
+                  Attending Celebrations:
+                </span>
+                <p className="font-sans text-xs sm:text-sm text-neutral-900 font-bold flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-[#881337] flex-shrink-0" />
+                  <span>
+                    {eventOptions.find((o) => o.value === submittedRsvp.eventAttendance)?.label ||
+                      submittedRsvp.eventAttendance ||
+                      "All Celebrations"}
+                  </span>
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-neutral-200/60">
+                <span className="text-[11px] text-neutral-400 font-sans font-bold uppercase tracking-wider block mb-1">
+                  Your Blessing:
+                </span>
+                <p className="font-serif text-sm sm:text-base text-neutral-800 italic leading-relaxed">
+                  "{submittedRsvp.message}"
+                </p>
+              </div>
             </div>
 
             {/* Edit Button */}
@@ -112,11 +144,11 @@ export const GuestbookSection: React.FC = () => {
               className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full border border-neutral-200 hover:bg-neutral-50 text-xs font-sans font-semibold text-neutral-700 transition-colors shadow-sm cursor-pointer"
             >
               <Edit3 className="w-3.5 h-3.5" />
-              <span>Update Blessing</span>
+              <span>Update RSVP & Blessing</span>
             </button>
           </motion.div>
         ) : (
-          /* Simple, Clean Form Card */
+          /* RSVP Form Card */
           <motion.div
             key="form-view"
             initial={{ opacity: 0, y: 15 }}
@@ -131,10 +163,10 @@ export const GuestbookSection: React.FC = () => {
               </div>
               <div>
                 <h3 className="font-serif text-xl sm:text-2xl text-neutral-950 font-bold">
-                  Warm Blessings
+                  RSVP & Warm Wishes
                 </h3>
                 <p className="text-xs font-sans text-neutral-400">
-                  Share your blessings for Archita & Rajat
+                  Share your plan and send your blessings for Archita & Rajat
                 </p>
               </div>
             </div>
@@ -156,6 +188,25 @@ export const GuestbookSection: React.FC = () => {
                   />
                   <User className="absolute right-3.5 top-3.5 w-4 h-4 text-neutral-400 pointer-events-none" />
                 </div>
+              </div>
+
+              {/* Event Attendance Dropdown */}
+              <div>
+                <label className="block text-xs font-sans font-bold uppercase tracking-wider text-neutral-700 mb-1.5 flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-[#881337]" />
+                  <span>Which Events Are You Planning to Attend? *</span>
+                </label>
+                <select
+                  value={eventAttendance}
+                  onChange={(e) => setEventAttendance(e.target.value)}
+                  className="w-full px-4 py-3 rounded-2xl border border-neutral-200 bg-[#FAFAFA] text-neutral-900 text-xs sm:text-sm font-sans focus:outline-none focus:border-neutral-900 transition-all cursor-pointer font-medium"
+                >
+                  {eventOptions.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               {/* Recipient Dropdown */}
@@ -195,7 +246,7 @@ export const GuestbookSection: React.FC = () => {
                   type="submit"
                   className="flex-1 py-3.5 px-6 rounded-full bg-[#881337] hover:bg-[#70102E] text-white font-sans text-sm font-bold tracking-wider shadow-sm active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <span>Send Blessings</span>
+                  <span>Confirm RSVP & Send Blessings</span>
                   <Send className="w-4 h-4 text-white" />
                 </button>
 

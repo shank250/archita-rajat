@@ -7,7 +7,6 @@ import { FormalCard } from './components/invitation/FormalCard';
 import { Storyboard } from './components/story/Storyboard';
 import { ScratchDateCard } from './components/scratch/ScratchDateCard';
 import { ItinerarySection } from './components/itinerary/ItinerarySection';
-import { ActionHub } from './components/actions/ActionHub';
 import { GuestbookSection } from './components/guestbook/GuestbookSection';
 import { coupleData } from './data/weddingData';
 
@@ -49,10 +48,7 @@ export const App: React.FC = () => {
             {/* Section 5: Dynamic Itinerary & Timeline */}
             <ItinerarySection />
 
-            {/* Section 6: Action Hub (Save Date, WhatsApp, Venue) */}
-            <ActionHub />
-
-            {/* Section 7: Interactive Guestbook & RSVP */}
+            {/* Section 6: Interactive Guestbook & RSVP */}
             <GuestbookSection />
 
             {/* Modern Minimalist Celebratory Footer */}
