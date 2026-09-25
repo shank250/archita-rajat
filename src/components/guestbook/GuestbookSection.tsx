@@ -6,15 +6,31 @@ import { getStoredUserRsvp, saveUserRsvp } from '../../utils/storage';
 import { triggerCelebrationFireworks } from '../../utils/confetti';
 import { Send, User, CheckCircle2, HeartHandshake, Edit3, Calendar } from 'lucide-react';
 
-const eventOptions = [
-  { value: 'all', label: 'All Celebrations (23 Oct, 28, 29 & 30 Nov)' },
-  { value: 'wedding', label: 'The Grand Wedding only (30 Nov • Krishna Lawn)' },
-  { value: 'engagement', label: 'Engagement Ceremony only (23 Oct • Elegance Hotel)' },
-  { value: 'rasam', label: 'Mehndi & Haldi Rasam only (28 Nov • Shital Niwas)' },
-  { value: 'sangeet', label: 'Ladies Sangeet & Musical Night only (29 Nov • Shital Niwas)' },
-  { value: 'pre-wedding-and-wedding', label: 'Mehndi, Sangeet & Wedding (28–30 Nov)' },
-  { value: 'engagement-and-wedding', label: 'Engagement & Grand Wedding (23 Oct & 30 Nov)' },
-  { value: 'afar', label: 'Sending Warm Blessings from Afar' },
+export const celebrationEvents = [
+  {
+    id: 'engagement',
+    title: 'Engagement & Ring Ceremony',
+    date: '23 Oct 2026',
+    venue: 'Elegance Hotel',
+  },
+  {
+    id: 'mehndi',
+    title: 'Mehndi & Haldi Rasam',
+    date: '28 Nov 2026',
+    venue: 'Shital Niwas',
+  },
+  {
+    id: 'sangeet',
+    title: 'Ladies Sangeet & Musical Night',
+    date: '29 Nov 2026',
+    venue: 'Shital Niwas',
+  },
+  {
+    id: 'wedding',
+    title: 'The Grand Wedding (Vivah)',
+    date: '30 Nov 2026',
+    venue: 'Krishna Lawn',
+  },
 ];
 
 export const GuestbookSection: React.FC = () => {
@@ -22,20 +38,43 @@ export const GuestbookSection: React.FC = () => {
 
   // Form State
   const [name, setName] = useState('');
-  const [eventAttendance, setEventAttendance] = useState('all');
+  const [selectedEvents, setSelectedEvents] = useState<string[]>([
+    'engagement',
+    'mehndi',
+    'sangeet',
+    'wedding',
+  ]);
   const [targetRecipient, setTargetRecipient] = useState<RecipientSide>('both');
   const [message, setMessage] = useState('');
 
   const [submittedRsvp, setSubmittedRsvp] = useState<WishEntry | null>(null);
   const [isEditing, setIsEditing] = useState(false);
 
+  const toggleEvent = (eventId: string) => {
+    setSelectedEvents((prev) =>
+      prev.includes(eventId) ? prev.filter((id) => id !== eventId) : [...prev, eventId]
+    );
+  };
+
   useEffect(() => {
     const existing = getStoredUserRsvp();
     if (existing) {
       setSubmittedRsvp(existing);
       setName(existing.guestName);
-      if (existing.eventAttendance) {
-        setEventAttendance(existing.eventAttendance);
+      if (existing.eventsAttending && Array.isArray(existing.eventsAttending) && existing.eventsAttending.length > 0) {
+        setSelectedEvents(existing.eventsAttending);
+      } else if (existing.eventAttendance) {
+        if (existing.eventAttendance === 'all') {
+          setSelectedEvents(['engagement', 'mehndi', 'sangeet', 'wedding']);
+        } else if (existing.eventAttendance === 'wedding') {
+          setSelectedEvents(['wedding']);
+        } else if (existing.eventAttendance === 'engagement') {
+          setSelectedEvents(['engagement']);
+        } else if (existing.eventAttendance === 'rasam') {
+          setSelectedEvents(['mehndi']);
+        } else if (existing.eventAttendance === 'sangeet') {
+          setSelectedEvents(['sangeet']);
+        }
       }
       setTargetRecipient(existing.recipient);
       setMessage(existing.message);
@@ -51,10 +90,21 @@ export const GuestbookSection: React.FC = () => {
     e.preventDefault();
     if (!name.trim() || !message.trim()) return;
 
+    const eventAttendanceText =
+      selectedEvents.length === 4
+        ? 'All Celebrations (23 Oct, 28, 29 & 30 Nov)'
+        : selectedEvents.length === 0
+        ? 'Sending Warm Blessings from Afar'
+        : selectedEvents
+            .map((id) => celebrationEvents.find((e) => e.id === id)?.title)
+            .filter(Boolean)
+            .join(', ');
+
     const saved = saveUserRsvp({
       guestName: name.trim(),
       recipient: targetRecipient,
-      eventAttendance,
+      eventsAttending: selectedEvents,
+      eventAttendance: eventAttendanceText,
       message: message.trim(),
     });
 
@@ -115,17 +165,34 @@ export const GuestbookSection: React.FC = () => {
             {/* Attendance & Message Details Box */}
             <div className="my-6 p-5 rounded-2xl bg-[#FAFAFA] border border-neutral-200/90 text-left space-y-3.5">
               <div>
-                <span className="text-[11px] text-neutral-400 font-sans font-bold uppercase tracking-wider block mb-1">
+                <span className="text-[11px] text-neutral-400 font-sans font-bold uppercase tracking-wider block mb-2">
                   Attending Celebrations:
                 </span>
-                <p className="font-sans text-xs sm:text-sm text-neutral-900 font-bold flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-[#881337] flex-shrink-0" />
-                  <span>
-                    {eventOptions.find((o) => o.value === submittedRsvp.eventAttendance)?.label ||
-                      submittedRsvp.eventAttendance ||
-                      "All Celebrations"}
-                  </span>
-                </p>
+                {submittedRsvp.eventsAttending && submittedRsvp.eventsAttending.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {submittedRsvp.eventsAttending.map((evtId) => {
+                      const evt = celebrationEvents.find((e) => e.id === evtId);
+                      return (
+                        <div
+                          key={evtId}
+                          className="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-neutral-200/90 text-xs font-sans text-neutral-800 shadow-xs"
+                        >
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+                          <span className="font-semibold text-neutral-900 truncate">
+                            {evt ? evt.title : evtId}
+                          </span>
+                          <span className="text-[10px] font-bold text-[#881337] bg-rose-50 px-1.5 py-0.5 rounded ml-auto flex-shrink-0">
+                            {evt?.date}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <p className="font-sans text-xs sm:text-sm text-neutral-800 font-medium">
+                    {submittedRsvp.eventAttendance || "Sending Warm Blessings from Afar"}
+                  </p>
+                )}
               </div>
 
               <div className="pt-3 border-t border-neutral-200/60">
@@ -190,23 +257,57 @@ export const GuestbookSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Event Attendance Dropdown */}
+              {/* Event Attendance Checkboxes (1 checkbox for each event) */}
               <div>
-                <label className="block text-xs font-sans font-bold uppercase tracking-wider text-neutral-700 mb-1.5 flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-[#881337]" />
-                  <span>Which Events Are You Planning to Attend? *</span>
-                </label>
-                <select
-                  value={eventAttendance}
-                  onChange={(e) => setEventAttendance(e.target.value)}
-                  className="w-full px-4 py-3 rounded-2xl border border-neutral-200 bg-[#FAFAFA] text-neutral-900 text-xs sm:text-sm font-sans focus:outline-none focus:border-neutral-900 transition-all cursor-pointer font-medium"
-                >
-                  {eventOptions.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
-                      {opt.label}
-                    </option>
-                  ))}
-                </select>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-xs font-sans font-bold uppercase tracking-wider text-neutral-700 flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-[#881337]" />
+                    <span>Events You Plan to Attend</span>
+                  </label>
+                  <span className="text-[11px] font-sans text-neutral-400">
+                    {selectedEvents.length} of 4 selected
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {celebrationEvents.map((evt) => {
+                    const isChecked = selectedEvents.includes(evt.id);
+                    return (
+                      <label
+                        key={evt.id}
+                        className={`flex items-start gap-3 p-3 rounded-2xl border transition-all cursor-pointer select-none ${
+                          isChecked
+                            ? 'bg-[#881337]/5 border-[#881337]/40 shadow-xs'
+                            : 'bg-[#FAFAFA] border-neutral-200/80 hover:border-neutral-300'
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => toggleEvent(evt.id)}
+                          className="mt-0.5 w-4 h-4 rounded text-[#881337] focus:ring-[#881337] border-neutral-300 cursor-pointer accent-[#881337]"
+                        />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-1">
+                            <span
+                              className={`text-xs font-sans font-semibold leading-tight ${
+                                isChecked ? 'text-[#881337]' : 'text-neutral-800'
+                              }`}
+                            >
+                              {evt.title}
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between text-[11px] font-sans text-neutral-400 mt-1">
+                            <span>{evt.venue}</span>
+                            <span className="font-semibold text-neutral-600 bg-neutral-200/60 px-1.5 py-0.5 rounded text-[10px]">
+                              {evt.date}
+                            </span>
+                          </div>
+                        </div>
+                      </label>
+                    );
+                  })}
+                </div>
               </div>
 
               {/* Recipient Dropdown */}

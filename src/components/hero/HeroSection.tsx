@@ -4,7 +4,6 @@ import { WaxSeal } from './WaxSeal';
 import { useGuest } from '../../context/GuestContext';
 import { useAudio } from '../../context/AudioContext';
 import { triggerCelebrationFireworks } from '../../utils/confetti';
-import { coupleData } from '../../data/weddingData';
 import { ChevronDown, Mail } from 'lucide-react';
 
 interface HeroSectionProps {
@@ -66,15 +65,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
         </div>
       </motion.div>
 
-      {/* 2. Warm Welcoming Message & Couple Names Hierarchy */}
+      {/* 2. Warm Welcoming Message */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.1 }}
-        className="my-3 flex flex-col items-center max-w-xl mx-auto"
+        className="my-3 sm:my-4 flex flex-col items-center max-w-xl mx-auto"
       >
         {/* Warm Hospitality Welcoming Badge */}
-        <div className="px-5 py-1.5 rounded-full bg-white/95 border border-neutral-200 shadow-xs flex items-center gap-2 mb-2">
+        <div className="px-5 py-2 rounded-full bg-white/95 border border-neutral-200/90 shadow-xs flex items-center gap-2.5">
           <span className="w-2 h-2 rounded-full bg-[#881337] animate-pulse" />
           <span className="text-xs sm:text-sm font-sans text-neutral-700 font-medium">
             {isPersonalized ? (
@@ -88,17 +87,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
             )}
           </span>
         </div>
-
-        <span className="text-[10px] sm:text-[11px] font-sans tracking-[0.25em] uppercase text-neutral-400 font-bold mb-0.5">
-          Cordially Invited to the Wedding of
-        </span>
-
-        <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl text-neutral-900 font-bold tracking-tight leading-tight my-0.5">
-          {coupleData.bride.firstName} <span className="text-[#881337] font-normal">&</span> {coupleData.groom.firstName}
-        </h1>
-
-        <p className="text-xs sm:text-sm font-sans text-neutral-500 font-medium tracking-wide mt-0.5">
-          With Blessings from <strong className="font-bold text-neutral-800">The Kayastha Family</strong>
+        <p className="text-[11px] sm:text-xs font-sans text-neutral-400 font-medium mt-2 tracking-wide">
+          Tap the wax seal below to unveil your wedding invitation
         </p>
       </motion.div>
 
