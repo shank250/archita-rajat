@@ -71,7 +71,7 @@ export const App: React.FC = () => {
 
               <div className="flex items-center justify-center gap-1.5 text-xs font-sans text-neutral-600 mt-4 font-medium">
                 <span>With Love & Warm Regards from</span>
-                <span className="font-bold text-neutral-900">The Srivastava & Kayastha Family</span>
+                <span className="font-bold text-neutral-900">The Kayastha Family</span>
               </div>
 
               <p className="text-[11px] font-sans text-neutral-400 mt-5">

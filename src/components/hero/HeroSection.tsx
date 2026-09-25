@@ -200,7 +200,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
                 Archita & Rajat's Wedding Celebrations
               </p>
               <p className="text-xs font-sans text-neutral-500 mt-1">
-                Warmly invited by The Srivastava & Kayastha Family
+                Warmly invited by The Kayastha Family
               </p>
             </motion.div>
           )}

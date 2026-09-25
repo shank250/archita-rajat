@@ -1,6 +1,6 @@
 # Royal Vows — Archita Srivastava & Rajat Ranjan's Wedding Invitation
 
-A digital wedding invitation web application celebrating the union of **Archita Srivastava & Rajat Ranjan**, cordially extended by **Pramendra Kumar Srivastava & Prem Lata Srivastava, and The Srivastava & Kayastha Family**.
+A digital wedding invitation web application celebrating the union of **Archita Srivastava & Rajat Ranjan**, cordially extended by **Pramendra Kumar Srivastava & Prem Lata Srivastava, and The Kayastha Family**.
 
 ---
 
@@ -12,7 +12,7 @@ A digital wedding invitation web application celebrating the union of **Archita 
    - Dynamic URL personalization (`?guest=Family+Name`).
 
 2. **Formal Invitation Card:**
-   - Auspicious invitation copy from the bride's parents (**Pramendra Kumar Srivastava & Prem Lata Srivastava**) along with **The Srivastava & Kayastha Family**.
+   - Auspicious invitation copy from the bride's parents (**Pramendra Kumar Srivastava & Prem Lata Srivastava**) along with **The Kayastha Family**.
    - Couple presentation with parental lineage:
      - **Archita Srivastava** (D/O Pramendra Kumar Srivastava & Prem Lata Srivastava)
      - **Rajat Ranjan** (S/O Ritu Ranjan Sinha & Madhu Sinha)

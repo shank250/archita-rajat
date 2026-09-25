@@ -245,7 +245,7 @@ export const ScratchDateCard: React.FC = () => {
               Celebration Program & Auspicious Dates
             </h3>
             <p className="text-xs sm:text-sm font-sans text-neutral-500 mt-1 max-w-lg mx-auto">
-              With the blessings of Pramendra Kumar Srivastava & Prem Lata Srivastava, and The Srivastava & Kayastha Family
+              With the blessings of Pramendra Kumar Srivastava & Prem Lata Srivastava, and The Kayastha Family
             </p>
           </div>
 

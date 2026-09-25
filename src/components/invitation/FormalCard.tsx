@@ -54,7 +54,7 @@ export const FormalCard: React.FC = () => {
             </p>
 
             <p>
-              <strong className="text-neutral-950 font-bold text-base sm:text-lg">The Srivastava & Kayastha Family</strong>
+              <strong className="text-neutral-950 font-bold text-base sm:text-lg">The Kayastha Family</strong>
               <br />
               <span className="text-xs font-sans text-neutral-500">
                 seek your gracious presence and heartfelt blessings
