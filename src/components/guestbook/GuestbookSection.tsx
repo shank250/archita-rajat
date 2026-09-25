@@ -6,7 +6,7 @@ import { getStoredUserRsvp, saveUserRsvp } from '../../utils/storage';
 import { triggerCelebrationFireworks } from '../../utils/confetti';
 import { Send, User, CheckCircle2, HeartHandshake, Edit3, Calendar } from 'lucide-react';
 
-export const celebrationEvents = [
+const celebrationEvents = [
   {
     id: 'engagement',
     title: 'Engagement & Ring Ceremony',
