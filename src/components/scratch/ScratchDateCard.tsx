@@ -11,7 +11,7 @@ export const ScratchDateCard: React.FC = () => {
   const [scratchedPercent, setScratchedPercent] = useState(0);
   const isDrawingRef = useRef(false);
 
-  // Initialize canvas with clean, solid celebratory marigold/terracotta matte finish (NO glossy chrome!)
+  // Initialize canvas with clean solid matte finish (NO random colored dots!)
   const initCanvas = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -26,36 +26,25 @@ export const ScratchDateCard: React.FC = () => {
 
     ctx.globalCompositeOperation = 'source-over';
 
-    // Solid Festive Marigold Matte Surface
-    ctx.fillStyle = '#D97706';
+    // Solid Deep Wine Matte Finish
+    ctx.fillStyle = '#881337';
     ctx.fillRect(0, 0, width, height);
 
-    // Decorative inner border
-    ctx.strokeStyle = '#B45309';
-    ctx.lineWidth = 3;
-    ctx.strokeRect(10, 10, width - 20, height - 20);
-
-    // Playful colorful confetti dots on top
-    const dotColors = ['#EA4335', '#34A853', '#4285F4', '#FBBC05', '#FFFFFF'];
-    for (let i = 0; i < 24; i++) {
-      ctx.fillStyle = dotColors[i % dotColors.length];
-      const rx = (i * 37 + 15) % (width - 40) + 20;
-      const ry = (i * 43 + 12) % (height - 40) + 20;
-      ctx.beginPath();
-      ctx.arc(rx, ry, (i % 3) + 2.5, 0, Math.PI * 2);
-      ctx.fill();
-    }
+    // Clean subtle inner border
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(12, 12, width - 24, height - 24);
 
     // Callout text on surface
-    ctx.font = 'bold 16px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = '#FFFFFF';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('✨ SCRATCH TO REVEAL DATE ✨', width / 2, height / 2 - 8);
+    ctx.fillText('SCRATCH TO REVEAL DATE', width / 2, height / 2 - 8);
 
     ctx.font = '12px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = '#FEF3D6';
-    ctx.fillText('Swipe or drag your finger here 👆', width / 2, height / 2 + 16);
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+    ctx.fillText('Swipe or drag across here', width / 2, height / 2 + 16);
 
     setIsRevealed(false);
     setScratchedPercent(0);
@@ -160,41 +149,41 @@ export const ScratchDateCard: React.FC = () => {
     <section id="scratch-date" className="relative py-16 px-4 max-w-xl mx-auto z-10">
       {/* Section Subtitle */}
       <div className="text-center mb-8">
-        <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-[#C5221F] font-bold">
+        <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-[#881337] font-bold">
           Save the Date
         </span>
-        <h2 className="font-serif text-3xl sm:text-4xl text-[#202124] font-bold mt-1">
+        <h2 className="font-serif text-3xl sm:text-4xl text-neutral-900 font-bold mt-1">
           The Auspicious Date
         </h2>
-        <p className="text-xs sm:text-sm font-sans text-[#5F6368] mt-1">
-          Scratch the marigold seal below to reveal when the celebrations begin!
+        <p className="text-xs sm:text-sm font-sans text-neutral-500 mt-1">
+          Scratch the card below to reveal when the celebrations begin
         </p>
       </div>
 
       {/* Modern Card Wrapper */}
       <div
         ref={containerRef}
-        className="relative w-full h-52 sm:h-56 rounded-3xl overflow-hidden shadow-google-card border border-[#EBE6DC] bg-white"
+        className="relative w-full h-52 sm:h-56 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-neutral-200 bg-white"
       >
-        {/* Hidden Content Revealed Underneath: Pure Crisp White Surface */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-white text-[#202124]">
-          <div className="w-10 h-10 rounded-2xl bg-[#FCE8E6] text-[#C5221F] flex items-center justify-center mb-2 shadow-sm">
+        {/* Hidden Content Revealed Underneath */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-white text-neutral-900">
+          <div className="w-10 h-10 rounded-2xl bg-neutral-100 text-neutral-700 flex items-center justify-center mb-2 shadow-sm">
             <Calendar className="w-5 h-5" />
           </div>
 
-          <span className="text-[10px] font-sans uppercase tracking-[0.25em] text-[#5F6368] font-bold">
+          <span className="text-[10px] font-sans uppercase tracking-[0.25em] text-neutral-400 font-bold">
             The Wedding Date
           </span>
 
-          <h3 className="font-serif text-3xl sm:text-4xl text-[#202124] font-bold tracking-tight my-1">
+          <h3 className="font-serif text-3xl sm:text-4xl text-neutral-950 font-bold tracking-tight my-1">
             {eventData.revealDateText}
           </h3>
 
-          <p className="font-sans text-sm sm:text-base text-[#3C4043] font-semibold">
+          <p className="font-sans text-sm sm:text-base text-neutral-800 font-semibold">
             {eventData.displayDate}
           </p>
 
-          <p className="text-xs font-sans text-[#5F6368] mt-1">
+          <p className="text-xs font-sans text-neutral-500 mt-1">
             At {eventData.venue.name} • 6:30 PM Onwards
           </p>
 
@@ -202,10 +191,10 @@ export const ScratchDateCard: React.FC = () => {
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              className="mt-2.5 flex items-center gap-1.5 text-[#137333] text-xs font-sans font-bold bg-[#E6F4EA] border border-[#CEEAD6] px-4 py-1 rounded-full shadow-sm"
+              className="mt-2.5 flex items-center gap-1.5 text-neutral-900 text-xs font-sans font-bold bg-neutral-100 border border-neutral-200 px-4 py-1 rounded-full shadow-sm"
             >
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#137333]" />
-              <span>Date Unveiled! See you there! 🎉</span>
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#881337]" />
+              <span>Date Unveiled! See you there!</span>
             </motion.div>
           )}
         </div>
@@ -232,14 +221,14 @@ export const ScratchDateCard: React.FC = () => {
 
       {/* Progress & Quick Actions */}
       <div className="flex items-center justify-between mt-3.5 px-2">
-        <span className="text-xs font-sans text-[#5F6368] font-medium">
+        <span className="text-xs font-sans text-neutral-500 font-medium">
           {isRevealed ? "100% Cleared" : `${scratchedPercent}% Uncovered (Scratch 50% to unveil)`}
         </span>
 
         {!isRevealed ? (
           <button
             onClick={instantReveal}
-            className="flex items-center gap-1 text-xs font-sans font-semibold text-[#C5221F] hover:text-[#8C2127] transition-colors cursor-pointer"
+            className="flex items-center gap-1 text-xs font-sans font-semibold text-[#881337] hover:underline transition-all cursor-pointer"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>Instant Reveal</span>
@@ -247,7 +236,7 @@ export const ScratchDateCard: React.FC = () => {
         ) : (
           <button
             onClick={initCanvas}
-            className="flex items-center gap-1 text-xs font-sans font-semibold text-[#D97706] hover:text-[#B45309] transition-colors cursor-pointer"
+            className="flex items-center gap-1 text-xs font-sans font-semibold text-neutral-700 hover:text-neutral-950 transition-colors cursor-pointer"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Scratch Again</span>

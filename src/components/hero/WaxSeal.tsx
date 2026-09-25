@@ -17,15 +17,15 @@ export const WaxSeal: React.FC<WaxSealProps> = ({
       type="button"
       onClick={onClick}
       aria-label="Open wedding invitation"
-      whileHover={{ scale: 1.08, rotate: [-1, 2, -1, 0] }}
-      whileTap={{ scale: 0.92 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
       className="relative group cursor-pointer focus:outline-none select-none"
     >
-      {/* Solid Festive Vermilion Circular Seal */}
-      <div className="relative w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-[#C5221F] p-1.5 shadow-google-elevated flex items-center justify-center border-2 border-[#A51A18] transition-transform">
+      {/* Solid Rich Wine Circular Seal */}
+      <div className="relative w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-[#881337] p-1.5 shadow-[0_8px_20px_rgba(136,19,55,0.35)] flex items-center justify-center border border-[#70102E] transition-transform">
         
-        {/* Subtle decorative scalloped outline */}
-        <div className="w-full h-full rounded-full bg-[#A51A18] border border-[#8C1413] flex flex-col items-center justify-center p-1 relative overflow-hidden">
+        {/* Debossed Stamped Medallion */}
+        <div className="w-full h-full rounded-full bg-[#70102E] border border-[#500720] flex flex-col items-center justify-center p-1 relative overflow-hidden shadow-inner">
           
           {/* Stamped Monogram */}
           <span className="font-serif text-white text-lg sm:text-xl font-bold tracking-wider">
@@ -33,27 +33,18 @@ export const WaxSeal: React.FC<WaxSealProps> = ({
           </span>
 
           {/* Hashtag Ring */}
-          <span className="text-[7.5px] font-sans font-bold text-amber-200 tracking-wider text-center uppercase mt-0.5">
+          <span className="text-[7.5px] font-sans font-bold text-rose-200 tracking-wider text-center uppercase mt-0.5">
             {hashtag}
           </span>
         </div>
-
-        {/* Pulsing ring */}
-        {!isOpening && (
-          <span className="absolute -inset-1 rounded-full border-2 border-red-400 animate-ping pointer-events-none opacity-40" />
-        )}
       </div>
 
-      {/* Cute Floating Prompt Tag */}
+      {/* Clean Floating Prompt Tag */}
       {!isOpening && (
-        <motion.div
-          animate={{ y: [0, 4, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap px-3.5 py-1 rounded-full bg-white border border-[#E8E2D5] text-xs font-sans font-semibold text-[#8C2127] shadow-google-card flex items-center gap-1.5"
-        >
-          <span>Tap to Unveil</span>
-          <span>💌</span>
-        </motion.div>
+        <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1 rounded-full bg-white border border-neutral-200 text-xs font-sans font-semibold text-neutral-800 shadow-sm flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#881337]" />
+          <span>Tap to Open</span>
+        </div>
       )}
     </motion.button>
   );

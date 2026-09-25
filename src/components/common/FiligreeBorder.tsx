@@ -12,16 +12,10 @@ export const FiligreeBorder: React.FC<FiligreeBorderProps> = ({
 }) => {
   return (
     <div
-      className={`relative p-6 sm:p-10 rounded-3xl bg-white text-[#202124] border border-[#EBE6DC] shadow-google-card ${className}`}
+      className={`relative p-6 sm:p-10 rounded-3xl bg-white text-slate-900 border border-neutral-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.04)] ${className}`}
     >
       {/* Clean hairline inner border */}
-      <div className="absolute inset-3 sm:inset-4 border border-[#F0EBE1] rounded-2xl pointer-events-none" />
-
-      {/* Cute Colorful Corner Dots (Google celebratory theme) */}
-      <span className="absolute top-3 left-3 sm:top-4 sm:left-4 w-2 h-2 rounded-full bg-[#EA4335] pointer-events-none" />
-      <span className="absolute top-3 right-3 sm:top-4 sm:right-4 w-2 h-2 rounded-full bg-[#FBBC05] pointer-events-none" />
-      <span className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 w-2 h-2 rounded-full bg-[#34A853] pointer-events-none" />
-      <span className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 w-2 h-2 rounded-full bg-[#4285F4] pointer-events-none" />
+      <div className="absolute inset-3 sm:inset-4 border border-neutral-100 rounded-2xl pointer-events-none" />
 
       {/* Card Content */}
       <div className="relative z-10">{children}</div>

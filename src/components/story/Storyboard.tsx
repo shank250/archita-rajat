@@ -20,24 +20,24 @@ export const Storyboard: React.FC = () => {
     <section id="our-story" className="relative py-20 px-4 max-w-4xl mx-auto z-10">
       {/* Section Header */}
       <div className="text-center mb-10">
-        <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-[#C5221F] font-bold">
+        <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-[#881337] font-bold">
           Chapter by Chapter
         </span>
-        <h2 className="font-serif text-3xl sm:text-5xl text-[#202124] font-bold mt-1">
+        <h2 className="font-serif text-3xl sm:text-5xl text-neutral-900 font-bold mt-1">
           Our Journey Together
         </h2>
-        <div className="w-12 h-1 bg-[#C5221F] rounded-full mx-auto mt-3" />
+        <div className="w-12 h-0.5 bg-[#881337] rounded-full mx-auto mt-3" />
       </div>
 
-      {/* Story Carousel Frame: Clean White Google Material Card */}
-      <div className="relative bg-white border border-[#EBE6DC] rounded-3xl p-6 sm:p-10 shadow-google-card">
+      {/* Story Carousel Frame: Clean Solid White Card */}
+      <div className="relative bg-white border border-neutral-200/90 rounded-3xl p-6 sm:p-10 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
         
         {/* Top Badges & Chapter Indicator */}
-        <div className="flex flex-wrap items-center justify-between gap-2 pb-5 border-b border-[#F0EBE1]">
-          <span className="px-4 py-1.5 rounded-full bg-[#FEF3D6] text-[#B45309] border border-[#FDE68A] text-xs font-sans font-bold shadow-sm">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-5 border-b border-neutral-100">
+          <span className="px-4 py-1.5 rounded-full bg-neutral-100 text-neutral-800 border border-neutral-200 text-xs font-sans font-bold shadow-sm">
             {currentStory.chapterBadge}
           </span>
-          <span className="text-xs font-sans text-[#5F6368] font-semibold tracking-wider uppercase">
+          <span className="text-xs font-sans text-neutral-400 font-semibold tracking-wider uppercase">
             {currentIndex + 1} of {storyData.length}
           </span>
         </div>
@@ -55,10 +55,10 @@ export const Storyboard: React.FC = () => {
             >
               {/* Story Title & Subtitle */}
               <div className="text-center mb-6">
-                <h3 className="font-serif text-2xl sm:text-4xl text-[#202124] font-bold">
+                <h3 className="font-serif text-2xl sm:text-4xl text-neutral-900 font-bold">
                   {currentStory.title}
                 </h3>
-                <p className="text-xs sm:text-sm font-sans text-[#5F6368] mt-1 font-medium">
+                <p className="text-xs sm:text-sm font-sans text-neutral-500 mt-1 font-medium">
                   {currentStory.subtitle}
                 </p>
               </div>
@@ -68,12 +68,12 @@ export const Storyboard: React.FC = () => {
                 {currentStory.images.map((img, idx) => (
                   <motion.div
                     key={idx}
-                    whileHover={{ scale: 1.03, rotate: 0 }}
+                    whileHover={{ scale: 1.02, rotate: 0 }}
                     style={{ transform: `rotate(${img.rotation || 0}deg)` }}
-                    className="relative bg-[#FDFBF7] p-3.5 sm:p-4 rounded-3xl shadow-md border border-[#E8E2D5] max-w-[260px] sm:max-w-[280px] w-full transition-transform duration-300"
+                    className="relative bg-[#FAFAFA] p-3.5 sm:p-4 rounded-3xl shadow-sm border border-neutral-200/80 max-w-[260px] sm:max-w-[280px] w-full transition-transform duration-300"
                   >
                     {/* Clean Image Viewport */}
-                    <div className="w-full h-56 sm:h-64 rounded-2xl overflow-hidden bg-neutral-100 shadow-inner">
+                    <div className="w-full h-56 sm:h-64 rounded-2xl overflow-hidden bg-neutral-100">
                       <img
                         src={img.src}
                         alt={img.alt}
@@ -82,7 +82,7 @@ export const Storyboard: React.FC = () => {
                     </div>
 
                     {/* Friendly Caption */}
-                    <p className="mt-3 font-sans text-center text-xs text-[#3C4043] font-medium leading-snug px-1">
+                    <p className="mt-3 font-sans text-center text-xs text-neutral-700 font-medium leading-snug px-1">
                       "{img.caption}"
                     </p>
                   </motion.div>
@@ -91,7 +91,7 @@ export const Storyboard: React.FC = () => {
 
               {/* Narration Text */}
               <div className="max-w-xl text-center mt-6 px-4">
-                <p className="font-serif text-sm sm:text-base text-[#3C4043] leading-relaxed italic">
+                <p className="font-serif text-sm sm:text-base text-neutral-700 leading-relaxed italic">
                   "{currentStory.narration}"
                 </p>
               </div>
@@ -100,13 +100,13 @@ export const Storyboard: React.FC = () => {
         </div>
 
         {/* Carousel Navigation Bar */}
-        <div className="flex items-center justify-between pt-5 border-t border-[#F0EBE1]">
+        <div className="flex items-center justify-between pt-5 border-t border-neutral-100">
           <button
             onClick={prevSlide}
             aria-label="Previous story chapter"
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#F8F9FA] hover:bg-[#F1F3F4] border border-[#E8E2D5] text-[#3C4043] text-xs font-sans font-semibold transition-all shadow-sm"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-white hover:bg-neutral-50 border border-neutral-200 text-neutral-700 text-xs font-sans font-semibold transition-all shadow-sm"
           >
-            <ChevronLeft className="w-4 h-4 text-[#C5221F]" />
+            <ChevronLeft className="w-4 h-4 text-neutral-600" />
             <span className="hidden sm:inline">Previous</span>
           </button>
 
@@ -119,8 +119,8 @@ export const Storyboard: React.FC = () => {
                 aria-label={`Jump to story chapter ${i + 1}`}
                 className={`transition-all duration-300 rounded-full ${
                   i === currentIndex
-                    ? 'w-6 h-2 bg-[#C5221F]'
-                    : 'w-2 h-2 bg-[#DDD8CE] hover:bg-[#BDB7AB]'
+                    ? 'w-6 h-2 bg-neutral-900'
+                    : 'w-2 h-2 bg-neutral-300 hover:bg-neutral-400'
                 }`}
               />
             ))}
@@ -129,10 +129,10 @@ export const Storyboard: React.FC = () => {
           <button
             onClick={nextSlide}
             aria-label="Next story chapter"
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#F8F9FA] hover:bg-[#F1F3F4] border border-[#E8E2D5] text-[#3C4043] text-xs font-sans font-semibold transition-all shadow-sm"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-white hover:bg-neutral-50 border border-neutral-200 text-neutral-700 text-xs font-sans font-semibold transition-all shadow-sm"
           >
             <span className="hidden sm:inline">Next</span>
-            <ChevronRight className="w-4 h-4 text-[#C5221F]" />
+            <ChevronRight className="w-4 h-4 text-neutral-600" />
           </button>
         </div>
       </div>
