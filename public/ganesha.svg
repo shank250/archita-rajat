@@ -1,48 +1,59 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
-  <!-- Royal Gold Lord Ganesha Motif -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- Elegant Minimalist Lord Ganesha Line Art -->
   <defs>
-    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#F3E5AB" />
-      <stop offset="50%" stop-color="#D4AF37" />
-      <stop offset="100%" stop-color="#AA820A" />
+    <linearGradient id="ganeshaStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#881337" />
+      <stop offset="50%" stop-color="#9F1239" />
+      <stop offset="100%" stop-color="#70102E" />
     </linearGradient>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="1.5" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
+    <linearGradient id="goldAcc" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EAB308" />
+      <stop offset="100%" stop-color="#CA8A04" />
+    </linearGradient>
   </defs>
 
+  <!-- Sacred Subtle Aura Ring -->
+  <circle cx="120" cy="120" r="105" stroke="#E2E8F0" stroke-width="1.2" stroke-dasharray="4 6" opacity="0.8" />
+  <circle cx="120" cy="120" r="98" stroke="url(#ganeshaStroke)" stroke-width="0.75" opacity="0.3" />
+
   <!-- Crown / Mukut -->
-  <path d="M46 16 L50 8 L54 16 L58 12 L56 22 L44 22 L42 12 Z" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="url(#goldGrad)" fill-opacity="0.15" filter="url(#glow)"/>
-  <circle cx="50" cy="18" r="1.5" fill="url(#goldGrad)" />
+  <path d="M106 50 L120 30 L134 50 L144 42 L138 62 L102 62 L96 42 Z" 
+        stroke="url(#ganeshaStroke)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <circle cx="120" cy="42" r="3" fill="url(#goldAcc)" />
+  <line x1="120" y1="22" x2="120" y2="28" stroke="url(#ganeshaStroke)" stroke-width="2.5" stroke-linecap="round" />
 
-  <!-- Sacred Tilak / Trishul on forehead -->
-  <path d="M47 25 C47 31 53 31 53 25" stroke="url(#goldGrad)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-  <line x1="50" y1="24" x2="50" y2="33" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round"/>
-  <circle cx="50" cy="27" r="1" fill="#C0392B"/>
+  <!-- Forehead Sacred Tilak / Trishul -->
+  <path d="M112 68 C112 80 128 80 128 68" stroke="url(#ganeshaStroke)" stroke-width="2.8" stroke-linecap="round" fill="none" />
+  <line x1="120" y1="65" x2="120" y2="86" stroke="url(#ganeshaStroke)" stroke-width="3" stroke-linecap="round" />
+  <circle cx="120" cy="74" r="2.5" fill="#E11D48" />
 
-  <!-- Left Ear (Large traditional sweep) -->
-  <path d="M43 27 C34 23 26 28 25 38 C24 48 33 54 41 53" stroke="url(#goldGrad)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-  <path d="M37 32 C31 34 29 42 34 47" stroke="url(#goldGrad)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="1 3" fill="none"/>
+  <!-- Left Ear (Large sweeping wisdom ear) -->
+  <path d="M100 70 C78 60 60 74 58 98 C56 122 78 136 98 134" 
+        stroke="url(#ganeshaStroke)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <path d="M85 82 C72 88 68 106 80 118" 
+        stroke="url(#ganeshaStroke)" stroke-width="1.8" stroke-linecap="round" opacity="0.4" stroke-dasharray="2 4" fill="none" />
 
   <!-- Right Ear -->
-  <path d="M57 27 C66 23 74 28 75 38 C76 48 67 54 59 53" stroke="url(#goldGrad)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-  <path d="M63 32 C69 34 71 42 66 47" stroke="url(#goldGrad)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="1 3" fill="none"/>
+  <path d="M140 70 C162 60 180 74 182 98 C184 122 162 136 142 134" 
+        stroke="url(#ganeshaStroke)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <path d="M155 82 C168 88 172 106 160 118" 
+        stroke="url(#ganeshaStroke)" stroke-width="1.8" stroke-linecap="round" opacity="0.4" stroke-dasharray="2 4" fill="none" />
 
-  <!-- Trunk (Curving gracefully to the left with modak) -->
-  <path d="M48 35 C52 40 54 48 53 58 C52 68 44 75 37 73 C31 71 31 63 38 61 C43 60 46 63 46 65" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(#glow)"/>
+  <!-- Meditative Eyes & Brow -->
+  <path d="M101 88 Q107 92 113 90" stroke="url(#ganeshaStroke)" stroke-width="2.2" stroke-linecap="round" fill="none" />
+  <path d="M127 90 Q133 92 139 88" stroke="url(#ganeshaStroke)" stroke-width="2.2" stroke-linecap="round" fill="none" />
 
-  <!-- Small Modak in trunk end -->
-  <ellipse cx="34" cy="62" rx="2.5" ry="3" fill="url(#goldGrad)"/>
+  <!-- Sacred Trunk (Curving majestically to the left) -->
+  <path d="M116 94 C124 104 128 122 126 145 C124 168 106 186 90 182 C76 178 74 158 92 152 C104 148 112 156 112 162" 
+        stroke="url(#ganeshaStroke)" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
 
-  <!-- Tusk (Ekdanta) -->
-  <path d="M44 48 L39 52" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round"/>
+  <!-- Single Holy Tusk (Ekdanta) -->
+  <path d="M104 122 L92 132" stroke="url(#ganeshaStroke)" stroke-width="3" stroke-linecap="round" />
 
-  <!-- Eyes -->
-  <path d="M43 33 Q45 35 47 34" stroke="url(#goldGrad)" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M53 34 Q55 35 57 33" stroke="url(#goldGrad)" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Divine Modak Sweet at Trunk Tip -->
+  <ellipse cx="82" cy="154" rx="5" ry="6" fill="url(#goldAcc)" />
+  <path d="M82 148 L82 145" stroke="url(#goldAcc)" stroke-width="1.5" stroke-linecap="round" />
 
-  <!-- Halo / Sacred Circle Behind -->
-  <circle cx="50" cy="46" r="42" stroke="url(#goldGrad)" stroke-width="0.8" stroke-dasharray="3 4" opacity="0.6"/>
-  <circle cx="50" cy="46" r="45" stroke="url(#goldGrad)" stroke-width="0.4" opacity="0.3"/>
+  <!-- Small Auspicious Dots -->
+  <circle cx="120" cy="94" r="1.5" fill="url(#ganeshaStroke)" opacity="0.7" />
 </svg>
