@@ -85,7 +85,7 @@ export const GuestbookSection: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !message.trim() || isSubmitting) return;
+    if (!name.trim() || isSubmitting) return;
 
     setIsSubmitting(true);
 
@@ -206,14 +206,16 @@ export const GuestbookSection: React.FC = () => {
                 )}
               </div>
 
-              <div className="pt-3 border-t border-neutral-200/60">
-                <span className="text-[11px] text-neutral-400 font-sans font-bold uppercase tracking-wider block mb-1">
-                  Your Blessing:
-                </span>
-                <p className="font-serif text-sm sm:text-base text-neutral-800 italic leading-relaxed">
-                  "{submittedRsvp.message}"
-                </p>
-              </div>
+              {submittedRsvp.message && (
+                <div className="pt-3 border-t border-neutral-200/60">
+                  <span className="text-[11px] text-neutral-400 font-sans font-bold uppercase tracking-wider block mb-1">
+                    Your Blessing:
+                  </span>
+                  <p className="font-serif text-sm sm:text-base text-neutral-800 italic leading-relaxed">
+                    "{submittedRsvp.message}"
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Edit Button */}
@@ -325,10 +327,9 @@ export const GuestbookSection: React.FC = () => {
               {/* Message Field */}
               <div>
                 <label className="block text-xs font-sans font-bold uppercase tracking-wider text-neutral-700 mb-1.5">
-                  Your Message & Blessings *
+                  Your Message & Blessings (Optional)
                 </label>
                 <textarea
-                  required
                   rows={4}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
