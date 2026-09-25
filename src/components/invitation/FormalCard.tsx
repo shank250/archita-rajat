@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FiligreeBorder } from '../common/FiligreeBorder';
 import { useGuest } from '../../context/GuestContext';
-import { coupleData, eventData } from '../../data/weddingData';
+import { coupleData } from '../../data/weddingData';
 import { ChevronDown, Sparkles } from 'lucide-react';
 
 export const FormalCard: React.FC = () => {
@@ -102,17 +102,52 @@ export const FormalCard: React.FC = () => {
             </div>
           </div>
 
-          {/* Date & Time Highlights */}
-          <div className="mt-5 pt-4 border-t border-neutral-100 text-neutral-900">
-            <p className="font-serif text-lg sm:text-xl font-bold text-[#881337]">
-              {eventData.displayDate}
-            </p>
-            <p className="text-xs sm:text-sm font-sans text-neutral-700 font-medium mt-0.5">
-              Celebrations commence at 6:30 PM onwards
-            </p>
-            <p className="text-xs sm:text-sm font-sans text-neutral-400 mt-1">
-              Venue: <span className="font-semibold text-neutral-800">{eventData.venue.name}</span>, {eventData.venue.city}
-            </p>
+          {/* Multi-Date Celebration Highlights */}
+          <div className="mt-6 pt-5 border-t border-neutral-100 text-neutral-900">
+            <span className="text-[10px] font-sans font-bold uppercase tracking-[0.25em] text-[#881337] block mb-3">
+              Celebration Program & Venues
+            </span>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-left">
+              {/* Event 1: Engagement */}
+              <div className="p-3 rounded-2xl bg-[#FAFAFA] border border-neutral-200/80">
+                <span className="text-[10px] font-sans font-bold text-[#881337] block">
+                  23 OCT 2026
+                </span>
+                <p className="font-serif font-bold text-xs sm:text-sm text-neutral-900">
+                  Engagement Ceremony
+                </p>
+                <p className="text-[11px] font-sans text-neutral-500 mt-0.5">
+                  Elegance Hotel
+                </p>
+              </div>
+
+              {/* Event 2: Pre-wedding Rasams */}
+              <div className="p-3 rounded-2xl bg-[#FAFAFA] border border-neutral-200/80">
+                <span className="text-[10px] font-sans font-bold text-[#881337] block">
+                  28 & 29 NOV 2026
+                </span>
+                <p className="font-serif font-bold text-xs sm:text-sm text-neutral-900">
+                  Mehndi & Sangeet
+                </p>
+                <p className="text-[11px] font-sans text-neutral-500 mt-0.5">
+                  Shital Niwas (Our Home)
+                </p>
+              </div>
+
+              {/* Event 3: Grand Wedding */}
+              <div className="p-3 rounded-2xl bg-[#FAFAFA] border border-neutral-200/80">
+                <span className="text-[10px] font-sans font-bold text-[#881337] block">
+                  30 NOV 2026
+                </span>
+                <p className="font-serif font-bold text-xs sm:text-sm text-neutral-900">
+                  The Grand Wedding
+                </p>
+                <p className="text-[11px] font-sans text-neutral-500 mt-0.5">
+                  Krishna Lawn
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Downward Prompt */}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { eventData, coupleData } from '../../data/weddingData';
+import { eventData } from '../../data/weddingData';
 import { VenueModal } from './VenueModal';
 import { CalendarModal } from './CalendarModal';
 import { Calendar, Users, MapPin, ArrowRight } from 'lucide-react';
@@ -89,14 +89,14 @@ export const ActionHub: React.FC = () => {
               <MapPin className="w-6 h-6" />
             </div>
             <h3 className="font-serif text-xl sm:text-2xl text-neutral-950 font-bold group-hover:text-[#881337] transition-colors">
-              Venue & Maps
+              Venues & Directions
             </h3>
             <p className="font-sans text-xs text-neutral-500 mt-2 leading-relaxed">
-              {eventData.venue.name}, {eventData.venue.city}. Direct navigation in one tap.
+              Krishna Lawn, Elegance Hotel & Shital Niwas. One-tap map navigation.
             </p>
           </div>
           <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-sans text-neutral-800 font-bold group-hover:text-[#881337]">
-            <span>View Location</span>
+            <span>View All Venues</span>
             <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
           </div>
         </motion.div>
@@ -106,14 +106,11 @@ export const ActionHub: React.FC = () => {
       <VenueModal
         isOpen={isVenueOpen}
         onClose={() => setIsVenueOpen(false)}
-        event={eventData}
       />
 
       <CalendarModal
         isOpen={isCalendarOpen}
         onClose={() => setIsCalendarOpen(false)}
-        event={eventData}
-        couple={coupleData}
       />
     </section>
   );

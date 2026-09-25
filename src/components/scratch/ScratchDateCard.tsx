@@ -163,38 +163,38 @@ export const ScratchDateCard: React.FC = () => {
       {/* Modern Card Wrapper */}
       <div
         ref={containerRef}
-        className="relative w-full h-52 sm:h-56 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-neutral-200 bg-white"
+        className="relative w-full h-60 sm:h-64 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-neutral-200 bg-white"
       >
         {/* Hidden Content Revealed Underneath */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-white text-neutral-900">
-          <div className="w-10 h-10 rounded-2xl bg-neutral-100 text-neutral-700 flex items-center justify-center mb-2 shadow-sm">
-            <Calendar className="w-5 h-5" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-5 text-center bg-white text-neutral-900">
+          <div className="w-9 h-9 rounded-2xl bg-neutral-100 text-neutral-700 flex items-center justify-center mb-1.5 shadow-sm">
+            <Calendar className="w-4 h-4 text-[#881337]" />
           </div>
 
           <span className="text-[10px] font-sans uppercase tracking-[0.25em] text-neutral-400 font-bold">
-            The Wedding Date
+            The Auspicious Wedding Date
           </span>
 
-          <h3 className="font-serif text-3xl sm:text-4xl text-neutral-950 font-bold tracking-tight my-1">
+          <h3 className="font-serif text-3xl sm:text-4xl text-neutral-950 font-bold tracking-tight my-0.5">
             {eventData.revealDateText}
           </h3>
 
-          <p className="font-sans text-sm sm:text-base text-neutral-800 font-semibold">
-            {eventData.displayDate}
+          <p className="font-sans text-xs sm:text-sm text-neutral-800 font-semibold">
+            {eventData.displayDate} • At {eventData.venue.name}
           </p>
 
-          <p className="text-xs font-sans text-neutral-500 mt-1">
-            At {eventData.venue.name} • 6:30 PM Onwards
+          <p className="text-[11px] font-sans text-[#881337] font-semibold mt-1">
+            ✦ Festivities: Engagement (23 Oct) • Mehndi & Sangeet (28-29 Nov)
           </p>
 
           {isRevealed && (
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              className="mt-2.5 flex items-center gap-1.5 text-neutral-900 text-xs font-sans font-bold bg-neutral-100 border border-neutral-200 px-4 py-1 rounded-full shadow-sm"
+              className="mt-2 flex items-center gap-1.5 text-neutral-900 text-xs font-sans font-bold bg-neutral-100 border border-neutral-200 px-4 py-1 rounded-full shadow-sm"
             >
               <CheckCircle2 className="w-3.5 h-3.5 text-[#881337]" />
-              <span>Date Unveiled! See you there!</span>
+              <span>Dates Unveiled! See you at the celebrations!</span>
             </motion.div>
           )}
         </div>

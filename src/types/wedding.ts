@@ -26,23 +26,49 @@ export interface CoupleProfile {
   formalSalutationDefault: string;
 }
 
+export interface VenueInfo {
+  name: string;
+  type: string;
+  tagline: string;
+  address: string;
+  city: string;
+  landmark?: string;
+  googleMapsUrl: string;
+  appleMapsUrl: string;
+}
+
+export interface EventMilestone {
+  time: string;
+  period: 'AM' | 'PM';
+  title: string;
+  description: string;
+  iconName: string;
+}
+
+export interface WeddingEvent {
+  id: string;
+  title: string;
+  category: string;
+  shortDate: string;
+  dayOfWeek: string;
+  fullDateText: string;
+  timeRange: string;
+  tagline: string;
+  dressCode: string;
+  venue: VenueInfo;
+  milestones: EventMilestone[];
+  calendarStartDate: string; // YYYYMMDDTHHMMSS
+  calendarEndDate: string;   // YYYYMMDDTHHMMSS
+}
+
 export interface EventDetails {
   type: string;
   date: string;          // ISO format YYYY-MM-DD
-  displayDate: string;   // e.g. "Friday, 23rd October 2026"
+  displayDate: string;   // e.g. "Monday, 30th November 2026"
   revealDateText: string;// e.g. "30th November 2026"
-  startTime: string;     // e.g. "18:00"
-  endTime: string;       // e.g. "23:59"
-  venue: {
-    name: string;
-    tagline: string;
-    address: string;
-    city: string;
-    landmark?: string;
-    googleMapsUrl: string;
-    appleMapsUrl: string;
-    embedMapUrl?: string;
-  };
+  startTime: string;
+  endTime: string;
+  venue: VenueInfo;
   whatsappGroupUrl: string;
   calendarEvent: {
     title: string;
@@ -62,7 +88,7 @@ export interface StorySlide {
     src: string;
     caption: string;
     alt: string;
-    rotation?: number; // degree for polaroid tilt effect
+    rotation?: number;
   }[];
 }
 
@@ -91,6 +117,7 @@ export interface WishEntry {
   recipient: RecipientSide;
   message: string;
   attending?: 'yes' | 'no' | 'undecided';
+  eventsAttending?: string[]; // e.g. ['all'] or ['engagement', 'rasam', 'wedding']
   guestCount?: number;
   dietaryPreference?: 'vegetarian' | 'non-vegetarian' | 'jain' | 'no-preference';
   createdAt: string;
