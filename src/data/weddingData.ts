@@ -3,20 +3,20 @@ import { CoupleProfile, EventDetails, StorySlide, WeddingEvent, VenueInfo } from
 export const coupleData: CoupleProfile = {
   groom: {
     firstName: "Rajat",
-    fullName: "Rajat Sharma",
-    parents: "Mrs. Sunita & Mr. Rakesh Sharma",
-    grandparents: "Late Smt. Krishna & Late Shri Om Prakash Sharma",
+    fullName: "Rajat Ranjan",
+    parents: "Mrs. Sunita & Mr. Rakesh Ranjan",
+    grandparents: "Late Smt. Krishna & Late Shri Om Prakash Ranjan",
     bio: "Tech enthusiast, passionate foodie, and the guy who fell hopelessly in love.",
   },
   bride: {
     firstName: "Archita",
-    fullName: "Archita Verma",
-    parents: "Mrs. Rekha & Mr. Ashok Verma",
-    grandparents: "Smt. Shanti & Late Shri Brij Mohan Verma",
-    bio: "Creative soul, travel lover, and the one whose laughter lights up any room.",
+    fullName: "Archita Srivastava",
+    parents: "Mrs. Rekha & Mr. Ashok Srivastava",
+    grandparents: "Smt. Shanti & Late Shri Brij Mohan Srivastava",
+    bio: "Creative soul, travel lover, and the bride who stole Rajat's heart.",
   },
-  hashtag: "#RajatWedsArchita",
-  monogram: "R & A",
+  hashtag: "#ArchitaWedsRajat",
+  monogram: "A & R",
   ceremonyTitle: "The Wedding Celebrations",
   formalSalutationDefault: "Family & Friends",
 };
@@ -80,7 +80,7 @@ export const weddingEvents: WeddingEvent[] = [
         time: "8:00",
         period: "PM",
         title: "Ring Exchange & Family Speeches",
-        description: "The moment of commitment — Rajat and Archita exchange rings amidst the blessings of loved ones.",
+        description: "The moment of commitment — Archita and Rajat exchange rings amidst the blessings of loved ones.",
         iconName: "HeartHandshake",
       },
       {
@@ -222,8 +222,8 @@ export const eventData: EventDetails = {
   venue: venuesList[0], // Krishna Lawn
   whatsappGroupUrl: "https://chat.whatsapp.com/invite/wedding-celebration-updates",
   calendarEvent: {
-    title: "Rajat & Archita's Grand Wedding",
-    description: "Join us to celebrate the auspicious wedding of Rajat and Archita at Krishna Lawn, Gwalior!",
+    title: "Archita & Rajat's Grand Wedding",
+    description: "Join us to celebrate the auspicious wedding of Archita and Rajat at Krishna Lawn, Gwalior!",
     location: "Krishna Lawn, Gwalior",
   },
 };
@@ -235,19 +235,19 @@ export const storyData: StorySlide[] = [
     chapterBadge: "01 — CHILDHOOD CHRONICLES",
     title: "Two Worlds, Miles Apart",
     subtitle: "Before destiny brought them together",
-    narration: "Long before their paths crossed, Rajat was rocking school uniforms with his signature water bottle swag, while Archita was mastering the art of the perfect goofy pout.",
+    narration: "Long before their paths crossed, Archita was mastering the art of the perfect goofy pout, while Rajat was rocking school uniforms with his signature water bottle swag.",
     images: [
+      {
+        src: "/images/archita-childhood.jpg",
+        caption: "Archita — The iconic drama queen expression",
+        alt: "Archita childhood photo",
+        rotation: 3,
+      },
       {
         src: "/images/rajat-childhood.jpg",
         caption: "Rajat — Ready to conquer with his school bag",
         alt: "Rajat childhood photo",
         rotation: -3,
-      },
-      {
-        src: "/images/archita-childhood.jpg",
-        caption: "Archita — The iconic drama queen expression",
-        alt: "Archita childhood photo",
-        rotation: 4,
       },
     ],
   },
@@ -262,7 +262,7 @@ export const storyData: StorySlide[] = [
       {
         src: "/images/couple-selfie.jpg",
         caption: "When casual coffee dates turned into infinite conversations",
-        alt: "Rajat and Archita close selfie",
+        alt: "Archita and Rajat close selfie",
         rotation: -2,
       },
     ],
@@ -278,7 +278,7 @@ export const storyData: StorySlide[] = [
       {
         src: "/images/couple-nightout.jpg",
         caption: "Unfiltered smiles, city lights, and magical nights",
-        alt: "Rajat and Archita standing together smiling",
+        alt: "Archita and Rajat standing together smiling",
         rotation: 2,
       },
     ],
@@ -294,7 +294,7 @@ export const storyData: StorySlide[] = [
       {
         src: "/images/couple-nightout.jpg",
         caption: "Together, forever and always",
-        alt: "Rajat and Archita celebration portrait",
+        alt: "Archita and Rajat celebration portrait",
         rotation: -1,
       },
     ],

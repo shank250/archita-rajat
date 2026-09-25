@@ -17,7 +17,7 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
   const currentSelectedEvent = weddingEvents.find(e => e.id === selectedEventId) || weddingEvents[3];
 
   const getGoogleCalUrl = (evt: typeof currentSelectedEvent) => {
-    const title = encodeURIComponent(`${evt.title} — Rajat & Archita`);
+    const title = encodeURIComponent(`${evt.title} — Archita & Rajat`);
     const details = encodeURIComponent(`${evt.tagline}\nVenue: ${evt.venue.name}, ${evt.venue.city}\nDress Code: ${evt.dressCode}`);
     const location = encodeURIComponent(`${evt.venue.name}, ${evt.venue.city}`);
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${evt.calendarStartDate}/${evt.calendarEndDate}&details=${details}&location=${location}`;
@@ -28,15 +28,15 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
     const icsContent = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
-      'PRODID:-//Rajat and Archita Wedding//Event Calendar//EN',
+      'PRODID:-//Archita and Rajat Wedding//Event Calendar//EN',
       'CALSCALE:GREGORIAN',
       'METHOD:PUBLISH',
       'BEGIN:VEVENT',
-      `UID:${currentSelectedEvent.id}-rajat-archita-2026@wedding.com`,
+      `UID:${currentSelectedEvent.id}-archita-rajat-2026@wedding.com`,
       `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
       `DTSTART:${currentSelectedEvent.calendarStartDate}`,
       `DTEND:${currentSelectedEvent.calendarEndDate}`,
-      `SUMMARY:${currentSelectedEvent.title} - Rajat & Archita`,
+      `SUMMARY:${currentSelectedEvent.title} - Archita & Rajat`,
       `DESCRIPTION:${currentSelectedEvent.tagline} at ${currentSelectedEvent.venue.name}. Dress Code: ${currentSelectedEvent.dressCode}`,
       `LOCATION:${currentSelectedEvent.venue.name}\\, ${currentSelectedEvent.venue.city}`,
       'STATUS:CONFIRMED',
@@ -47,7 +47,7 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', `${currentSelectedEvent.id}-rajat-archita.ics`);
+    link.setAttribute('download', `${currentSelectedEvent.id}-archita-rajat.ics`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

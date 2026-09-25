@@ -26,7 +26,7 @@ export const ItinerarySection: React.FC = () => {
   const currentEvent = weddingEvents.find((e) => e.id === selectedEventId) || weddingEvents[0];
 
   const getGoogleCalendarUrl = (event: typeof currentEvent) => {
-    const title = encodeURIComponent(`${event.title} — Rajat & Archita`);
+    const title = encodeURIComponent(`${event.title} — Archita & Rajat`);
     const details = encodeURIComponent(`${event.tagline}\nDress Code: ${event.dressCode}\nVenue: ${event.venue.name}, ${event.venue.city}`);
     const location = encodeURIComponent(`${event.venue.name}, ${event.venue.address}, ${event.venue.city}`);
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${event.calendarStartDate}/${event.calendarEndDate}&details=${details}&location=${location}`;

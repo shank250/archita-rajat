@@ -78,7 +78,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
         </span>
 
         <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl text-neutral-900 font-bold tracking-tight leading-tight">
-          {coupleData.groom.firstName} <span className="text-[#881337] font-normal">&</span> {coupleData.bride.firstName}
+          {coupleData.bride.firstName} <span className="text-[#881337] font-normal">&</span> {coupleData.groom.firstName}
         </h1>
       </motion.div>
 
@@ -197,10 +197,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
                 Invitation Unveiled
               </span>
               <p className="font-serif text-lg font-bold text-neutral-950 mt-0.5">
-                Welcome to Our Wedding Celebration
+                Archita & Rajat's Wedding Celebrations
               </p>
               <p className="text-xs font-sans text-neutral-500 mt-1">
-                Scroll down to read our story, scratch the wedding date, and RSVP.
+                Warmly invited by The Srivastava & Kayastha Family
               </p>
             </motion.div>
           )}

@@ -63,7 +63,7 @@ export const GuestbookSection: React.FC = () => {
         </h2>
         <p className="text-xs sm:text-sm font-sans text-neutral-500 mt-1">
           {submittedRsvp && !isEditing
-            ? "Your warm wishes have been conveyed to Rajat & Archita"
+            ? "Your warm wishes have been conveyed to Archita & Rajat"
             : "Leave a warm message and blessings for the couple as they begin their journey"}
         </p>
         <div className="w-12 h-0.5 bg-[#881337] rounded-full mx-auto mt-3" />
@@ -93,7 +93,7 @@ export const GuestbookSection: React.FC = () => {
             </h3>
 
             <p className="text-xs font-sans text-neutral-500 mt-1">
-              Rajat & Archita are blessed to have you in their lives.
+              Archita & Rajat are blessed to have you in their lives.
             </p>
 
             {/* Message Details Box */}
@@ -134,7 +134,7 @@ export const GuestbookSection: React.FC = () => {
                   Warm Blessings
                 </h3>
                 <p className="text-xs font-sans text-neutral-400">
-                  Share your blessings for Rajat & Archita
+                  Share your blessings for Archita & Rajat
                 </p>
               </div>
             </div>
@@ -168,9 +168,9 @@ export const GuestbookSection: React.FC = () => {
                   onChange={(e) => setTargetRecipient(e.target.value as RecipientSide)}
                   className="w-full px-4 py-3 rounded-2xl border border-neutral-200 bg-[#FAFAFA] text-neutral-900 text-sm font-sans focus:outline-none focus:border-neutral-900 transition-all cursor-pointer"
                 >
-                  <option value="both">Both Families (Rajat & Archita)</option>
-                  <option value="groom">Team Groom (Rajat)</option>
-                  <option value="bride">Team Bride (Archita)</option>
+                  <option value="both">Both (Archita & Rajat)</option>
+                  <option value="bride">Archita (Bride's Family)</option>
+                  <option value="groom">Rajat (Groom)</option>
                 </select>
               </div>
 

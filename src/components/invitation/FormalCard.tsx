@@ -38,15 +38,15 @@ export const FormalCard: React.FC = () => {
             </p>
           </div>
 
-          {/* Formal Host Copy */}
+          {/* Formal Host Copy from Bride's Family */}
           <div className="space-y-4 my-6 font-serif text-sm sm:text-base text-neutral-800 leading-relaxed px-2 sm:px-6">
             <p>
-              With the celestial blessings of the Almighty and our respected elders,
+              With the celestial blessings of the Almighty and our revered ancestors,
               <br />
-              <strong className="text-neutral-950 font-bold text-base sm:text-lg">{coupleData.groom.parents}</strong>
+              <strong className="text-neutral-950 font-bold text-base sm:text-lg">{coupleData.bride.parents}</strong>
               <br />
-              <span className="text-xs font-sans text-neutral-400">
-                (Grandson of {coupleData.groom.grandparents})
+              <span className="text-xs font-sans text-neutral-500">
+                (Daughter of {coupleData.bride.grandparents})
               </span>
             </p>
 
@@ -55,34 +55,30 @@ export const FormalCard: React.FC = () => {
             </p>
 
             <p>
-              <strong className="text-neutral-950 font-bold text-base sm:text-lg">{coupleData.bride.parents}</strong>
+              <strong className="text-neutral-950 font-bold text-base sm:text-lg">The Srivastava & Kayastha Family</strong>
               <br />
-              <span className="text-xs font-sans text-neutral-400">
-                (Granddaughter of {coupleData.bride.grandparents})
+              <span className="text-xs font-sans text-neutral-500">
+                seek your gracious presence and heartfelt blessings
               </span>
             </p>
 
             <p className="pt-2 text-xs font-sans text-neutral-500">
-              cordially invite you to celebrate the joyous
+              at the auspicious wedding celebrations of their beloved daughter
             </p>
-
-            <div className="py-2">
-              <span className="inline-block px-5 py-2 rounded-full bg-neutral-100 text-neutral-900 border border-neutral-200 font-sans text-sm tracking-wide font-bold shadow-sm">
-                {coupleData.ceremonyTitle}
-              </span>
-            </div>
-
-            <p className="text-xs text-neutral-400 font-sans">of their beloved children</p>
           </div>
 
-          {/* Couple Names Lineage Presentation */}
+          {/* Couple Names Lineage Presentation: Bride First */}
           <div className="my-6 py-6 px-4 rounded-3xl bg-[#FAFAFA] border border-neutral-200/90 shadow-sm">
             <div className="flex flex-col items-center">
+              {/* Bride: Archita Srivastava */}
               <h3 className="font-serif text-3xl sm:text-4xl text-neutral-950 font-bold tracking-tight">
-                {coupleData.groom.fullName}
+                {coupleData.bride.fullName}
               </h3>
-              <p className="text-[11px] font-sans text-neutral-400 mt-0.5 tracking-wider">
-                Son of {coupleData.groom.parents}
+              <p className="text-[11px] font-sans text-neutral-500 mt-0.5 tracking-wider">
+                Daughter of {coupleData.bride.parents}
+              </p>
+              <p className="text-[10px] font-sans text-neutral-400">
+                Granddaughter of {coupleData.bride.grandparents}
               </p>
 
               <div className="flex items-center gap-3 my-3">
@@ -93,11 +89,15 @@ export const FormalCard: React.FC = () => {
                 <div className="h-[1px] w-12 bg-neutral-200" />
               </div>
 
+              {/* Groom: Rajat Ranjan */}
               <h3 className="font-serif text-3xl sm:text-4xl text-neutral-950 font-bold tracking-tight">
-                {coupleData.bride.fullName}
+                {coupleData.groom.fullName}
               </h3>
-              <p className="text-[11px] font-sans text-neutral-400 mt-0.5 tracking-wider">
-                Daughter of {coupleData.bride.parents}
+              <p className="text-[11px] font-sans text-neutral-500 mt-0.5 tracking-wider">
+                Son of {coupleData.groom.parents}
+              </p>
+              <p className="text-[10px] font-sans text-neutral-400">
+                Grandson of {coupleData.groom.grandparents}
               </p>
             </div>
           </div>
