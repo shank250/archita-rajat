@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Royal Gold Lord Ganesha Motif -->
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F3E5AB" />
+      <stop offset="50%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#AA820A" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Crown / Mukut -->
+  <path d="M46 16 L50 8 L54 16 L58 12 L56 22 L44 22 L42 12 Z" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="url(#goldGrad)" fill-opacity="0.15" filter="url(#glow)"/>
+  <circle cx="50" cy="18" r="1.5" fill="url(#goldGrad)" />
+
+  <!-- Sacred Tilak / Trishul on forehead -->
+  <path d="M47 25 C47 31 53 31 53 25" stroke="url(#goldGrad)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  <line x1="50" y1="24" x2="50" y2="33" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="50" cy="27" r="1" fill="#C0392B"/>
+
+  <!-- Left Ear (Large traditional sweep) -->
+  <path d="M43 27 C34 23 26 28 25 38 C24 48 33 54 41 53" stroke="url(#goldGrad)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M37 32 C31 34 29 42 34 47" stroke="url(#goldGrad)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="1 3" fill="none"/>
+
+  <!-- Right Ear -->
+  <path d="M57 27 C66 23 74 28 75 38 C76 48 67 54 59 53" stroke="url(#goldGrad)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M63 32 C69 34 71 42 66 47" stroke="url(#goldGrad)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="1 3" fill="none"/>
+
+  <!-- Trunk (Curving gracefully to the left with modak) -->
+  <path d="M48 35 C52 40 54 48 53 58 C52 68 44 75 37 73 C31 71 31 63 38 61 C43 60 46 63 46 65" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(#glow)"/>
+
+  <!-- Small Modak in trunk end -->
+  <ellipse cx="34" cy="62" rx="2.5" ry="3" fill="url(#goldGrad)"/>
+
+  <!-- Tusk (Ekdanta) -->
+  <path d="M44 48 L39 52" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Eyes -->
+  <path d="M43 33 Q45 35 47 34" stroke="url(#goldGrad)" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M53 34 Q55 35 57 33" stroke="url(#goldGrad)" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Halo / Sacred Circle Behind -->
+  <circle cx="50" cy="46" r="42" stroke="url(#goldGrad)" stroke-width="0.8" stroke-dasharray="3 4" opacity="0.6"/>
+  <circle cx="50" cy="46" r="45" stroke="url(#goldGrad)" stroke-width="0.4" opacity="0.3"/>
+</svg>
