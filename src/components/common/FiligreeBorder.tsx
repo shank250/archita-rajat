@@ -15,68 +15,27 @@ export const FiligreeBorder: React.FC<FiligreeBorderProps> = ({
 
   return (
     <div
-      className={`relative p-5 sm:p-8 rounded-2xl shadow-parchment ${
-        isParchment ? 'parchment-texture text-charcoal-bronze' : 'bg-espresso-surface text-champagne'
+      className={`relative p-6 sm:p-10 rounded-2xl sm:rounded-3xl ${
+        isParchment 
+          ? 'bg-white text-charcoal-bronze shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-neutral-200/80' 
+          : 'bg-obsidian-surface text-champagne shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/10'
       } ${className}`}
     >
-      {/* Outer border */}
-      <div className="absolute inset-2 sm:inset-3 border border-gold-antique/40 rounded-xl pointer-events-none" />
+      {/* Outer hairline border */}
+      <div className="absolute inset-2.5 sm:inset-3.5 border border-gold-antique/35 rounded-xl sm:rounded-2xl pointer-events-none" />
       
-      {/* Inner thin border */}
-      <div className="absolute inset-3 sm:inset-4 border border-gold-antique/20 rounded-lg pointer-events-none" />
+      {/* Inner subtle border */}
+      <div className="absolute inset-4 sm:inset-5 border border-gold-antique/20 rounded-lg sm:rounded-xl pointer-events-none" />
 
-      {/* Four ornate corner flourishes */}
+      {/* Modern 21st Century Geometric Corner Notches */}
       {/* Top Left */}
-      <svg
-        className="absolute top-2 left-2 sm:top-3 sm:left-3 w-6 h-6 text-gold-antique pointer-events-none"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        <path d="M2 14 V2 H14" />
-        <circle cx="5" cy="5" r="1.5" fill="currentColor" />
-        <path d="M2 8 C6 8 8 6 8 2" />
-      </svg>
-
+      <div className="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 w-3 h-3 border-t-2 border-l-2 border-gold-antique pointer-events-none" />
       {/* Top Right */}
-      <svg
-        className="absolute top-2 right-2 sm:top-3 sm:right-3 w-6 h-6 text-gold-antique pointer-events-none"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        <path d="M22 14 V2 H10" />
-        <circle cx="19" cy="5" r="1.5" fill="currentColor" />
-        <path d="M22 8 C18 8 16 6 16 2" />
-      </svg>
-
+      <div className="absolute top-2.5 right-2.5 sm:top-3.5 sm:right-3.5 w-3 h-3 border-t-2 border-r-2 border-gold-antique pointer-events-none" />
       {/* Bottom Left */}
-      <svg
-        className="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 w-6 h-6 text-gold-antique pointer-events-none"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        <path d="M2 10 V22 H14" />
-        <circle cx="5" cy="19" r="1.5" fill="currentColor" />
-        <path d="M2 16 C6 16 8 18 8 22" />
-      </svg>
-
+      <div className="absolute bottom-2.5 left-2.5 sm:bottom-3.5 sm:left-3.5 w-3 h-3 border-b-2 border-l-2 border-gold-antique pointer-events-none" />
       {/* Bottom Right */}
-      <svg
-        className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 w-6 h-6 text-gold-antique pointer-events-none"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        <path d="M22 10 V22 H10" />
-        <circle cx="19" cy="19" r="1.5" fill="currentColor" />
-        <path d="M22 16 C18 16 16 18 16 22" />
-      </svg>
+      <div className="absolute bottom-2.5 right-2.5 sm:bottom-3.5 sm:right-3.5 w-3 h-3 border-b-2 border-r-2 border-gold-antique pointer-events-none" />
 
       {/* Card Content */}
       <div className="relative z-10">{children}</div>

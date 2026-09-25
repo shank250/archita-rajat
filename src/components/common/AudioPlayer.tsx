@@ -1,3 +1,4 @@
+import React from 'react';
 import { VolumeX } from 'lucide-react';
 import { useAudio } from '../../context/AudioContext';
 
@@ -9,7 +10,7 @@ export const AudioPlayer: React.FC = () => {
       <button
         onClick={toggleAudio}
         aria-label={isPlaying ? "Mute celebratory music" : "Play celebratory music"}
-        className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-espresso-light/90 border border-gold-antique/50 text-gold-light shadow-gold-glow backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-gold-antique active:scale-95"
+        className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-[#14141C]/90 border border-white/15 text-gold-light shadow-2xl backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-gold-antique active:scale-95"
       >
         {/* Pulsing ring when playing */}
         {isPlaying && (
@@ -24,11 +25,11 @@ export const AudioPlayer: React.FC = () => {
             <span className="w-1 bg-gold-antique rounded-full animate-[pulse_0.7s_ease-in-out_infinite_0.4s] h-2.5" />
           </div>
         ) : (
-          <VolumeX className="w-5 h-5 text-champagne-muted transition-transform group-hover:scale-110" />
+          <VolumeX className="w-5 h-5 text-neutral-400 transition-transform group-hover:scale-110" />
         )}
 
         {/* Tooltip hint */}
-        <span className="absolute right-14 whitespace-nowrap px-3 py-1 text-xs font-serif rounded-full bg-espresso-surface border border-gold-antique/30 text-gold-light opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-lg">
+        <span className="absolute right-14 whitespace-nowrap px-3 py-1 text-xs font-sans rounded-full bg-[#181822] border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-lg">
           {isPlaying ? "Mute Music" : "Play Music"}
         </span>
       </button>

@@ -6,19 +6,19 @@
   html {
     scroll-behavior: smooth;
     font-family: 'Montserrat', sans-serif;
-    background-color: #120D0B;
-    color: #F5EFEB;
+    background-color: #0A0A0E;
+    color: #F8F8FA;
   }
 
-  /* Custom elegant scrollbar */
+  /* Sleek modern 21st-century scrollbar */
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
   }
   ::-webkit-scrollbar-track {
-    background: #120D0B;
+    background: #0A0A0E;
   }
   ::-webkit-scrollbar-thumb {
-    background: #3D2D20;
+    background: #262633;
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
@@ -28,50 +28,41 @@
 
 @layer utilities {
   .text-gold-gradient {
-    background: linear-gradient(135deg, #FFF0BE 0%, #D4AF37 40%, #F5DE88 65%, #AA820A 100%);
+    background: linear-gradient(135deg, #FFF4CC 0%, #E2C376 40%, #D4AF37 70%, #A68214 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .text-gold-bright {
-    background: linear-gradient(135deg, #FFFFFF 0%, #FDE49E 30%, #D4AF37 70%, #F5EFEB 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFF2CC 35%, #E2C376 75%, #D4AF37 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .border-gold-gradient {
-    border-image: linear-gradient(135deg, #D4AF37, #FDE49E, #AA820A) 1;
+    border-image: linear-gradient(135deg, #D4AF37, #FFF0BE, #A68214) 1;
   }
 
-  .gold-foil-bg {
-    background: linear-gradient(135deg, #9C7A14 0%, #D4AF37 25%, #FFF0BE 50%, #D4AF37 75%, #8B670A 100%);
+  /* Solid Modern Porcelain Surface (No muddy texture, pure crisp luxury) */
+  .parchment-texture, .porcelain-card {
+    background-color: #FFFFFF;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4), 0 0 1px rgba(0, 0, 0, 0.1);
   }
 
-  .gold-foil-subtle {
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(255, 240, 190, 0.3) 50%, rgba(170, 130, 10, 0.15) 100%);
-  }
-
-  .parchment-texture {
-    background-color: #FAF1E4;
-    background-image: radial-gradient(#E8D5BC 0.75px, transparent 0.75px), radial-gradient(#F5E6D3 0.75px, #FAF1E4 0.75px);
-    background-size: 30px 30px;
-    background-position: 0 0, 15px 15px;
-  }
-
-  .velvet-texture {
-    background-color: #4A1016;
-    background-image: 
-      radial-gradient(circle at 50% 0%, rgba(133, 34, 43, 0.8) 0%, transparent 60%),
-      radial-gradient(circle at 50% 100%, rgba(43, 8, 12, 0.9) 0%, transparent 70%);
+  /* Modern Solid Envelope Finish */
+  .solid-envelope {
+    background: linear-gradient(160deg, #1B1214 0%, #120A0C 60%, #0A0507 100%);
+    border: 1px solid rgba(212, 175, 55, 0.35);
   }
 
   .damask-gold-pattern {
-    background-color: #AA820A;
+    background-color: #1A1408;
     background-image: 
-      radial-gradient(#D4AF37 2px, transparent 2px),
-      radial-gradient(#FFF0BE 2px, #946F08 2px);
-    background-size: 24px 24px;
-    background-position: 0 0, 12px 12px;
+      linear-gradient(45deg, rgba(212, 175, 55, 0.15) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(212, 175, 55, 0.15) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, rgba(212, 175, 55, 0.15) 75%),
+      linear-gradient(-45deg, transparent 75%, rgba(212, 175, 55, 0.15) 75%);
+    background-size: 16px 16px;
   }
 
   .perspective-1000 {
@@ -87,16 +78,16 @@
   }
 
   .glass-card {
-    background: rgba(28, 21, 18, 0.65);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(212, 175, 55, 0.25);
+    background: rgba(22, 22, 30, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .glass-pill {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(212, 175, 55, 0.25);
   }
 }

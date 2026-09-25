@@ -17,26 +17,27 @@ export const Storyboard: React.FC = () => {
   const currentStory = storyData[currentIndex];
 
   return (
-    <section id="our-story" className="relative py-16 px-4 max-w-4xl mx-auto z-10">
+    <section id="our-story" className="relative py-20 px-4 max-w-4xl mx-auto z-10">
       {/* Section Header */}
-      <div className="text-center mb-10">
-        <span className="text-xs font-serif uppercase tracking-[0.3em] text-gold-antique">
+      <div className="text-center mb-12">
+        <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-gold-antique font-semibold">
           Chapter by Chapter
         </span>
-        <h2 className="font-serif text-3xl sm:text-4xl text-champagne font-bold mt-1">
+        <h2 className="font-serif text-3xl sm:text-5xl text-white font-normal mt-1">
           Our Journey Together
         </h2>
-        <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-gold-antique to-transparent mx-auto mt-3" />
+        <div className="w-12 h-0.5 bg-gold-antique/60 mx-auto mt-3" />
       </div>
 
-      {/* Story Carousel Frame */}
-      <div className="relative bg-espresso-surface/90 border border-gold-antique/30 rounded-2xl p-5 sm:p-8 backdrop-blur-md shadow-2xl">
+      {/* Story Carousel Frame: Modern Solid Obsidian Surface */}
+      <div className="relative bg-[#121218] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.8)] backdrop-blur-xl">
+        
         {/* Top Badges & Chapter Indicator */}
-        <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-gold-antique/20">
-          <span className="px-3 py-1 rounded-full bg-crimson-wax/80 border border-gold-antique/40 text-[11px] sm:text-xs font-serif text-gold-light tracking-wider font-semibold">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-5 border-b border-white/10">
+          <span className="px-3.5 py-1 rounded-full bg-[#8E1722] text-white text-[11px] font-sans tracking-wider font-semibold shadow-sm">
             {currentStory.chapterBadge}
           </span>
-          <span className="text-xs font-serif text-gold-light/70 tracking-widest">
+          <span className="text-xs font-sans text-neutral-400 tracking-widest uppercase">
             {currentIndex + 1} of {storyData.length}
           </span>
         </div>
@@ -46,36 +47,33 @@ export const Storyboard: React.FC = () => {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStory.id}
-              initial={{ opacity: 0, x: 25 }}
+              initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -25 }}
-              transition={{ duration: 0.4 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.35 }}
               className="flex flex-col items-center"
             >
               {/* Story Title & Subtitle */}
               <div className="text-center mb-6">
-                <h3 className="font-serif text-2xl sm:text-3xl text-gold-gradient font-bold">
+                <h3 className="font-serif text-2xl sm:text-4xl text-white font-semibold">
                   {currentStory.title}
                 </h3>
-                <p className="text-xs sm:text-sm font-serif italic text-gold-light/80 mt-1">
+                <p className="text-xs sm:text-sm font-sans text-neutral-400 mt-1">
                   {currentStory.subtitle}
                 </p>
               </div>
 
-              {/* Photos Grid (Polaroid Style) */}
+              {/* Photos Grid (Modern Solid Porcelain Frames) */}
               <div className="flex flex-wrap items-center justify-center gap-6 my-4 w-full">
                 {currentStory.images.map((img, idx) => (
                   <motion.div
                     key={idx}
-                    whileHover={{ scale: 1.04, rotate: 0 }}
+                    whileHover={{ scale: 1.03, rotate: 0 }}
                     style={{ transform: `rotate(${img.rotation || 0}deg)` }}
-                    className="relative bg-parchment-cream p-3 sm:p-4 rounded shadow-xl border border-amber-900/20 max-w-[260px] sm:max-w-[280px] w-full transition-transform duration-300"
+                    className="relative bg-white p-3.5 sm:p-4 rounded-2xl shadow-xl border border-neutral-200 max-w-[260px] sm:max-w-[280px] w-full transition-transform duration-300"
                   >
-                    {/* Polaroid Tape / Pin Accent */}
-                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-12 h-4 bg-amber-100/80 border border-amber-900/10 shadow-sm rotate-1" />
-
-                    {/* Image */}
-                    <div className="w-full h-56 sm:h-64 rounded overflow-hidden bg-espresso-light shadow-inner">
+                    {/* Modern Clean Image Viewport */}
+                    <div className="w-full h-56 sm:h-64 rounded-xl overflow-hidden bg-neutral-900 shadow-inner">
                       <img
                         src={img.src}
                         alt={img.alt}
@@ -83,8 +81,8 @@ export const Storyboard: React.FC = () => {
                       />
                     </div>
 
-                    {/* Handwritten Style Caption */}
-                    <p className="mt-3 font-serif text-center text-xs text-charcoal-bronze italic leading-snug px-1">
+                    {/* Clean Modern Caption */}
+                    <p className="mt-3 font-sans text-center text-xs text-neutral-700 italic leading-snug px-1">
                       "{img.caption}"
                     </p>
                   </motion.div>
@@ -93,7 +91,7 @@ export const Storyboard: React.FC = () => {
 
               {/* Narration Text */}
               <div className="max-w-xl text-center mt-6 px-4">
-                <p className="font-serif text-sm sm:text-base text-champagne/90 leading-relaxed italic">
+                <p className="font-serif text-sm sm:text-base text-neutral-300 leading-relaxed italic">
                   "{currentStory.narration}"
                 </p>
               </div>
@@ -102,17 +100,17 @@ export const Storyboard: React.FC = () => {
         </div>
 
         {/* Carousel Navigation Bar */}
-        <div className="flex items-center justify-between pt-4 border-t border-gold-antique/20">
+        <div className="flex items-center justify-between pt-5 border-t border-white/10">
           <button
             onClick={prevSlide}
             aria-label="Previous story chapter"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-espresso border border-gold-antique/40 text-gold-light text-xs font-serif hover:border-gold-antique transition-colors"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#181822] border border-white/15 text-neutral-200 text-xs font-sans hover:border-gold-antique hover:text-white transition-all shadow-sm"
           >
             <ChevronLeft className="w-4 h-4 text-gold-antique" />
             <span className="hidden sm:inline">Previous</span>
           </button>
 
-          {/* Dots Indicator */}
+          {/* Modern Dots Indicator */}
           <div className="flex items-center gap-2">
             {storyData.map((_, i) => (
               <button
@@ -122,7 +120,7 @@ export const Storyboard: React.FC = () => {
                 className={`transition-all duration-300 rounded-full ${
                   i === currentIndex
                     ? 'w-6 h-2 bg-gold-antique'
-                    : 'w-2 h-2 bg-gold-antique/30 hover:bg-gold-antique/60'
+                    : 'w-2 h-2 bg-neutral-700 hover:bg-neutral-500'
                 }`}
               />
             ))}
@@ -131,7 +129,7 @@ export const Storyboard: React.FC = () => {
           <button
             onClick={nextSlide}
             aria-label="Next story chapter"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-espresso border border-gold-antique/40 text-gold-light text-xs font-serif hover:border-gold-antique transition-colors"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#181822] border border-white/15 text-neutral-200 text-xs font-sans hover:border-gold-antique hover:text-white transition-all shadow-sm"
           >
             <span className="hidden sm:inline">Next</span>
             <ChevronRight className="w-4 h-4 text-gold-antique" />

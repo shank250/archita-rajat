@@ -7,37 +7,58 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Modern 21st-century Obsidian Palette
+        obsidian: {
+          DEFAULT: '#0A0A0E',
+          dark: '#050507',
+          light: '#131318',
+          surface: '#181820',
+          card: '#1F1F2A',
+          border: 'rgba(255, 255, 255, 0.08)',
+        },
+        // Alias espresso to modern obsidian for compatibility
         espresso: {
-          DEFAULT: '#15100D',
-          dark: '#0E0B09',
-          light: '#1C1512',
-          surface: '#241C18',
+          DEFAULT: '#0A0A0E',
+          dark: '#050507',
+          light: '#131318',
+          surface: '#181820',
+          card: '#1F1F2A',
         },
+        // Modern 21st-century Solid Porcelain
+        porcelain: {
+          DEFAULT: '#F8F8FA',
+          cream: '#FCFCFD',
+          card: '#FFFFFF',
+          dark: '#EBEBEF',
+        },
+        // Alias parchment to solid crisp porcelain
         parchment: {
-          DEFAULT: '#FAF1E4',
-          cream: '#FDF8F0',
-          dark: '#F0E3CF',
+          DEFAULT: '#F8F8FA',
+          cream: '#FFFFFF',
+          dark: '#EBEBEF',
         },
+        // Solid Metallic Champagne Gold
         gold: {
           antique: '#D4AF37',
-          light: '#E5C378',
-          dark: '#AA820A',
+          light: '#F3DB94',
+          dark: '#A68214',
           dust: 'rgba(212, 175, 55, 0.25)',
-          glow: 'rgba(212, 175, 55, 0.45)',
+          glow: 'rgba(212, 175, 55, 0.35)',
         },
+        // Solid Carmine Crimson Wax
         crimson: {
-          wax: '#6B1D24',
-          dark: '#4A1217',
-          light: '#85222B',
-          glow: 'rgba(107, 29, 36, 0.5)',
+          wax: '#8E1722',
+          dark: '#5C0D15',
+          light: '#B0202D',
+          glow: 'rgba(142, 23, 34, 0.45)',
         },
         charcoal: {
-          bronze: '#2B231D',
-          muted: '#5A4C42',
+          bronze: '#0F0F14',
+          muted: '#525260',
         },
         champagne: {
-          DEFAULT: '#F5EFEB',
-          muted: '#C4B7AC',
+          DEFAULT: '#F8F8FA',
+          muted: '#9494A4',
         },
       },
       fontFamily: {
@@ -47,32 +68,28 @@ export default {
         sans: ['"Montserrat"', '"Inter"', 'sans-serif'],
       },
       boxShadow: {
-        'gold-glow': '0 0 25px rgba(212, 175, 55, 0.35)',
-        'wax-seal': '0 10px 25px -5px rgba(107, 29, 36, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.3)',
-        'parchment': '0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 55, 0.2)',
+        'gold-glow': '0 0 25px rgba(212, 175, 55, 0.3)',
+        'wax-seal': '0 12px 25px -4px rgba(142, 23, 34, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.3)',
+        'modern-card': '0 20px 50px -12px rgba(0, 0, 0, 0.8), 0 0 1px rgba(255, 255, 255, 0.1)',
+        'parchment': '0 20px 45px -10px rgba(0, 0, 0, 0.5), 0 0 1px rgba(212, 175, 55, 0.3)',
       },
       backgroundImage: {
-        'gold-gradient': 'linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #AA820A 100%)',
-        'crimson-gradient': 'linear-gradient(145deg, #85222B 0%, #6B1D24 50%, #4A1217 100%)',
-        'espresso-radial': 'radial-gradient(circle at 50% 20%, #241C18 0%, #15100D 100%)',
+        'gold-gradient': 'linear-gradient(135deg, #FFF0BE 0%, #D4AF37 50%, #A68214 100%)',
+        'crimson-gradient': 'linear-gradient(145deg, #B0202D 0%, #8E1722 55%, #5C0D15 100%)',
+        'obsidian-gradient': 'linear-gradient(180deg, #131318 0%, #0A0A0E 100%)',
       },
       animation: {
         'float-slow': 'float 6s ease-in-out infinite',
         'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
-        'shimmer': 'shimmer 2.5s infinite',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
+          '50%': { transform: 'translateY(-8px)' },
         },
         pulseGlow: {
           '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
-          '50%': { opacity: '1', transform: 'scale(1.05)' },
-        },
-        shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' },
+          '50%': { opacity: '1', transform: 'scale(1.04)' },
         },
       },
     },
