@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useGuest } from '../../context/GuestContext';
 import { WishEntry } from '../../types/wedding';
 import { getStoredUserRsvp, saveUserRsvp } from '../../utils/storage';
+import { sendRsvpToWebhook } from '../../utils/webhook';
 import { triggerCelebrationFireworks } from '../../utils/confetti';
 import { Send, User, CheckCircle2, HeartHandshake, Edit3, Calendar } from 'lucide-react';
 
@@ -48,6 +49,7 @@ export const GuestbookSection: React.FC = () => {
 
   const [submittedRsvp, setSubmittedRsvp] = useState<WishEntry | null>(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const toggleEvent = (eventId: string) => {
     setSelectedEvents((prev) =>
@@ -81,9 +83,11 @@ export const GuestbookSection: React.FC = () => {
     }
   }, [guestName, isPersonalized]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !message.trim()) return;
+    if (!name.trim() || !message.trim() || isSubmitting) return;
+
+    setIsSubmitting(true);
 
     const eventAttendanceText =
       selectedEvents.length === 4
@@ -95,13 +99,25 @@ export const GuestbookSection: React.FC = () => {
             .filter(Boolean)
             .join(', ');
 
-    const saved = saveUserRsvp({
+    const payload = {
       guestName: name.trim(),
-      recipient: 'both',
+      recipient: 'both' as const,
       eventsAttending: selectedEvents,
       eventAttendance: eventAttendanceText,
       message: message.trim(),
-    });
+    };
+
+    // 1. Save locally for instantaneous confirmation
+    const saved = saveUserRsvp(payload);
+
+    // 2. Dispatch to Google Apps Script webhook
+    try {
+      await sendRsvpToWebhook(payload);
+    } catch (err) {
+      console.error('Webhook dispatch error:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
 
     setSubmittedRsvp(saved);
     setIsEditing(false);
@@ -325,10 +341,15 @@ export const GuestbookSection: React.FC = () => {
               <div className="pt-2 flex items-center gap-3">
                 <button
                   type="submit"
-                  className="flex-1 py-3.5 px-6 rounded-full bg-[#881337] hover:bg-[#70102E] text-white font-sans text-sm font-bold tracking-wider shadow-sm active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  disabled={isSubmitting}
+                  className="flex-1 py-3.5 px-6 rounded-full bg-[#881337] hover:bg-[#70102E] disabled:opacity-60 text-white font-sans text-sm font-bold tracking-wider shadow-sm active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed"
                 >
-                  <span>Confirm RSVP & Send Blessings</span>
-                  <Send className="w-4 h-4 text-white" />
+                  <span>{isSubmitting ? 'Recording RSVP...' : 'Confirm RSVP & Send Blessings'}</span>
+                  {isSubmitting ? (
+                    <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  ) : (
+                    <Send className="w-4 h-4 text-white" />
+                  )}
                 </button>
 
                 {isEditing && (
