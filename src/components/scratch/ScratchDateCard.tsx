@@ -179,9 +179,6 @@ export const ScratchDateCard: React.FC = () => {
     }
   };
 
-  // Google Calendar URL for the Grand Wedding
-  const grandWeddingCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent("Archita & Rajat's Wedding (Vivah Sanskar)")}&dates=20261130T183000/20261130T235900&details=${encodeURIComponent("The Grand Wedding of Archita Srivastava & Rajat Ranjan\nVenue: Krishna Lawn, Gwalior\nTime: 6:30 PM Onwards")}&location=${encodeURIComponent("Krishna Lawn, Gwalior, Madhya Pradesh")}`;
-
   return (
     <section id="scratch-date" className="relative py-20 px-4 max-w-4xl mx-auto z-10">
       {/* Section Subtitle */}
@@ -285,26 +282,16 @@ export const ScratchDateCard: React.FC = () => {
             </div>
 
             {/* Wedding Action Buttons */}
-            <div className="mt-5 pt-4 border-t border-white/15 flex flex-wrap items-center justify-between gap-3">
+            <div className="mt-5 pt-4 border-t border-white/15 flex items-center">
               <a
                 href={venuesList[0].googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-[#881337] hover:bg-rose-50 text-xs font-sans font-bold transition-all shadow-sm"
+                className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-white text-[#881337] hover:bg-rose-50 text-xs font-sans font-bold transition-all shadow-sm cursor-pointer"
               >
                 <MapPin className="w-3.5 h-3.5" />
                 <span>Directions to Krishna Lawn</span>
                 <ExternalLink className="w-3 h-3 text-[#881337]/70" />
-              </a>
-
-              <a
-                href={grandWeddingCalUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/15 hover:bg-white/25 text-white border border-white/25 text-xs font-sans font-semibold transition-all"
-              >
-                <Calendar className="w-3.5 h-3.5" />
-                <span>Add 30 Nov to Calendar</span>
               </a>
             </div>
           </div>

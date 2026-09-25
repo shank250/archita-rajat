@@ -25,13 +25,6 @@ export const ItinerarySection: React.FC = () => {
 
   const currentEvent = weddingEvents.find((e) => e.id === selectedEventId) || weddingEvents[0];
 
-  const getGoogleCalendarUrl = (event: typeof currentEvent) => {
-    const title = encodeURIComponent(`${event.title} — Archita & Rajat`);
-    const details = encodeURIComponent(`${event.tagline}\nDress Code: ${event.dressCode}\nVenue: ${event.venue.name}, ${event.venue.city}`);
-    const location = encodeURIComponent(`${event.venue.name}, ${event.venue.address}, ${event.venue.city}`);
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${event.calendarStartDate}/${event.calendarEndDate}&details=${details}&location=${location}`;
-  };
-
   return (
     <section id="itinerary" className="relative py-20 px-4 max-w-4xl mx-auto z-10">
       {/* Section Header */}
@@ -196,22 +189,12 @@ export const ItinerarySection: React.FC = () => {
           </div>
 
           {/* Action CTAs for this Event */}
-          <div className="pt-5 border-t border-neutral-100 flex flex-wrap items-center justify-between gap-3">
-            <a
-              href={getGoogleCalendarUrl(currentEvent)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-neutral-900 hover:bg-black text-white text-xs font-sans font-semibold transition-all shadow-sm"
-            >
-              <Calendar className="w-3.5 h-3.5" />
-              <span>Add {currentEvent.shortDate} to Google Calendar</span>
-            </a>
-
+          <div className="pt-5 border-t border-neutral-100 flex items-center justify-end">
             <a
               href={currentEvent.venue.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-neutral-200 hover:bg-neutral-50 text-xs font-sans font-semibold text-neutral-700 transition-colors"
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full border border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50 text-xs font-sans font-bold text-neutral-800 transition-all shadow-xs cursor-pointer"
             >
               <MapPin className="w-3.5 h-3.5 text-[#881337]" />
               <span>Directions to {currentEvent.venue.name}</span>
