@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FiligreeBorder } from '../common/FiligreeBorder';
 import { useGuest } from '../../context/GuestContext';
-import { coupleData } from '../../data/weddingData';
 import { ChevronDown, Sparkles } from 'lucide-react';
 
 export const FormalCard: React.FC = () => {
@@ -41,13 +40,11 @@ export const FormalCard: React.FC = () => {
           {/* Formal Host Copy from Bride's Family */}
           <div className="space-y-4 my-6 font-serif text-sm sm:text-base text-neutral-800 leading-relaxed px-2 sm:px-6">
             <p>
-              With the celestial blessings of the Almighty and our revered ancestors,
+              With the celestial blessings of the Almighty and our elders,
               <br />
-              <strong className="text-neutral-950 font-bold text-base sm:text-lg">{coupleData.bride.parents}</strong>
-              <br />
-              <span className="text-xs font-sans text-neutral-500">
-                (Daughter of {coupleData.bride.grandparents})
-              </span>
+              <strong className="text-neutral-950 font-bold text-base sm:text-lg">
+                Pramendra Kumar Srivastava & Prem Lata Srivastava
+              </strong>
             </p>
 
             <p className="text-xs text-neutral-400 uppercase tracking-widest font-sans font-semibold">
@@ -72,16 +69,13 @@ export const FormalCard: React.FC = () => {
             <div className="flex flex-col items-center">
               {/* Bride: Archita Srivastava */}
               <h3 className="font-serif text-3xl sm:text-4xl text-neutral-950 font-bold tracking-tight">
-                {coupleData.bride.fullName}
+                Archita Srivastava
               </h3>
-              <p className="text-[11px] font-sans text-neutral-500 mt-0.5 tracking-wider">
-                Daughter of {coupleData.bride.parents}
-              </p>
-              <p className="text-[10px] font-sans text-neutral-400">
-                Granddaughter of {coupleData.bride.grandparents}
+              <p className="text-xs sm:text-sm font-sans text-neutral-600 mt-1 tracking-wide font-medium">
+                D/O Pramendra Kumar Srivastava & Prem Lata Srivastava
               </p>
 
-              <div className="flex items-center gap-3 my-3">
+              <div className="flex items-center gap-3 my-3.5">
                 <div className="h-[1px] w-12 bg-neutral-200" />
                 <span className="w-8 h-8 rounded-full bg-[#881337] text-white flex items-center justify-center font-serif text-sm font-bold shadow-sm">
                   &
@@ -91,13 +85,10 @@ export const FormalCard: React.FC = () => {
 
               {/* Groom: Rajat Ranjan */}
               <h3 className="font-serif text-3xl sm:text-4xl text-neutral-950 font-bold tracking-tight">
-                {coupleData.groom.fullName}
+                Rajat Ranjan
               </h3>
-              <p className="text-[11px] font-sans text-neutral-500 mt-0.5 tracking-wider">
-                Son of {coupleData.groom.parents}
-              </p>
-              <p className="text-[10px] font-sans text-neutral-400">
-                Grandson of {coupleData.groom.grandparents}
+              <p className="text-xs sm:text-sm font-sans text-neutral-600 mt-1 tracking-wide font-medium">
+                S/O Ritu Ranjan Sinha & Madhu Sinha
               </p>
             </div>
           </div>

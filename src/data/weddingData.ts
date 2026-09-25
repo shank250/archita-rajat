@@ -4,15 +4,13 @@ export const coupleData: CoupleProfile = {
   groom: {
     firstName: "Rajat",
     fullName: "Rajat Ranjan",
-    parents: "Mrs. Sunita & Mr. Rakesh Ranjan",
-    grandparents: "Late Smt. Krishna & Late Shri Om Prakash Ranjan",
+    parents: "Madhu Sinha & Ritu Ranjan Sinha",
     bio: "Tech enthusiast, passionate foodie, and the guy who fell hopelessly in love.",
   },
   bride: {
     firstName: "Archita",
     fullName: "Archita Srivastava",
-    parents: "Mrs. Rekha & Mr. Ashok Srivastava",
-    grandparents: "Smt. Shanti & Late Shri Brij Mohan Srivastava",
+    parents: "Prem Lata Srivastava & Pramendra Kumar Srivastava",
     bio: "Creative soul, travel lover, and the bride who stole Rajat's heart.",
   },
   hashtag: "#ArchitaWedsRajat",
