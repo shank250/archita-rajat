@@ -10,7 +10,7 @@ export interface RsvpWebhookPayload {
 
 // Fallback to the user's Google Apps Script Web App URL if not defined in Vite environment
 const DEFAULT_RSVP_WEBHOOK_URL =
-  'https://script.google.com/macros/s/AKfycbyQckAEM81mlFA3e8joN6gvGYHfFeO_J-I6C2jGzcV2vrsTzld_xETx7KeqXEepz2bF/exec';
+  'https://script.google.com/macros/s/AKfycbxwuWPnauzw1vWRJFqqUAWbTg01QBBfA8o2rn5C9edIacJT1blYWQf9G89d3Blh33GY/exec';
 
 const DEFAULT_RSVP_SECRET_KEY = 'archita_rajat_wedding_2026';
 
