@@ -3,73 +3,49 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #FDFBF7;
-    color: #202124;
+  :root {
+    --color-primary: #386180;
+    --color-primary-hover: #284A63;
+    --color-secondary: #C46882;
+    --color-secondary-hover: #AD526B;
+    --color-accent: #C5A880;
+    --color-accent-soft: rgba(196, 104, 130, 0.12);
+    --color-canvas: #FAF6F8;
+    --color-surface: #FFFFFF;
+    --color-surface-subtle: #F7F0F4;
+    --color-surface-highlight: #FDF2F6;
+    --color-border: #E8D7DF;
+    --color-border-subtle: #F2E8ED;
+    --color-text-primary: #243B53;
+    --color-text-body: #334E68;
+    --color-text-muted: #6C7D8F;
+    --color-text-on-primary: #FFFFFF;
   }
 
-  /* Clean subtle Google Material scrollbar */
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--color-canvas);
+    color: var(--color-text-body);
+  }
+
+  /* Clean subtle scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #FDFBF7;
+    background: var(--color-canvas);
   }
   ::-webkit-scrollbar-thumb {
-    background: #DDD8CE;
+    background: var(--color-border);
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #D97706;
+    background: var(--color-primary);
   }
 }
 
 @layer utilities {
-  /* Solid typography styling (No muddy chrome gradients) */
-  .text-solid-title {
-    color: #202124;
-  }
-
-  .text-festive-accent {
-    color: #C5221F;
-  }
-
-  .text-marigold {
-    color: #D97706;
-  }
-
-  /* Clean Solid Material Surfaces */
-  .material-card {
-    background-color: #FFFFFF;
-    border: 1px solid #EBE6DC;
-    box-shadow: 0 1px 3px 0 rgba(60,64,67,0.08), 0 4px 16px 0 rgba(60,64,67,0.04);
-  }
-
-  .material-card-tonal {
-    background-color: #F7F3EC;
-    border: 1px solid #E6E0D5;
-  }
-
-  .material-pill {
-    background-color: #FFFFFF;
-    border: 1px solid #E6E0D5;
-    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.06);
-  }
-
-  .parchment-texture, .porcelain-card {
-    background-color: #FFFFFF;
-    border: 1px solid #EBE6DC;
-    box-shadow: 0 4px 20px -2px rgba(60,64,67,0.08);
-  }
-
-  /* Flat Solid Envelope Design */
-  .solid-envelope-mat {
-    background-color: #8C2127;
-    border: 1px solid #73181D;
-  }
-
   .perspective-1000 {
     perspective: 1000px;
   }

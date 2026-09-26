@@ -29,16 +29,16 @@ export const ItinerarySection: React.FC = () => {
     <section id="itinerary" className="relative py-20 px-4 max-w-4xl mx-auto z-10">
       {/* Section Header */}
       <div className="text-center mb-10">
-        <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-[#881337] font-bold">
+        <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-secondary font-bold">
           Celebration Itinerary
         </span>
-        <h2 className="font-serif text-3xl sm:text-5xl text-neutral-900 font-bold mt-1">
+        <h2 className="font-serif text-3xl sm:text-5xl text-primary font-bold mt-1">
           Four Auspicious Celebrations
         </h2>
-        <p className="text-xs sm:text-sm font-sans text-neutral-500 mt-1 max-w-lg mx-auto">
-          From the sparkle of the ring ceremony to the sacred wedding pheras, join us on every step of our celebration
+        <p className="text-xs sm:text-sm font-sans text-text-sub mt-1">
+          Timings, venues &amp; ceremony schedule
         </p>
-        <div className="w-12 h-0.5 bg-[#881337] rounded-full mx-auto mt-3" />
+        <div className="w-12 h-0.5 bg-primary rounded-full mx-auto mt-3" />
       </div>
 
       {/* 4-Day Interactive Event Selector */}
@@ -51,20 +51,20 @@ export const ItinerarySection: React.FC = () => {
               onClick={() => setSelectedEventId(evt.id)}
               className={`text-left p-3.5 sm:p-4 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ${
                 isActive
-                  ? 'bg-[#881337] text-white border-[#70102E] shadow-md scale-[1.02]'
-                  : 'bg-white text-neutral-800 border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50/80 shadow-sm'
+                  ? 'bg-primary text-white border-primary-hover shadow-md scale-[1.02]'
+                  : 'bg-surface text-text-body border-theme-border hover:border-primary/40 hover:bg-surface-subtle/60 shadow-xs'
               }`}
             >
               <div>
                 <div className="flex items-center justify-between mb-1.5">
                   <span
                     className={`text-[10px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                      isActive ? 'bg-white/20 text-white' : 'bg-neutral-100 text-neutral-600'
+                      isActive ? 'bg-white/20 text-white' : 'bg-surface-subtle text-primary'
                     }`}
                   >
                     {evt.shortDate}
                   </span>
-                  <span className={`text-[10px] font-sans font-medium ${isActive ? 'text-rose-200' : 'text-neutral-400'}`}>
+                  <span className={`text-[10px] font-sans font-medium ${isActive ? 'text-accent' : 'text-text-sub'}`}>
                     {evt.dayOfWeek}
                   </span>
                 </div>
@@ -91,25 +91,25 @@ export const ItinerarySection: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -15 }}
           transition={{ duration: 0.3 }}
-          className="bg-white p-6 sm:p-9 rounded-3xl border border-neutral-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.04)] text-neutral-900"
+          className="bg-surface p-6 sm:p-9 rounded-3xl border border-theme-border shadow-card-subtle text-text-body"
         >
           {/* Header of Active Event */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-neutral-100">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-theme-border">
             <div>
-              <span className="text-[10px] font-sans uppercase tracking-[0.25em] text-[#881337] font-bold">
+              <span className="text-[10px] font-sans uppercase tracking-[0.25em] text-secondary font-bold">
                 {currentEvent.category}
               </span>
-              <h3 className="font-serif text-2xl sm:text-4xl text-neutral-950 font-bold mt-0.5">
+              <h3 className="font-serif text-2xl sm:text-4xl text-primary font-bold mt-0.5">
                 {currentEvent.title}
               </h3>
-              <p className="font-serif text-xs sm:text-sm text-neutral-600 italic mt-1">
+              <p className="font-serif text-xs sm:text-sm text-text-sub italic mt-1">
                 "{currentEvent.tagline}"
               </p>
             </div>
 
             <div className="flex-shrink-0">
-              <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-neutral-100 text-neutral-900 border border-neutral-200 text-xs font-sans font-bold shadow-sm">
-                <Calendar className="w-3.5 h-3.5 text-[#881337]" />
+              <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-subtle text-primary border border-theme-border text-xs font-sans font-bold shadow-xs">
+                <Calendar className="w-3.5 h-3.5 text-primary" />
                 <span>{currentEvent.fullDateText}</span>
               </span>
             </div>
@@ -118,37 +118,37 @@ export const ItinerarySection: React.FC = () => {
           {/* Key Event Badges Grid (Time, Venue, Dress Code) */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-6">
             {/* Time Card */}
-            <div className="p-4 rounded-2xl bg-[#FAFAFA] border border-neutral-200/80">
-              <div className="flex items-center gap-2 text-xs font-sans text-neutral-500 font-bold uppercase tracking-wider mb-1">
-                <Clock className="w-3.5 h-3.5 text-[#881337]" />
+            <div className="p-4 rounded-2xl bg-surface-subtle border border-theme-border">
+              <div className="flex items-center gap-2 text-xs font-sans text-primary font-bold uppercase tracking-wider mb-1">
+                <Clock className="w-3.5 h-3.5 text-primary" />
                 <span>Timing</span>
               </div>
-              <p className="font-sans text-sm font-bold text-neutral-900">
+              <p className="font-sans text-sm font-bold text-text-body">
                 {currentEvent.timeRange}
               </p>
             </div>
 
             {/* Venue Card */}
-            <div className="p-4 rounded-2xl bg-[#FAFAFA] border border-neutral-200/80">
-              <div className="flex items-center gap-2 text-xs font-sans text-neutral-500 font-bold uppercase tracking-wider mb-1">
-                <MapPin className="w-3.5 h-3.5 text-[#881337]" />
+            <div className="p-4 rounded-2xl bg-surface-subtle border border-theme-border">
+              <div className="flex items-center gap-2 text-xs font-sans text-primary font-bold uppercase tracking-wider mb-1">
+                <MapPin className="w-3.5 h-3.5 text-primary" />
                 <span>Venue</span>
               </div>
-              <p className="font-sans text-sm font-bold text-neutral-900 truncate">
+              <p className="font-sans text-sm font-bold text-text-body truncate">
                 {currentEvent.venue.name}
               </p>
-              <p className="font-sans text-[11px] text-neutral-500 truncate mt-0.5">
+              <p className="font-sans text-[11px] text-text-sub truncate mt-0.5">
                 {currentEvent.venue.address}, {currentEvent.venue.city}
               </p>
             </div>
 
             {/* Dress Code Card */}
-            <div className="p-4 rounded-2xl bg-[#FAFAFA] border border-neutral-200/80">
-              <div className="flex items-center gap-2 text-xs font-sans text-neutral-500 font-bold uppercase tracking-wider mb-1">
-                <Shirt className="w-3.5 h-3.5 text-[#881337]" />
+            <div className="p-4 rounded-2xl bg-surface-subtle border border-theme-border">
+              <div className="flex items-center gap-2 text-xs font-sans text-primary font-bold uppercase tracking-wider mb-1">
+                <Shirt className="w-3.5 h-3.5 text-primary" />
                 <span>Dress Code</span>
               </div>
-              <p className="font-sans text-sm font-bold text-neutral-900">
+              <p className="font-sans text-sm font-bold text-text-body">
                 {currentEvent.dressCode}
               </p>
             </div>
@@ -156,30 +156,30 @@ export const ItinerarySection: React.FC = () => {
 
           {/* Timeline of Milestones for this Event */}
           <div className="my-6">
-            <h4 className="text-xs font-sans font-bold uppercase tracking-widest text-neutral-400 mb-4">
-              Schedule & Highlights
+            <h4 className="text-xs font-sans font-bold uppercase tracking-widest text-primary mb-4">
+              Schedule &amp; Highlights
             </h4>
 
             <div className="space-y-3">
               {currentEvent.milestones.map((ms, idx) => (
                 <div
                   key={idx}
-                  className="flex items-start gap-4 p-3.5 rounded-2xl bg-[#FAFAFA] hover:bg-neutral-50 border border-neutral-100 transition-colors"
+                  className="flex items-start gap-4 p-3.5 rounded-2xl bg-surface-subtle hover:bg-surface-highlight/40 border border-theme-border transition-colors"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-white border border-neutral-200 text-[#881337] flex items-center justify-center flex-shrink-0 shadow-sm mt-0.5">
-                    {renderIcon(ms.iconName, "w-4 h-4")}
+                  <div className="w-9 h-9 rounded-xl bg-surface border border-theme-border text-primary flex items-center justify-center flex-shrink-0 shadow-xs mt-0.5">
+                    {renderIcon(ms.iconName, "w-4 h-4 text-primary")}
                   </div>
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-baseline gap-2">
-                      <span className="font-sans text-xs font-bold text-[#881337]">
+                      <span className="font-sans text-xs font-bold text-secondary">
                         {ms.time} {ms.period}
                       </span>
-                      <h5 className="font-serif text-sm sm:text-base font-bold text-neutral-950 truncate">
+                      <h5 className="font-serif text-sm sm:text-base font-bold text-primary truncate">
                         {ms.title}
                       </h5>
                     </div>
-                    <p className="font-sans text-xs text-neutral-600 mt-0.5 leading-relaxed">
+                    <p className="font-sans text-xs text-text-sub mt-0.5 leading-relaxed">
                       {ms.description}
                     </p>
                   </div>
@@ -189,16 +189,16 @@ export const ItinerarySection: React.FC = () => {
           </div>
 
           {/* Action CTAs for this Event */}
-          <div className="pt-5 border-t border-neutral-100 flex items-center justify-end">
+          <div className="pt-5 border-t border-theme-border flex items-center justify-end">
             <a
               href={currentEvent.venue.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full border border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50 text-xs font-sans font-bold text-neutral-800 transition-all shadow-xs cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white text-xs font-sans font-bold transition-all shadow-xs cursor-pointer"
             >
-              <MapPin className="w-3.5 h-3.5 text-[#881337]" />
+              <MapPin className="w-3.5 h-3.5 text-white" />
               <span>Directions to {currentEvent.venue.name}</span>
-              <ExternalLink className="w-3 h-3 text-neutral-400" />
+              <ExternalLink className="w-3 h-3 text-white/80" />
             </a>
           </div>
         </motion.div>

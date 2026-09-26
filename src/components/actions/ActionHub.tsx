@@ -13,16 +13,16 @@ export const ActionHub: React.FC = () => {
     <section id="plan-evening" className="relative py-20 px-4 max-w-4xl mx-auto z-10">
       {/* Section Header */}
       <div className="text-center mb-10">
-        <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-[#881337] font-bold">
+        <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-secondary font-bold">
           Guest Essentials
         </span>
-        <h2 className="font-serif text-3xl sm:text-5xl text-neutral-900 font-bold mt-1">
+        <h2 className="font-serif text-3xl sm:text-5xl text-primary font-bold mt-1">
           Plan Your Evening
         </h2>
-        <p className="text-xs sm:text-sm font-sans text-neutral-500 mt-1">
+        <p className="text-xs sm:text-sm font-sans text-text-sub mt-1">
           Quick actions to ensure a seamless celebration journey
         </p>
-        <div className="w-12 h-0.5 bg-[#881337] rounded-full mx-auto mt-3" />
+        <div className="w-12 h-0.5 bg-primary rounded-full mx-auto mt-3" />
       </div>
 
       {/* 3 Modern Clean Action Cards */}
@@ -32,20 +32,20 @@ export const ActionHub: React.FC = () => {
           whileHover={{ y: -4 }}
           transition={{ duration: 0.2 }}
           onClick={() => setIsCalendarOpen(true)}
-          className="group relative cursor-pointer bg-white border border-neutral-200/90 rounded-3xl p-7 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-lg flex flex-col justify-between transition-all"
+          className="group relative cursor-pointer bg-surface border border-theme-border rounded-3xl p-7 shadow-card-subtle hover:shadow-lg flex flex-col justify-between transition-all"
         >
           <div>
-            <div className="w-12 h-12 rounded-2xl bg-neutral-100 text-neutral-800 flex items-center justify-center mb-5 shadow-sm group-hover:scale-105 transition-transform">
+            <div className="w-12 h-12 rounded-2xl bg-surface-subtle text-primary flex items-center justify-center mb-5 shadow-xs group-hover:scale-105 transition-transform">
               <Calendar className="w-6 h-6" />
             </div>
-            <h3 className="font-serif text-xl sm:text-2xl text-neutral-950 font-bold group-hover:text-[#881337] transition-colors">
+            <h3 className="font-serif text-xl sm:text-2xl text-text-body font-bold group-hover:text-primary transition-colors">
               Save the Date
             </h3>
-            <p className="font-sans text-xs text-neutral-500 mt-2 leading-relaxed">
+            <p className="font-sans text-xs text-text-sub mt-2 leading-relaxed">
               Add event directly to Google Calendar or download .ics for Apple/Outlook.
             </p>
           </div>
-          <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-sans text-neutral-800 font-bold group-hover:text-[#881337]">
+          <div className="mt-6 pt-4 border-t border-theme-border flex items-center justify-between text-xs font-sans text-text-body font-bold group-hover:text-primary">
             <span>Add to Calendar</span>
             <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
           </div>
@@ -58,20 +58,20 @@ export const ActionHub: React.FC = () => {
           rel="noopener noreferrer"
           whileHover={{ y: -4 }}
           transition={{ duration: 0.2 }}
-          className="group relative cursor-pointer bg-white border border-neutral-200/90 rounded-3xl p-7 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-lg flex flex-col justify-between transition-all"
+          className="group relative cursor-pointer bg-surface border border-theme-border rounded-3xl p-7 shadow-card-subtle hover:shadow-lg flex flex-col justify-between transition-all"
         >
           <div>
-            <div className="w-12 h-12 rounded-2xl bg-neutral-100 text-neutral-800 flex items-center justify-center mb-5 shadow-sm group-hover:scale-105 transition-transform">
+            <div className="w-12 h-12 rounded-2xl bg-surface-subtle text-primary flex items-center justify-center mb-5 shadow-xs group-hover:scale-105 transition-transform">
               <Users className="w-6 h-6" />
             </div>
-            <h3 className="font-serif text-xl sm:text-2xl text-neutral-950 font-bold group-hover:text-[#881337] transition-colors">
+            <h3 className="font-serif text-xl sm:text-2xl text-text-body font-bold group-hover:text-primary transition-colors">
               WhatsApp Group
             </h3>
-            <p className="font-sans text-xs text-neutral-500 mt-2 leading-relaxed">
+            <p className="font-sans text-xs text-text-sub mt-2 leading-relaxed">
               Stay updated with live photos, coordination, and celebratory chatter.
             </p>
           </div>
-          <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-sans text-neutral-800 font-bold group-hover:text-[#881337]">
+          <div className="mt-6 pt-4 border-t border-theme-border flex items-center justify-between text-xs font-sans text-text-body font-bold group-hover:text-primary">
             <span>Join Group</span>
             <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
           </div>
@@ -82,20 +82,20 @@ export const ActionHub: React.FC = () => {
           whileHover={{ y: -4 }}
           transition={{ duration: 0.2 }}
           onClick={() => setIsVenueOpen(true)}
-          className="group relative cursor-pointer bg-white border border-neutral-200/90 rounded-3xl p-7 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-lg flex flex-col justify-between transition-all"
+          className="group relative cursor-pointer bg-surface border border-theme-border rounded-3xl p-7 shadow-card-subtle hover:shadow-lg flex flex-col justify-between transition-all"
         >
           <div>
-            <div className="w-12 h-12 rounded-2xl bg-neutral-100 text-neutral-800 flex items-center justify-center mb-5 shadow-sm group-hover:scale-105 transition-transform">
+            <div className="w-12 h-12 rounded-2xl bg-surface-subtle text-primary flex items-center justify-center mb-5 shadow-xs group-hover:scale-105 transition-transform">
               <MapPin className="w-6 h-6" />
             </div>
-            <h3 className="font-serif text-xl sm:text-2xl text-neutral-950 font-bold group-hover:text-[#881337] transition-colors">
+            <h3 className="font-serif text-xl sm:text-2xl text-text-body font-bold group-hover:text-primary transition-colors">
               Venues & Directions
             </h3>
-            <p className="font-sans text-xs text-neutral-500 mt-2 leading-relaxed">
+            <p className="font-sans text-xs text-text-sub mt-2 leading-relaxed">
               Krishna Lawn, Elegance Hotel & Shital Niwas. One-tap map navigation.
             </p>
           </div>
-          <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-sans text-neutral-800 font-bold group-hover:text-[#881337]">
+          <div className="mt-6 pt-4 border-t border-theme-border flex items-center justify-between text-xs font-sans text-text-body font-bold group-hover:text-primary">
             <span>View All Venues</span>
             <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
           </div>

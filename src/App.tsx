@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BackgroundFX } from './components/common/BackgroundFX';
 import { AudioPlayer } from './components/common/AudioPlayer';
@@ -9,13 +9,23 @@ import { ScratchDateCard } from './components/scratch/ScratchDateCard';
 import { ItinerarySection } from './components/itinerary/ItinerarySection';
 import { GuestbookSection } from './components/guestbook/GuestbookSection';
 import { coupleData } from './data/weddingData';
+import { activeTheme, getThemeCssVariables } from './config/theme';
 
 export const App: React.FC = () => {
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false);
 
+  // Apply theme variables dynamically from src/config/theme.ts
+  useEffect(() => {
+    const vars = getThemeCssVariables(activeTheme);
+    const root = document.documentElement;
+    Object.entries(vars).forEach(([key, val]) => {
+      root.style.setProperty(key, val);
+    });
+  }, []);
+
   return (
-    <div className="relative min-h-screen bg-[#FDFBF7] text-[#202124] overflow-x-hidden antialiased font-sans">
-      {/* Background Micro-Confetti & Soft Sunbeam Glow */}
+    <div className="relative min-h-screen bg-canvas text-text-body overflow-x-hidden antialiased font-sans">
+      {/* Background Micro-Confetti & Ambient Glow */}
       <BackgroundFX />
 
       {/* Floating Audio Controls */}
@@ -51,28 +61,31 @@ export const App: React.FC = () => {
             {/* Section 6: Interactive Guestbook & RSVP */}
             <GuestbookSection />
 
-            {/* Modern Minimalist Celebratory Footer */}
-            <footer className="relative py-16 px-4 text-center border-t border-neutral-200 bg-white">
-              <div className="w-10 h-10 mx-auto mb-3 p-1.5 rounded-2xl bg-[#FAFAFA] border border-neutral-200 shadow-sm">
+            {/* Elegant Celebratory Footer */}
+            <footer className="relative py-16 px-4 text-center border-t border-theme-border bg-surface overflow-hidden">
+              <div className="w-12 h-12 mx-auto mb-3 p-2 rounded-2xl bg-surface-subtle border border-theme-border shadow-xs flex items-center justify-center">
                 <img src="/ganesha.svg" alt="Lord Ganesha" className="w-full h-full object-contain" />
               </div>
 
-              <h4 className="font-serif text-[#881337] text-2xl font-bold tracking-wider">
+              <h4 className="font-serif text-primary text-3xl font-bold tracking-wider">
                 {coupleData.monogram}
               </h4>
 
-              <p className="font-sans text-xs tracking-wider text-neutral-500 font-semibold mt-1 uppercase">
+              <p className="font-sans text-xs tracking-wider text-secondary font-bold mt-1">
                 {coupleData.hashtag}
               </p>
 
-              <div className="flex items-center justify-center gap-1.5 text-xs font-sans text-neutral-600 mt-4 font-medium">
-                <span>With Love & Warm Regards from</span>
-                <span className="font-bold text-neutral-900">The Kayastha Family</span>
+              {/* Minimalist Divider */}
+              <div className="flex items-center justify-center gap-2 my-4">
+                <div className="h-[1px] w-12 bg-primary/20" />
+                <span className="text-secondary text-xs">✦</span>
+                <div className="h-[1px] w-12 bg-primary/20" />
               </div>
 
-              <p className="text-[11px] font-sans text-neutral-400 mt-5">
-                Created with love for {coupleData.bride.firstName} & {coupleData.groom.firstName} • 2026
-              </p>
+              <div className="flex items-center justify-center gap-1.5 text-xs font-sans text-text-sub font-medium">
+                <span>With Love &amp; Warm Regards from</span>
+                <strong className="font-bold text-text-body">The Kayastha Family</strong>
+              </div>
             </footer>
           </motion.main>
         )}

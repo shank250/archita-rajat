@@ -85,14 +85,14 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
 
             {/* Modal Title */}
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-2xl bg-neutral-100 text-neutral-800 flex items-center justify-center shadow-sm">
-                <Calendar className="w-5 h-5 text-[#881337]" />
+              <div className="w-10 h-10 rounded-2xl bg-surface-subtle text-text-body flex items-center justify-center shadow-sm">
+                <Calendar className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="font-serif text-2xl text-neutral-950 font-bold">
+                <h3 className="font-serif text-2xl text-primary font-bold">
                   Save to Your Calendar
                 </h3>
-                <p className="text-xs font-sans text-neutral-500">
+                <p className="text-xs font-sans text-text-sub">
                   Select an event to add reminder to your calendar
                 </p>
               </div>
@@ -108,11 +108,11 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
                     onClick={() => setSelectedEventId(evt.id)}
                     className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                       isSel
-                        ? 'bg-[#881337] text-white border-[#70102E] shadow-sm'
-                        : 'bg-neutral-50 text-neutral-800 border-neutral-200 hover:bg-neutral-100'
+                        ? 'bg-primary text-white border-primary-hover shadow-sm'
+                        : 'bg-surface text-text-body border-theme-border hover:bg-surface-subtle'
                     }`}
                   >
-                    <span className={`text-[10px] font-sans font-bold uppercase block ${isSel ? 'text-rose-200' : 'text-[#881337]'}`}>
+                    <span className={`text-[10px] font-sans font-bold uppercase block ${isSel ? 'text-accent' : 'text-primary'}`}>
                       {evt.shortDate}
                     </span>
                     <h5 className="font-serif text-xs font-bold leading-tight line-clamp-1 mt-0.5">
@@ -124,8 +124,8 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
             </div>
 
             {/* Event Summary Box */}
-            <div className="rounded-2xl border border-neutral-200 bg-[#FAFAFA] p-5">
-              <span className="text-[10px] font-sans uppercase font-bold tracking-widest text-[#881337]">
+            <div className="rounded-2xl border border-theme-border bg-surface-subtle p-5">
+              <span className="text-[10px] font-sans uppercase font-bold tracking-widest text-secondary">
                 {currentSelectedEvent.category}
               </span>
               <p className="font-serif text-xl font-bold text-neutral-950 mt-0.5">

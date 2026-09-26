@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { weddingEvents, venuesList } from '../../data/weddingData';
-import { triggerSubtleRevealSparkle } from '../../utils/confetti';
-import { Sparkles, Calendar, MapPin, ExternalLink, Heart } from 'lucide-react';
+import { eventData } from '../../data/weddingData';
+import { triggerCelebrationFireworks } from '../../utils/confetti';
+import { Sparkles, Calendar, RotateCcw } from 'lucide-react';
+import { activeTheme } from '../../config/theme';
 
 export const ScratchDateCard: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -12,7 +13,7 @@ export const ScratchDateCard: React.FC = () => {
   const isDrawingRef = useRef(false);
   const touchStartPos = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
-  // Initialize canvas with clean deep wine matte finish and gold accents
+  // Initialize canvas with colors directly from activeTheme.scratch
   const initCanvas = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -29,40 +30,39 @@ export const ScratchDateCard: React.FC = () => {
 
     ctx.globalCompositeOperation = 'source-over';
 
-    // Solid Deep Wine Matte Finish
-    ctx.fillStyle = '#881337';
+    // 1. Base Layer from activeTheme.scratch.cover
+    ctx.fillStyle = activeTheme.scratch.cover;
     ctx.fillRect(0, 0, width, height);
 
-    // Clean subtle inner border
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)';
-    ctx.lineWidth = 1.5;
-    ctx.strokeRect(14, 14, width - 28, height - 28);
+    // 2. Procedural Soft Golden / Glitter Flecks Texture from theme flecks
+    const flecks = activeTheme.scratch.flecks;
+    for (let i = 0; i < 220; i++) {
+      const x = ((Math.sin(i * 997 + 1.5) * 0.5 + 0.5) * width);
+      const y = ((Math.cos(i * 733 + 2.3) * 0.5 + 0.5) * height);
+      const r = 0.8 + (Math.sin(i * 123) * 0.5 + 0.5) * 1.5;
+      const alpha = 0.25 + (Math.cos(i * 321) * 0.5 + 0.5) * 0.45;
+      const color = flecks[i % flecks.length];
+      ctx.fillStyle = color.startsWith('#')
+        ? `${color}${Math.floor(alpha * 255).toString(16).padStart(2, '0')}`
+        : color;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
 
-    // Auspicious Invocation
-    ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+    // 3. Subtle Hairline Inner Border
+    ctx.strokeStyle = activeTheme.scratch.innerBorder;
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(12, 12, width - 24, height - 24);
+
+    const centerY = height / 2;
+
+    // 4. Clean Centered Scratch Prompt
+    ctx.font = 'bold 15px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = activeTheme.scratch.promptColor;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    const centerY = height / 2;
-    ctx.fillText('॥ श्री गणेशाय नमः ॥', width / 2, centerY - 65);
-
-    // Couple Names
-    ctx.font = 'bold 22px "Cinzel", "Playfair Display", serif';
-    ctx.fillStyle = '#FFFFFF';
-    ctx.fillText('ARCHITA & RAJAT', width / 2, centerY - 30);
-
-    // Callout text on surface
-    ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = '#F3E5AB';
-    ctx.fillText('TAP OR SWIPE TO REVEAL DATES', width / 2, centerY + 8);
-
-    ctx.font = '12px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-    ctx.fillText('✦ 4 Auspicious Celebrations • Engagement to Vivah ✦', width / 2, centerY + 36);
-
-    ctx.font = '11px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-    ctx.fillText('Tap anywhere on the card to reveal instantly', width / 2, centerY + 64);
+    ctx.fillText('✦ SCRATCH TO REVEAL ✦', width / 2, centerY);
 
     setIsRevealed(false);
     setScratchedPercent(0);
@@ -97,10 +97,10 @@ export const ScratchDateCard: React.FC = () => {
       const percent = Math.min(100, Math.round((transparentPixels / totalPixels) * 100));
       setScratchedPercent(percent);
 
-      // Reveal once ~8% is cleared (e.g. 1 quick swipe) - effortless!
-      if (percent >= 8 && !isRevealed) {
+      // Trigger confetti animation upon >= 35% surface clear
+      if (percent >= 35 && !isRevealed) {
         setIsRevealed(true);
-        triggerSubtleRevealSparkle();
+        triggerCelebrationFireworks();
       }
     } catch (e) {
       console.warn("Scratch check prevented:", e);
@@ -110,7 +110,7 @@ export const ScratchDateCard: React.FC = () => {
   const instantReveal = () => {
     setIsRevealed(true);
     setScratchedPercent(100);
-    triggerSubtleRevealSparkle();
+    triggerCelebrationFireworks();
   };
 
   const scratch = (clientX: number, clientY: number) => {
@@ -126,7 +126,7 @@ export const ScratchDateCard: React.FC = () => {
 
     ctx.globalCompositeOperation = 'destination-out';
     ctx.beginPath();
-    ctx.arc(x, y, 65, 0, Math.PI * 2);
+    ctx.arc(x, y, 32, 0, Math.PI * 2);
     ctx.fill();
 
     calculateScratchedArea();
@@ -146,8 +146,7 @@ export const ScratchDateCard: React.FC = () => {
   const handleMouseUp = (e: React.MouseEvent) => {
     isDrawingRef.current = false;
     const dist = Math.hypot(e.clientX - touchStartPos.current.x, e.clientY - touchStartPos.current.y);
-    // If it was a tap/click (minimal movement), reveal immediately!
-    if (dist < 20 && !isRevealed) {
+    if (dist < 15 && !isRevealed) {
       instantReveal();
     }
   };
@@ -172,281 +171,59 @@ export const ScratchDateCard: React.FC = () => {
     const touch = e.changedTouches[0];
     if (touch && !isRevealed) {
       const dist = Math.hypot(touch.clientX - touchStartPos.current.x, touch.clientY - touchStartPos.current.y);
-      // If it was a tap (finger lifted with minimal drag), reveal immediately!
-      if (dist < 25) {
+      if (dist < 20) {
         instantReveal();
       }
     }
   };
 
   return (
-    <section id="scratch-date" className="relative py-20 px-4 max-w-4xl mx-auto z-10">
-      {/* Section Subtitle */}
+    <section id="scratch-date" className="relative py-16 px-4 max-w-xl mx-auto z-10">
+      {/* Section Header */}
       <div className="text-center mb-8">
-        <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-[#881337] font-bold">
+        <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-secondary font-bold">
           Save the Dates
         </span>
-        <h2 className="font-serif text-3xl sm:text-5xl text-neutral-900 font-bold mt-1">
-          The Auspicious Celebrations
+        <h2 className="font-serif text-3xl sm:text-4xl text-primary font-bold mt-1">
+          The Auspicious Dates
         </h2>
-        <p className="text-xs sm:text-sm font-sans text-neutral-500 mt-1 max-w-lg mx-auto">
-          Tap anywhere or swipe across the card to reveal all celebration dates & venues
+        <p className="text-xs sm:text-sm font-sans text-text-sub mt-1">
+          Our celebration schedule
         </p>
-        <div className="w-12 h-0.5 bg-[#881337] rounded-full mx-auto mt-3" />
+        <div className="w-12 h-0.5 bg-primary rounded-full mx-auto mt-3" />
       </div>
 
-      {/* Quick Action Bar Above Card (Only displayed before reveal) */}
-      {!isRevealed && (
-        <div className="flex items-center justify-between mb-3 px-2">
-          <span className="text-xs font-sans text-neutral-500 font-medium">
-            {scratchedPercent > 0
-              ? `${scratchedPercent}% Uncovered (or tap to reveal)`
-              : "Tap anywhere on card or swipe to unveil"}
-          </span>
-
-          <button
-            onClick={instantReveal}
-            className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#881337] text-white text-xs font-sans font-bold hover:bg-[#70102E] transition-all shadow-sm cursor-pointer"
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Instant Reveal All</span>
-          </button>
-        </div>
-      )}
-
-      {/* The Big Reveal Panel Container */}
+      {/* Small Interactive Scratch Card Container */}
       <div
         ref={containerRef}
-        className="relative w-full rounded-3xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.06)] border border-neutral-200/90 bg-white"
+        className="relative w-full h-[260px] sm:h-[280px] rounded-3xl overflow-hidden shadow-card-subtle border border-theme-border bg-surface"
       >
-        {/* The Complete Revealed Celebration Schedule */}
-        <div className="p-5 sm:p-8 text-neutral-900">
-          {/* Header of Revealed Schedule */}
-          <div className="text-center pb-6 border-b border-neutral-100">
-            <h3 className="font-serif text-2xl sm:text-3xl text-neutral-950 font-bold">
-              Celebration Program & Auspicious Dates
-            </h3>
-            <p className="text-xs sm:text-sm font-sans text-neutral-500 mt-1 max-w-lg mx-auto">
-              With the blessings of Pramendra Kumar Srivastava & Prem Lata Srivastava, and The Kayastha Family
-            </p>
+        {/* Hidden Content Revealed Underneath */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-5 text-center bg-surface text-text-body">
+          <div className="w-10 h-10 rounded-2xl bg-surface-subtle border border-theme-border flex items-center justify-center mb-2 shadow-xs">
+            <Calendar className="w-5 h-5 text-primary" />
           </div>
 
-          {/* 1. Main Highlight: The Grand Wedding (Vivah Sanskar) */}
-          <div className="my-6 p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-[#881337] via-[#9F1239] to-[#70102E] text-white shadow-lg border border-[#70102E]">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-white/15">
-              <span className="text-[10px] font-sans uppercase tracking-[0.25em] text-rose-200 font-bold">
-                ✦ THE SACRED WEDDING CEREMONY ✦
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-sans font-bold backdrop-blur-sm">
-                <Calendar className="w-3.5 h-3.5" />
-                <span>Monday, 30th November 2026</span>
-              </span>
-            </div>
+          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-primary tracking-tight mt-0.5 mb-0.5">
+            {eventData.revealDateText}
+          </h3>
 
-            <div className="mt-4">
-              <h4 className="font-serif text-2xl sm:text-4xl font-bold tracking-tight">
-                The Grand Wedding (Vivah Sanskar)
-              </h4>
-              <p className="font-serif text-rose-100/90 text-sm sm:text-base mt-1 italic">
-                "{weddingEvents[3].tagline}"
-              </p>
-            </div>
+          <p className="text-xs sm:text-sm font-sans font-bold text-text-body">
+            {eventData.displayDate} • 8:00 PM Onwards
+          </p>
 
-            {/* Wedding Venue & Timing Badges */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5">
-              <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/15">
-                <div className="flex items-center gap-2 text-[11px] font-sans font-semibold text-rose-200 uppercase tracking-wider mb-0.5">
-                  <MapPin className="w-3.5 h-3.5" />
-                  <span>Venue</span>
-                </div>
-                <p className="font-serif text-base font-bold text-white">
-                  Krishna Lawn
-                </p>
-                <p className="text-xs font-sans text-rose-100/80">
-                  Gwalior, Madhya Pradesh
-                </p>
-              </div>
+          <p className="text-[11px] font-sans text-text-sub mt-0.5">
+            Krishna Lawn (Krishna Farms), Gwalior
+          </p>
 
-              <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/15">
-                <div className="flex items-center gap-2 text-[11px] font-sans font-semibold text-rose-200 uppercase tracking-wider mb-0.5">
-                  <Calendar className="w-3.5 h-3.5" />
-                  <span>Timing & Key Rituals</span>
-                </div>
-                <p className="font-serif text-base font-bold text-white">
-                  8:00 PM Onwards
-                </p>
-                <p className="text-xs font-sans text-rose-100/80">
-                  Baraat Swagat • Varmala • Sacred Vedic Pheras
-                </p>
-              </div>
-            </div>
-
-            {/* Wedding Action Buttons */}
-            <div className="mt-5 pt-4 border-t border-white/15 flex items-center">
-              <a
-                href={venuesList[0].googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-white text-[#881337] hover:bg-rose-50 text-xs font-sans font-bold transition-all shadow-sm cursor-pointer"
-              >
-                <MapPin className="w-3.5 h-3.5" />
-                <span>Directions to Krishna Lawn</span>
-                <ExternalLink className="w-3 h-3 text-[#881337]/70" />
-              </a>
-            </div>
-          </div>
-
-          {/* 2. Pre-Wedding Festivities Section Heading */}
-          <div className="mt-8 mb-4">
-            <span className="text-[10px] font-sans uppercase tracking-[0.25em] text-[#881337] font-bold block">
-              Pre-Wedding Festivities & Rasams
+          {/* Key Milestones Teaser Row */}
+          <div className="mt-3 pt-2.5 border-t border-theme-border flex flex-wrap items-center justify-center gap-2 text-[11px] font-sans text-text-body font-medium">
+            <span className="px-2.5 py-0.5 rounded-full bg-surface-subtle border border-theme-border">
+              Ring Ceremony: <strong>23 Oct 2026</strong>
             </span>
-            <h4 className="font-serif text-xl sm:text-2xl text-neutral-900 font-bold mt-0.5">
-              Celebrations Leading to the Sacred Union
-            </h4>
-          </div>
-
-          {/* 3-Card Grid for Pre-Wedding Events */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
-            {/* Event 1: Engagement */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#FAFAFA] border border-neutral-200/90 shadow-sm flex flex-col justify-between hover:border-neutral-300 transition-colors">
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-[10px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#881337] text-white">
-                    23 OCT 2026
-                  </span>
-                  <span className="text-[11px] font-sans text-neutral-400 font-medium">
-                    Friday
-                  </span>
-                </div>
-
-                <h5 className="font-serif text-base sm:text-lg font-bold text-neutral-950">
-                  Engagement Ceremony
-                </h5>
-
-                <p className="text-xs font-serif italic text-neutral-600 mt-1">
-                  Ring Exchange & Celebratory Toast
-                </p>
-
-                <div className="mt-3 pt-2.5 border-t border-neutral-200/60 space-y-1">
-                  <div className="flex items-center gap-1.5 text-xs font-sans text-neutral-700 font-semibold">
-                    <MapPin className="w-3.5 h-3.5 text-[#881337] flex-shrink-0" />
-                    <span className="truncate">Elegance Hotel</span>
-                  </div>
-                  <p className="text-[11px] font-sans text-neutral-500 pl-5">
-                    7:00 PM Onwards
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-neutral-100">
-                <a
-                  href={venuesList[1].googleMapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-[11px] font-sans font-bold text-[#881337] hover:underline"
-                >
-                  <span>Directions to Elegance Hotel</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-            </div>
-
-            {/* Event 2: Mehndi & Haldi Rasam */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#FAFAFA] border border-neutral-200/90 shadow-sm flex flex-col justify-between hover:border-neutral-300 transition-colors">
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-[10px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#881337] text-white">
-                    28 NOV 2026
-                  </span>
-                  <span className="text-[11px] font-sans text-neutral-400 font-medium">
-                    Saturday
-                  </span>
-                </div>
-
-                <h5 className="font-serif text-base sm:text-lg font-bold text-neutral-950">
-                  Mehndi & Haldi Rasam
-                </h5>
-
-                <p className="text-xs font-serif italic text-neutral-600 mt-1">
-                  Sacred Haldi, Bridal Henna & Dhol
-                </p>
-
-                <div className="mt-3 pt-2.5 border-t border-neutral-200/60 space-y-1">
-                  <div className="flex items-center gap-1.5 text-xs font-sans text-neutral-700 font-semibold">
-                    <MapPin className="w-3.5 h-3.5 text-[#881337] flex-shrink-0" />
-                    <span className="truncate">Shital Niwas (Our Home)</span>
-                  </div>
-                  <p className="text-[11px] font-sans text-neutral-500 pl-5">
-                    3:00 PM Onwards
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-neutral-100">
-                <a
-                  href={venuesList[2].googleMapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-[11px] font-sans font-bold text-[#881337] hover:underline"
-                >
-                  <span>Directions to Shital Niwas</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-            </div>
-
-            {/* Event 3: Ladies Sangeet & Musical Night */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#FAFAFA] border border-neutral-200/90 shadow-sm flex flex-col justify-between hover:border-neutral-300 transition-colors">
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-[10px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#881337] text-white">
-                    29 NOV 2026
-                  </span>
-                  <span className="text-[11px] font-sans text-neutral-400 font-medium">
-                    Sunday
-                  </span>
-                </div>
-
-                <h5 className="font-serif text-base sm:text-lg font-bold text-neutral-950">
-                  Ladies Sangeet & Dance
-                </h5>
-
-                <p className="text-xs font-serif italic text-neutral-600 mt-1">
-                  Family Dance Performances & DJ
-                </p>
-
-                <div className="mt-3 pt-2.5 border-t border-neutral-200/60 space-y-1">
-                  <div className="flex items-center gap-1.5 text-xs font-sans text-neutral-700 font-semibold">
-                    <MapPin className="w-3.5 h-3.5 text-[#881337] flex-shrink-0" />
-                    <span className="truncate">Shital Niwas (Our Home)</span>
-                  </div>
-                  <p className="text-[11px] font-sans text-neutral-500 pl-5">
-                    7:00 PM Onwards
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-neutral-100">
-                <a
-                  href={venuesList[2].googleMapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-[11px] font-sans font-bold text-[#881337] hover:underline"
-                >
-                  <span>Directions to Shital Niwas</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Auspicious Note */}
-          <div className="mt-8 pt-5 border-t border-neutral-100 text-center">
-            <p className="text-xs font-sans text-neutral-600 font-medium flex items-center justify-center gap-2">
-              <Heart className="w-3.5 h-3.5 text-[#881337] fill-[#881337]" />
-              <span>We look forward to celebrating each of these moments with you and your family!</span>
-            </p>
+            <span className="px-2.5 py-0.5 rounded-full bg-surface-subtle border border-theme-border">
+              Mehndi &amp; Sangeet: <strong>28–29 Nov 2026</strong>
+            </span>
           </div>
         </div>
 
@@ -462,12 +239,37 @@ export const ScratchDateCard: React.FC = () => {
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.5 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.45 }}
               className="absolute inset-0 w-full h-full cursor-pointer touch-none z-20"
             />
           )}
         </AnimatePresence>
+      </div>
+
+      {/* Progress & Quick Action Bar Below Card */}
+      <div className="flex items-center justify-between mt-3 px-2">
+        <span className="text-xs font-sans text-text-sub font-medium">
+          {isRevealed ? "100% Cleared" : `${scratchedPercent}% Cleared`}
+        </span>
+
+        {!isRevealed ? (
+          <button
+            onClick={instantReveal}
+            className="flex items-center gap-1 text-xs font-sans font-bold text-primary hover:text-primary-hover transition-colors cursor-pointer"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-secondary" />
+            <span>Instant Reveal</span>
+          </button>
+        ) : (
+          <button
+            onClick={initCanvas}
+            className="flex items-center gap-1 text-xs font-sans font-bold text-text-sub hover:text-primary transition-colors cursor-pointer"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>Scratch Again</span>
+          </button>
+        )}
       </div>
     </section>
   );

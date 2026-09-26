@@ -1,10 +1,11 @@
 import confetti from 'canvas-confetti';
+import { activeTheme } from '../config/theme';
 
 export const triggerGoldSparkles = (origin?: { x: number; y: number }) => {
   const count = 60;
   const defaults = {
     origin: origin || { x: 0.5, y: 0.5 },
-    colors: ['#D4AF37', '#F3E5AB', '#AA820A', '#85222B', '#FAF1E4'],
+    colors: activeTheme.confettiColors,
   };
 
   confetti({
@@ -30,25 +31,25 @@ export const triggerGoldSparkles = (origin?: { x: number; y: number }) => {
 
 export const triggerSubtleRevealSparkle = (origin?: { x: number; y: number }) => {
   confetti({
-    particleCount: 22,
-    spread: 45,
+    particleCount: 28,
+    spread: 50,
     origin: origin || { x: 0.5, y: 0.5 },
-    colors: ['#D4AF37', '#881337', '#F3E5AB'],
-    scalar: 0.9,
-    ticks: 100,
-    gravity: 1.1,
+    colors: activeTheme.confettiColors,
+    scalar: 1.0,
+    ticks: 110,
+    gravity: 1.0,
   });
 };
 
 export const triggerCelebrationFireworks = () => {
   confetti({
-    particleCount: 35,
-    spread: 60,
-    origin: { x: 0.5, y: 0.6 },
-    colors: ['#D4AF37', '#881337', '#F3E5AB', '#FAF1E4'],
-    scalar: 1.0,
-    ticks: 120,
-    gravity: 1.0,
+    particleCount: 45,
+    spread: 70,
+    origin: { x: 0.5, y: 0.55 },
+    colors: activeTheme.confettiColors,
+    scalar: 1.05,
+    ticks: 140,
+    gravity: 0.95,
   });
 };
 
@@ -57,7 +58,7 @@ export const triggerHeartBurst = (origin?: { x: number; y: number }) => {
     particleCount: 40,
     spread: 60,
     origin: origin || { x: 0.5, y: 0.6 },
-    colors: ['#E74C3C', '#C0392B', '#D4AF37', '#F39C12'],
+    colors: activeTheme.confettiColors,
     shapes: ['circle'],
     scalar: 1.2,
   });

@@ -14,11 +14,11 @@ export const VenueModal: React.FC<VenueModalProps> = ({ isOpen, onClose }) => {
   const getVenueIcon = (idx: number) => {
     switch (idx) {
       case 0:
-        return <Landmark className="w-5 h-5 text-[#881337]" />;
+        return <Landmark className="w-5 h-5 text-primary" />;
       case 1:
-        return <Building2 className="w-5 h-5 text-[#881337]" />;
+        return <Building2 className="w-5 h-5 text-primary" />;
       default:
-        return <Home className="w-5 h-5 text-[#881337]" />;
+        return <Home className="w-5 h-5 text-primary" />;
     }
   };
 
@@ -43,27 +43,27 @@ export const VenueModal: React.FC<VenueModalProps> = ({ isOpen, onClose }) => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "100%", opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 250 }}
-            className="relative w-full max-w-lg bg-white rounded-t-3xl sm:rounded-3xl border border-neutral-200 shadow-xl p-6 sm:p-7 text-neutral-900 z-10 max-h-[90vh] overflow-y-auto"
+            className="relative w-full max-w-lg bg-surface rounded-t-3xl sm:rounded-3xl border border-theme-border shadow-xl p-6 sm:p-7 text-text-body z-10 max-h-[90vh] overflow-y-auto"
           >
             {/* Close Button */}
             <button
               onClick={onClose}
               aria-label="Close venue modal"
-              className="absolute top-5 right-5 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 transition-colors cursor-pointer"
+              className="absolute top-5 right-5 p-2 rounded-full bg-surface-subtle hover:bg-theme-border/40 text-text-sub transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
 
             {/* Modal Title */}
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-2xl bg-neutral-100 text-neutral-800 flex items-center justify-center shadow-sm">
-                <MapPin className="w-5 h-5 text-[#881337]" />
+              <div className="w-10 h-10 rounded-2xl bg-surface-subtle text-text-body flex items-center justify-center shadow-sm">
+                <MapPin className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="font-serif text-2xl text-neutral-950 font-bold">
+                <h3 className="font-serif text-2xl text-primary font-bold">
                   Venues & Locations
                 </h3>
-                <p className="text-xs font-sans text-neutral-500">
+                <p className="text-xs font-sans text-text-sub">
                   Select a venue to get one-tap turn-by-turn directions
                 </p>
               </div>
@@ -77,8 +77,8 @@ export const VenueModal: React.FC<VenueModalProps> = ({ isOpen, onClose }) => {
                   onClick={() => setSelectedIdx(i)}
                   className={`px-3.5 py-2 rounded-xl text-xs font-sans font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
                     selectedIdx === i
-                      ? 'bg-[#881337] text-white shadow-sm'
-                      : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200/70'
+                      ? 'bg-primary text-white shadow-sm'
+                      : 'bg-surface-subtle text-text-sub hover:bg-theme-border/30'
                   }`}
                 >
                   <span>{v.name.split('(')[0].trim()}</span>
@@ -87,16 +87,16 @@ export const VenueModal: React.FC<VenueModalProps> = ({ isOpen, onClose }) => {
             </div>
 
             {/* Active Venue Detail Card */}
-            <div className="rounded-2xl border border-neutral-200 bg-[#FAFAFA] p-5 shadow-sm">
+            <div className="rounded-2xl border border-theme-border bg-surface-subtle p-5 shadow-sm">
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 flex items-center justify-center shadow-xs">
+                <div className="w-10 h-10 rounded-xl bg-surface border border-theme-border flex items-center justify-center shadow-xs">
                   {getVenueIcon(selectedIdx)}
                 </div>
                 <div>
-                  <h4 className="font-serif text-xl font-bold text-neutral-950">
+                  <h4 className="font-serif text-xl font-bold text-text-body">
                     {currentVenue.name}
                   </h4>
-                  <span className="text-[10px] font-sans font-bold uppercase tracking-wider text-[#881337]">
+                  <span className="text-[10px] font-sans font-bold uppercase tracking-wider text-secondary">
                     {currentVenue.type}
                   </span>
                 </div>
