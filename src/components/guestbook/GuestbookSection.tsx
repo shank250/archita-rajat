@@ -156,7 +156,7 @@ export const GuestbookSection: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.3 }}
-            className="bg-surface p-7 sm:p-9 rounded-3xl border border-theme-border shadow-card-subtle text-text-body text-center"
+            className="bg-card-surface p-7 sm:p-9 rounded-3xl border border-theme-border shadow-card-subtle text-text-body text-center"
           >
             <div className="w-14 h-14 rounded-full bg-surface-subtle border border-theme-border text-primary flex items-center justify-center mx-auto mb-4 shadow-xs">
               <CheckCircle2 className="w-8 h-8 text-primary" />
@@ -187,7 +187,7 @@ export const GuestbookSection: React.FC = () => {
                       return (
                         <div
                           key={evtId}
-                          className="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-theme-border text-xs font-sans text-text-body shadow-xs"
+                          className="flex items-center gap-2 p-2.5 rounded-xl bg-card-surface border border-theme-border text-xs font-sans text-text-body shadow-xs"
                         >
                           <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
                           <span className="font-semibold text-text-body truncate">
@@ -223,12 +223,12 @@ export const GuestbookSection: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <button
                 onClick={handleEdit}
-                className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full border border-theme-border hover:bg-surface-subtle text-xs font-sans font-bold text-primary transition-colors shadow-xs cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-5 py-2.5 hand-drawn-pill border-brand-blue/40 bg-card-surface hover:bg-surface-subtle text-xs font-sans font-bold text-primary transition-colors shadow-xs cursor-pointer"
               >
                 <Edit3 className="w-3.5 h-3.5" />
                 <span>Update RSVP &amp; Blessing</span>
               </button>
-              <span className="text-xs font-sans font-bold text-secondary tracking-wider px-3 py-1.5 rounded-full bg-surface-subtle border border-theme-border">
+              <span className="text-xs font-sans font-bold text-secondary tracking-wider px-3.5 py-1.5 hand-drawn-pill bg-surface-subtle border-theme-border">
                 {coupleData.hashtag}
               </span>
             </div>
@@ -241,7 +241,7 @@ export const GuestbookSection: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
-            className="bg-surface p-7 sm:p-9 rounded-3xl border border-theme-border shadow-card-subtle text-text-body"
+            className="bg-card-surface p-7 sm:p-9 rounded-3xl border border-theme-border shadow-card-subtle text-text-body"
           >
             <div className="flex items-center gap-3 mb-6 pb-4 border-b border-theme-border">
               <div className="w-10 h-10 rounded-2xl bg-surface-subtle text-primary flex items-center justify-center shadow-xs">
@@ -348,7 +348,7 @@ export const GuestbookSection: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 py-3.5 px-6 rounded-full bg-primary hover:bg-primary-hover disabled:opacity-60 text-white font-sans text-sm font-bold tracking-wider shadow-sm active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed"
+                  className="flex-1 py-3.5 px-6 hand-drawn-pill bg-primary hover:bg-primary-hover border-brand-blue-hover disabled:opacity-60 text-white font-sans text-sm font-bold tracking-wider shadow-sm active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed"
                 >
                   <span>{isSubmitting ? 'Recording RSVP...' : 'Confirm RSVP & Send Blessings'}</span>
                   {isSubmitting ? (
@@ -362,7 +362,7 @@ export const GuestbookSection: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setIsEditing(false)}
-                    className="py-3.5 px-5 rounded-full border border-theme-border hover:bg-surface-subtle text-text-body text-xs font-sans font-semibold transition-colors cursor-pointer"
+                    className="py-3.5 px-5 hand-drawn-pill border-brand-blue/30 bg-card-surface hover:bg-surface-subtle text-text-body text-xs font-sans font-semibold transition-colors cursor-pointer shadow-xs"
                   >
                     Cancel
                   </button>

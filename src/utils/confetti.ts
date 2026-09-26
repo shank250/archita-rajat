@@ -63,3 +63,21 @@ export const triggerHeartBurst = (origin?: { x: number; y: number }) => {
     scalar: 1.2,
   });
 };
+
+/**
+ * Soft Blue and Gold Confetti Burst for Scratchcard reveal
+ * French/Denim royal blues (#3666A6, #2E5B99) and warm antique golds (#D4AF37, #F3E5AB)
+ */
+export const triggerSoftBlueAndGoldConfetti = (origin?: { x: number; y: number }) => {
+  const softBlueAndGold = ['#3666A6', '#2E5B99', '#5A82B8', '#D4AF37', '#F3E5AB', '#F59E0B', '#FFFFFF'];
+  confetti({
+    particleCount: 65,
+    spread: 80,
+    origin: origin || { x: 0.5, y: 0.55 },
+    colors: softBlueAndGold,
+    scalar: 1.1,
+    ticks: 180,
+    gravity: 0.9,
+  });
+};
+

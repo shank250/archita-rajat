@@ -72,7 +72,7 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "100%", opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 250 }}
-            className="relative w-full max-w-lg bg-white rounded-t-3xl sm:rounded-3xl border border-neutral-200 shadow-xl p-6 sm:p-7 text-neutral-900 z-10 max-h-[90vh] overflow-y-auto"
+            className="relative w-full max-w-lg bg-card-surface rounded-t-3xl sm:rounded-3xl border border-theme-border shadow-xl p-6 sm:p-7 text-text-body z-10 max-h-[90vh] overflow-y-auto"
           >
             {/* Close Button */}
             <button

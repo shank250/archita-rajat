@@ -4,8 +4,7 @@ import { WaxSeal } from './WaxSeal';
 import { useGuest } from '../../context/GuestContext';
 import { useAudio } from '../../context/AudioContext';
 import { triggerCelebrationFireworks } from '../../utils/confetti';
-import { ChevronDown, Mail } from 'lucide-react';
-import { activeTheme } from '../../config/theme';
+import { ChevronDown } from 'lucide-react';
 
 interface HeroSectionProps {
   isOpen: boolean;
@@ -38,174 +37,114 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
   };
 
   return (
-    <section className="relative min-h-[90vh] sm:min-h-screen flex flex-col items-center justify-center py-6 sm:py-8 px-4 text-center z-10 max-w-4xl mx-auto">
+    <section className="relative min-h-[90vh] sm:min-h-screen flex flex-col items-center justify-center py-8 sm:py-12 px-4 text-center z-10 max-w-3xl mx-auto">
       
       {/* 1. Auspicious Lord Ganesha Artwork - Centerpiece */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        className="flex flex-col items-center"
+        className="flex flex-col items-center mb-5 sm:mb-6"
       >
         {/* Crisp Ganesha Frame with Theme Accents */}
-        <div className="w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 mb-2 p-4 sm:p-5 rounded-full bg-surface border border-theme-border shadow-card-subtle flex items-center justify-center transition-transform hover:scale-105">
+        <div className="w-28 h-36 sm:w-36 sm:h-44 mb-2 p-3 sm:p-4 rounded-3xl hand-drawn-pill-soft bg-card-surface border-2 border-brand-blue/20 shadow-card-subtle flex items-center justify-center transition-transform hover:scale-105">
           <img 
-            src="/ganesha.svg" 
+            src="/designs/Soft Pink Ganesh ji.svg" 
             alt="Lord Ganesha" 
             className="w-full h-full object-contain filter drop-shadow-sm" 
           />
         </div>
 
         {/* Sacred Sanskrit Greeting with Hairline Dividers */}
-        <div className="flex items-center gap-3">
-          <div className="h-[1px] w-12 sm:w-20 bg-primary/25" />
+        <div className="flex items-center gap-3 mt-1">
+          <div className="h-[1px] w-12 sm:w-20 bg-brand-blue/30" />
           <p className="text-primary font-sans text-xs sm:text-sm tracking-[0.28em] font-bold uppercase">
             ॥ श्री गणेशाय नमः ॥
           </p>
-          <div className="h-[1px] w-12 sm:w-20 bg-primary/25" />
+          <div className="h-[1px] w-12 sm:w-20 bg-brand-blue/30" />
         </div>
       </motion.div>
 
-      {/* 2. Warm Welcoming Message */}
+      {/* 2. Modern Luxury Digital Invitation Card (Replaces outdated postcard mailbox) */}
       <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, delay: 0.1 }}
-        className="my-3 sm:my-4 flex flex-col items-center max-w-xl mx-auto"
+        initial={{ opacity: 0, scale: 0.96, y: 15 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.15 }}
+        className="relative w-full max-w-[440px] sm:max-w-[480px] bg-card-surface rounded-3xl sm:rounded-[32px] border-2 border-brand-blue/20 shadow-[0_20px_50px_rgba(54,102,166,0.12)] p-6 sm:p-8 overflow-hidden transition-all text-text-body"
       >
-        {/* Warm Hospitality Welcoming Badge */}
-        <div className="px-5 py-2 rounded-full bg-surface border border-theme-border shadow-xs flex items-center gap-2.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse" />
-          <span className="text-xs sm:text-sm font-sans text-text-body font-medium">
-            {isPersonalized ? (
-              <>
-                Warmly Welcoming <strong className="font-bold text-primary font-serif text-sm sm:text-base">{guestName}</strong>
-              </>
-            ) : (
-              <>
-                Warmly Welcoming <strong className="font-bold text-primary font-serif text-sm sm:text-base">Our Cherished Family &amp; Friends</strong>
-              </>
-            )}
-          </span>
+        {/* Delicate Hairline Inner Rule */}
+        <div className="absolute inset-3 sm:inset-3.5 border border-brand-blue/15 rounded-2xl pointer-events-none" />
+
+        {/* Subtle Watermark Corner Flourish */}
+        <div className="absolute -top-8 -right-8 w-32 h-32 opacity-15 pointer-events-none">
+          <img src="/designs/floral-stem.svg" alt="" className="w-full h-full object-contain rotate-45" />
         </div>
-      </motion.div>
 
-      {/* 3. Realistic Luxury Post Mail Envelope Unboxing Experience */}
-      <div className="relative w-full max-w-[380px] sm:max-w-[420px] h-[225px] sm:h-[245px] mx-auto mt-2 mb-2 perspective-1000">
-        
-        {/* Envelope Outer Shell */}
-        <div 
-          className="relative w-full h-full rounded-3xl shadow-[0_16px_40px_rgba(0,0,0,0.25)] overflow-hidden flex flex-col justify-between p-5 sm:p-6"
-          style={{
-            backgroundColor: activeTheme.envelope.outer,
-            borderColor: activeTheme.envelope.outerBorder,
-            color: activeTheme.envelope.text,
-            borderWidth: 1,
-          }}
-        >
-          {/* Subtle Clean Inner Border */}
-          <div 
-            className="absolute inset-2.5 rounded-2xl pointer-events-none border border-white/20"
-          />
+        <div className="relative z-10 flex flex-col items-center">
+          {/* Subheading: Tracked Uppercase Sans-Serif */}
+          <span className="subheading-tracked text-brand-blue/80 block mt-1 mb-2">
+            INVITE YOU TO CELEBRATE THE WEDDING OF
+          </span>
 
-          {/* Clean Subtle Postal Diagonal Lines */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-15" preserveAspectRatio="none" viewBox="0 0 100 100">
-            <line x1="0" y1="100" x2="50" y2="50" stroke="white" strokeWidth="0.6" />
-            <line x1="100" y1="100" x2="50" y2="50" stroke="white" strokeWidth="0.6" />
-          </svg>
+          {/* Hero Couple Names in Textured Brush Script (Caveat) */}
+          <h1 className="font-script text-5xl sm:text-6xl md:text-7xl text-brand-blue font-bold tracking-wide leading-tight my-1.5 drop-shadow-xs select-none">
+            Archita &amp; Rajat
+          </h1>
 
-          {/* Top Row: Postal Stamp & Airmail Label */}
-          <div className="relative z-20 flex items-start justify-between w-full">
-            <div className="text-left">
-              <span className="text-[9px] font-sans uppercase tracking-[0.25em] font-bold block opacity-85">
-                SPECIAL DELIVERY
-              </span>
-              <span className="text-[11px] font-serif font-semibold tracking-wide opacity-95">
-                Wedding Invitation
-              </span>
-            </div>
-
-            {/* Scalloped Postage Stamp */}
-            <div 
-              className="w-10 h-12 rounded-sm border border-dashed p-1 flex flex-col items-center justify-between shadow-xs"
-              style={{
-                backgroundColor: activeTheme.envelope.stampBg,
-                borderColor: activeTheme.envelope.stitching,
-                color: activeTheme.envelope.stampText,
-              }}
-            >
-              <span className="text-[6.5px] font-sans font-bold tracking-wider">POST</span>
-              <Mail className="w-4 h-4" />
-              <span className="text-[6.5px] font-sans font-bold">2026</span>
-            </div>
-          </div>
-
-          {/* Bottom Row: Recipient Address Styling */}
-          <div className="relative z-20 text-left">
-            <span className="text-[8px] font-sans uppercase tracking-widest font-semibold opacity-75">
-              Delivered To:
+          {/* Personalized Guest Welcome Pill */}
+          <div className="my-3 px-4 py-1.5 hand-drawn-pill bg-surface-subtle border-brand-blue/30 flex items-center gap-2 shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
+            <span className="text-xs font-sans text-text-body font-medium">
+              {isPersonalized ? (
+                <>
+                  Warmly Inviting <strong className="font-bold text-primary font-serif">{guestName}</strong>
+                </>
+              ) : (
+                <>
+                  Warmly Inviting <strong className="font-bold text-primary font-serif">Our Cherished Family &amp; Friends</strong>
+                </>
+              )}
             </span>
-            <p className="font-serif text-sm sm:text-base font-bold truncate max-w-[260px]">
-              {isPersonalized ? guestName : "Our Cherished Family & Friends"}
-            </p>
           </div>
 
-          {/* 3D Top Flap of Envelope */}
-          <motion.div
-            className="absolute top-0 inset-x-0 h-28 origin-top preserve-3d shadow-sm z-30 pointer-events-none"
-            style={{
-              clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
-            }}
-            animate={{
-              rotateX: isOpen ? -180 : 0,
-              opacity: isOpen ? 0.15 : 1,
-            }}
-            transition={{ duration: 0.85, ease: [0.4, 0, 0.2, 1] }}
-          >
-            {/* Front of Flap */}
-            <div 
-              className="w-full h-full shadow-md relative"
-              style={{
-                backgroundColor: activeTheme.envelope.flap,
-                borderBottomColor: activeTheme.envelope.flapBorder,
-                borderBottomWidth: 1,
-              }}
-            />
-
-            {/* Back of Flap */}
-            <div 
-              className="absolute inset-0 bg-surface-subtle backface-hidden border border-theme-border"
-              style={{ transform: 'rotateY(180deg)' }}
-            />
-          </motion.div>
-
-          {/* LOCATION 1: Center Post Mail Wax Seal Stamp on digital envelope closure flap */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40">
+          {/* Modern Interactive Wax Seal Action */}
+          <div className="relative mt-6 mb-3">
             <WaxSeal
               onClick={handleSealClick}
               isOpening={isAnimating || isOpen}
             />
           </div>
-        </div>
-      </div>
 
-      {/* 4. Clean Scroll Down Indicator */}
+          {/* Status Message when Unveiled */}
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-6 text-xs font-sans font-bold text-brand-blue flex items-center gap-1.5 bg-surface-subtle px-3.5 py-1 rounded-full border border-brand-blue/20"
+            >
+              <span>✦ Invitation Unveiled</span>
+            </motion.div>
+          )}
+        </div>
+      </motion.div>
+
+      {/* 3. Clean Scroll Down Indicator */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="flex flex-col items-center gap-1 cursor-pointer pt-4 pb-1"
+            className="flex flex-col items-center gap-1 cursor-pointer pt-6 pb-2 group"
             onClick={() => {
               const el = document.getElementById('formal-invitation');
               el?.scrollIntoView({ behavior: 'smooth' });
             }}
           >
-            <span className="text-xs font-sans font-semibold text-primary tracking-wider uppercase">
-              Explore Invitation
+            <span className="text-xs font-sans font-bold text-brand-blue tracking-wider uppercase group-hover:text-brand-blue-hover transition-colors">
+              Explore Formal Invitation
             </span>
-            <ChevronDown className="w-5 h-5 text-primary animate-bounce" />
+            <ChevronDown className="w-5 h-5 text-brand-blue animate-bounce" />
           </motion.div>
         )}
       </AnimatePresence>

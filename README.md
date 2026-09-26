@@ -24,10 +24,10 @@ A digital wedding invitation web application celebrating the union of **Archita 
 4. **Unified Big Reveal Panel:**
    - Interactive scratch canvas overlay with deep wine matte finish and gold accents.
    - Comprehensive multi-event schedule revealed together:
-     - **Engagement & Ring Ceremony:** 23 October 2026 @ Elegance Hotel, Gwalior
-     - **Mehndi & Haldi Rasam:** 28 November 2026 @ Shital Niwas (Our Home), Gwalior
-     - **Ladies Sangeet & Musical Night:** 29 November 2026 @ Shital Niwas (Our Home), Gwalior
-     - **The Grand Wedding (Vivah Sanskar):** 30 November 2026 @ Krishna Lawn, Gwalior
+     - **Engagement & Ring Ceremony:** 23 October 2026 @ Elegance Hotel, Varanasi
+     - **Mehndi & Haldi Rasam:** 28 November 2026 @ Shital Niwas (Our Home), Varanasi
+     - **Ladies Sangeet & Musical Night:** 29 November 2026 @ Shital Niwas (Our Home), Varanasi
+     - **The Grand Wedding (Vivah Sanskar):** 30 November 2026 @ Krishna Lawn, Varanasi
    - Direct Google Maps directions and Google Calendar integration.
    - Refined, subtle gold sparkle effect.
 

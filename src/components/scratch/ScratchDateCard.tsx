@@ -1,19 +1,17 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { eventData } from '../../data/weddingData';
-import { triggerCelebrationFireworks } from '../../utils/confetti';
-import { Sparkles, Calendar, RotateCcw } from 'lucide-react';
+import { triggerSoftBlueAndGoldConfetti } from '../../utils/confetti';
+import { Calendar, RotateCcw } from 'lucide-react';
 import { activeTheme } from '../../config/theme';
 
 export const ScratchDateCard: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isRevealed, setIsRevealed] = useState(false);
-  const [scratchedPercent, setScratchedPercent] = useState(0);
   const isDrawingRef = useRef(false);
   const touchStartPos = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
-  // Initialize canvas with colors directly from activeTheme.scratch
+  // Initialize canvas with Frosted Rose Pink (#F8B4C0)
   const initCanvas = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -30,16 +28,16 @@ export const ScratchDateCard: React.FC = () => {
 
     ctx.globalCompositeOperation = 'source-over';
 
-    // 1. Base Layer from activeTheme.scratch.cover
-    ctx.fillStyle = activeTheme.scratch.cover;
+    // 1. Frosted Rose Pink (#F8B4C0) Canvas Cover
+    ctx.fillStyle = activeTheme.scratch.cover || '#F8B4C0';
     ctx.fillRect(0, 0, width, height);
 
-    // 2. Procedural Soft Golden / Glitter Flecks Texture from theme flecks
-    const flecks = activeTheme.scratch.flecks;
-    for (let i = 0; i < 220; i++) {
+    // 2. Procedural Soft Shimmer & Golden Flecks Texture
+    const flecks = ['#3666A6', '#D4AF37', '#FFFFFF', '#FBDDE0', '#D81B60'];
+    for (let i = 0; i < 240; i++) {
       const x = ((Math.sin(i * 997 + 1.5) * 0.5 + 0.5) * width);
       const y = ((Math.cos(i * 733 + 2.3) * 0.5 + 0.5) * height);
-      const r = 0.8 + (Math.sin(i * 123) * 0.5 + 0.5) * 1.5;
+      const r = 0.8 + (Math.sin(i * 123) * 0.5 + 0.5) * 1.6;
       const alpha = 0.25 + (Math.cos(i * 321) * 0.5 + 0.5) * 0.45;
       const color = flecks[i % flecks.length];
       ctx.fillStyle = color.startsWith('#')
@@ -50,22 +48,25 @@ export const ScratchDateCard: React.FC = () => {
       ctx.fill();
     }
 
-    // 3. Subtle Hairline Inner Border
-    ctx.strokeStyle = activeTheme.scratch.innerBorder;
+    // 3. Handcrafted Hairline Inner Border in Brand Blue
+    ctx.strokeStyle = 'rgba(54, 102, 166, 0.4)';
     ctx.lineWidth = 1.5;
     ctx.strokeRect(12, 12, width - 24, height - 24);
 
     const centerY = height / 2;
 
-    // 4. Clean Centered Scratch Prompt
+    // 4. Centered Scratch Prompt in Handcrafted Brand Blue (#3666A6)
     ctx.font = 'bold 15px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = activeTheme.scratch.promptColor;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('✦ SCRATCH TO REVEAL ✦', width / 2, centerY);
+    ctx.fillText('✦ SCRATCH TO REVEAL ✦', width / 2, centerY - 10);
+
+    ctx.font = '600 11px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = activeTheme.scratch.textColor;
+    ctx.fillText('THE AUSPICIOUS CELEBRATION DATES', width / 2, centerY + 14);
 
     setIsRevealed(false);
-    setScratchedPercent(0);
   }, []);
 
   useEffect(() => {
@@ -95,23 +96,16 @@ export const ScratchDateCard: React.FC = () => {
       }
 
       const percent = Math.min(100, Math.round((transparentPixels / totalPixels) * 100));
-      setScratchedPercent(percent);
 
-      // Trigger confetti animation upon >= 35% surface clear
-      if (percent >= 35 && !isRevealed) {
+      // Trigger soft blue & gold confetti burst upon scratching past 45% surface coverage
+      if (percent >= 45 && !isRevealed) {
         setIsRevealed(true);
-        triggerCelebrationFireworks();
+        triggerSoftBlueAndGoldConfetti();
       }
     } catch (e) {
       console.warn("Scratch check prevented:", e);
     }
   }, [isRevealed]);
-
-  const instantReveal = () => {
-    setIsRevealed(true);
-    setScratchedPercent(100);
-    triggerCelebrationFireworks();
-  };
 
   const scratch = (clientX: number, clientY: number) => {
     const canvas = canvasRef.current;
@@ -143,12 +137,8 @@ export const ScratchDateCard: React.FC = () => {
     scratch(e.clientX, e.clientY);
   };
 
-  const handleMouseUp = (e: React.MouseEvent) => {
+  const handleMouseUp = () => {
     isDrawingRef.current = false;
-    const dist = Math.hypot(e.clientX - touchStartPos.current.x, e.clientY - touchStartPos.current.y);
-    if (dist < 15 && !isRevealed) {
-      instantReveal();
-    }
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -166,15 +156,8 @@ export const ScratchDateCard: React.FC = () => {
     }
   };
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
+  const handleTouchEnd = () => {
     isDrawingRef.current = false;
-    const touch = e.changedTouches[0];
-    if (touch && !isRevealed) {
-      const dist = Math.hypot(touch.clientX - touchStartPos.current.x, touch.clientY - touchStartPos.current.y);
-      if (dist < 20) {
-        instantReveal();
-      }
-    }
   };
 
   return (
@@ -188,46 +171,58 @@ export const ScratchDateCard: React.FC = () => {
           The Auspicious Dates
         </h2>
         <p className="text-xs sm:text-sm font-sans text-text-sub mt-1">
-          Our celebration schedule
+          Scratch to unveil our sacred milestone dates
         </p>
         <div className="w-12 h-0.5 bg-primary rounded-full mx-auto mt-3" />
       </div>
 
-      {/* Small Interactive Scratch Card Container */}
+      {/* Interactive Scratch Card Container (Pure Crisp White Surface) */}
       <div
         ref={containerRef}
-        className="relative w-full h-[260px] sm:h-[280px] rounded-3xl overflow-hidden shadow-card-subtle border border-theme-border bg-surface"
+        className="relative w-full min-h-[280px] sm:min-h-[295px] rounded-3xl overflow-hidden shadow-card-subtle border border-theme-border bg-card-surface"
       >
-        {/* Hidden Content Revealed Underneath */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center p-5 text-center bg-surface text-text-body">
-          <div className="w-10 h-10 rounded-2xl bg-surface-subtle border border-theme-border flex items-center justify-center mb-2 shadow-xs">
-            <Calendar className="w-5 h-5 text-primary" />
+        {/* 
+          Hidden Content Revealed Underneath:
+          Crisp white surface (#FFFFFF) with milestone dates in bold --color-brand-blue (#3666A6)
+          Uncluttered: No duplicate timings/venues (detailed in the Itinerary section below)
+        */}
+        <div className="absolute inset-0 flex flex-col items-center justify-between p-6 sm:p-7 text-center bg-card-surface text-text-body">
+          {/* Top Pill Header */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 hand-drawn-pill bg-surface-subtle border-brand-blue/30 text-primary text-xs font-sans font-bold shadow-xs">
+            <Calendar className="w-3.5 h-3.5 text-primary" />
+            <span className="tracking-wide">Official Celebration Dates</span>
           </div>
 
-          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-primary tracking-tight mt-0.5 mb-0.5">
-            {eventData.revealDateText}
-          </h3>
+          {/* Prominent Milestone Dates Grid in bold --color-brand-blue */}
+          <div className="w-full space-y-2.5 my-2">
+            {/* Milestone Date 1: 23rd October 2026 */}
+            <div className="p-3 rounded-2xl hand-drawn-pill-soft bg-surface-subtle border border-brand-blue/30 text-center transition-all hover:border-brand-blue/60">
+              <span className="text-[10.5px] font-sans font-bold uppercase tracking-[0.16em] text-secondary block mb-0.5">
+                Engagement &amp; Ring Ceremony
+              </span>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-brand-blue tracking-tight">
+                23rd October 2026
+              </h3>
+            </div>
 
-          <p className="text-xs sm:text-sm font-sans font-bold text-text-body">
-            {eventData.displayDate} • 8:00 PM Onwards
-          </p>
-
-          <p className="text-[11px] font-sans text-text-sub mt-0.5">
-            Krishna Lawn (Krishna Farms), Gwalior
-          </p>
-
-          {/* Key Milestones Teaser Row */}
-          <div className="mt-3 pt-2.5 border-t border-theme-border flex flex-wrap items-center justify-center gap-2 text-[11px] font-sans text-text-body font-medium">
-            <span className="px-2.5 py-0.5 rounded-full bg-surface-subtle border border-theme-border">
-              Ring Ceremony: <strong>23 Oct 2026</strong>
-            </span>
-            <span className="px-2.5 py-0.5 rounded-full bg-surface-subtle border border-theme-border">
-              Mehndi &amp; Sangeet: <strong>28–29 Nov 2026</strong>
-            </span>
+            {/* Milestone Date 2: 28th – 30th November 2026 */}
+            <div className="p-3 rounded-2xl hand-drawn-pill-soft bg-surface-subtle border border-brand-blue/30 text-center transition-all hover:border-brand-blue/60">
+              <span className="text-[10.5px] font-sans font-bold uppercase tracking-[0.16em] text-secondary block mb-0.5">
+                Mehndi, Sangeet &amp; The Wedding Ceremony
+              </span>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-brand-blue tracking-tight">
+                28th – 30th November 2026
+              </h3>
+            </div>
           </div>
+
+          {/* Clean Prompt linking to Itinerary without duplicate information */}
+          <p className="text-[11px] font-sans text-brand-blue/80 font-medium">
+            ✦ See below for event timings, venues &amp; directions ✦
+          </p>
         </div>
 
-        {/* Scratchable Canvas Overlay */}
+        {/* Scratchable Canvas Overlay (Frosted Rose Pink #F8B4C0) */}
         <AnimatePresence>
           {!isRevealed && (
             <motion.canvas
@@ -247,30 +242,18 @@ export const ScratchDateCard: React.FC = () => {
         </AnimatePresence>
       </div>
 
-      {/* Progress & Quick Action Bar Below Card */}
-      <div className="flex items-center justify-between mt-3 px-2">
-        <span className="text-xs font-sans text-text-sub font-medium">
-          {isRevealed ? "100% Cleared" : `${scratchedPercent}% Cleared`}
-        </span>
-
-        {!isRevealed ? (
-          <button
-            onClick={instantReveal}
-            className="flex items-center gap-1 text-xs font-sans font-bold text-primary hover:text-primary-hover transition-colors cursor-pointer"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-secondary" />
-            <span>Instant Reveal</span>
-          </button>
-        ) : (
+      {/* Optional Reset Action: Only Shown Once Revealed */}
+      {isRevealed && (
+        <div className="flex justify-center mt-3">
           <button
             onClick={initCanvas}
-            className="flex items-center gap-1 text-xs font-sans font-bold text-text-sub hover:text-primary transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 hand-drawn-pill bg-card-surface border-theme-border text-xs font-sans font-bold text-text-sub hover:text-primary hover:border-brand-blue transition-colors cursor-pointer shadow-xs"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Scratch Again</span>
           </button>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 };

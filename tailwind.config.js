@@ -7,40 +7,55 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Semantic Theme Tokens (mapped to CSS variables from src/config/theme.ts)
+        // 1. Direct Color Palette Tokens (from Prompt Requirements)
+        'canvas-bg': 'var(--color-canvas-bg, #FCE8E9)',
+        'card-surface': 'var(--color-card-surface, #FFFFFF)',
+        'brand-blue': {
+          DEFAULT: 'var(--color-brand-blue, #3666A6)',
+          hover: 'var(--color-brand-blue-hover, #2E5B99)',
+        },
+        'text-body': 'var(--color-text-body, #2A4B7C)',
+        'accent-magenta': {
+          DEFAULT: 'var(--color-accent-magenta, #D81B60)',
+          hover: 'var(--color-accent-magenta-hover, #B7154F)',
+        },
+        'scratch-cover': 'var(--color-scratch-cover, #F8B4C0)',
+
+        // 2. Semantic Theme Tokens (mapped to the palette)
         primary: {
-          DEFAULT: 'var(--color-primary, #881337)',
-          hover: 'var(--color-primary-hover, #70102E)',
+          DEFAULT: 'var(--color-brand-blue, #3666A6)',
+          hover: 'var(--color-brand-blue-hover, #2E5B99)',
         },
         secondary: {
-          DEFAULT: 'var(--color-secondary, #D97706)',
-          hover: 'var(--color-secondary-hover, #B45309)',
+          DEFAULT: 'var(--color-accent-magenta, #D81B60)',
+          hover: 'var(--color-accent-magenta-hover, #B7154F)',
         },
         accent: {
-          DEFAULT: 'var(--color-accent, #D4AF37)',
-          soft: 'var(--color-accent-soft, rgba(212, 175, 55, 0.15))',
+          DEFAULT: 'var(--color-brand-blue, #3666A6)',
+          soft: 'var(--color-accent-soft, rgba(216, 27, 96, 0.12))',
         },
         canvas: {
-          DEFAULT: 'var(--color-canvas, #FDFBF7)',
+          DEFAULT: 'var(--color-canvas-bg, #FCE8E9)',
         },
         surface: {
-          DEFAULT: 'var(--color-surface, #FFFFFF)',
-          subtle: 'var(--color-surface-subtle, #F9F6F0)',
-          highlight: 'var(--color-surface-highlight, #FFF7ED)',
+          DEFAULT: 'var(--color-card-surface, #FFFFFF)',
+          subtle: 'var(--color-surface-subtle, #FFF3F5)',
+          highlight: 'var(--color-surface-highlight, #FDE8EC)',
         },
         'theme-border': {
-          DEFAULT: 'var(--color-border, #EADCC8)',
-          subtle: 'var(--color-border-subtle, #F4ECE1)',
+          DEFAULT: 'var(--color-border, #F3C4CC)',
+          subtle: 'var(--color-border-subtle, #F8D9DF)',
         },
-        'text-main': 'var(--color-text-primary, #881337)',
-        'text-body': 'var(--color-text-body, #2C1810)',
-        'text-sub': 'var(--color-text-muted, #6B5E55)',
+        'text-main': 'var(--color-brand-blue, #3666A6)',
+        'text-sub': 'var(--color-text-muted, #5375A6)',
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        sans: ['"Comfortaa"', '"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         serif: ['"Playfair Display"', '"Cormorant Garamond"', 'serif'],
         display: ['"Playfair Display"', 'serif'],
         decorative: ['"Cinzel Decorative"', 'serif'],
+        script: ['"Caveat"', 'cursive', 'sans-serif'],
+        handwriting: ['"Caveat"', 'cursive', 'sans-serif'],
       },
       boxShadow: {
         'card-subtle': '0 2px 10px 0 rgba(0, 0, 0, 0.04), 0 8px 30px 0 rgba(0, 0, 0, 0.03)',

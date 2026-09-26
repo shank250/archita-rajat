@@ -4,7 +4,7 @@ import { weddingEvents } from '../../data/weddingData';
 import { Sparkles, Flame, HeartHandshake, Music, UtensilsCrossed, Clock, MapPin, Calendar, Shirt, ExternalLink } from 'lucide-react';
 
 export const ItinerarySection: React.FC = () => {
-  const [selectedEventId, setSelectedEventId] = useState<string>(weddingEvents[0].id);
+  const [selectedEventId, setSelectedEventId] = useState<string>(weddingEvents[3].id); // Default to Wedding Day (30 Nov)
 
   const renderIcon = (name: string, className = "w-4 h-4") => {
     switch (name) {
@@ -41,7 +41,7 @@ export const ItinerarySection: React.FC = () => {
         <div className="w-12 h-0.5 bg-primary rounded-full mx-auto mt-3" />
       </div>
 
-      {/* 4-Day Interactive Event Selector */}
+      {/* 4-Day Interactive Event Selector with Organic Borders */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-8">
         {weddingEvents.map((evt) => {
           const isActive = evt.id === selectedEventId;
@@ -49,22 +49,22 @@ export const ItinerarySection: React.FC = () => {
             <button
               key={evt.id}
               onClick={() => setSelectedEventId(evt.id)}
-              className={`text-left p-3.5 sm:p-4 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ${
+              className={`text-left p-3.5 sm:p-4 rounded-2xl hand-drawn-pill-soft border transition-all cursor-pointer flex flex-col justify-between ${
                 isActive
                   ? 'bg-primary text-white border-primary-hover shadow-md scale-[1.02]'
-                  : 'bg-surface text-text-body border-theme-border hover:border-primary/40 hover:bg-surface-subtle/60 shadow-xs'
+                  : 'bg-card-surface text-text-body border-theme-border hover:border-primary/50 hover:bg-surface-subtle/60 shadow-xs'
               }`}
             >
               <div>
                 <div className="flex items-center justify-between mb-1.5">
                   <span
-                    className={`text-[10px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                      isActive ? 'bg-white/20 text-white' : 'bg-surface-subtle text-primary'
+                    className={`text-[10px] font-sans font-bold uppercase tracking-wider px-2.5 py-0.5 hand-drawn-pill ${
+                      isActive ? 'bg-white/20 text-white border-white/40' : 'bg-surface-subtle text-primary border-brand-blue/30'
                     }`}
                   >
                     {evt.shortDate}
                   </span>
-                  <span className={`text-[10px] font-sans font-medium ${isActive ? 'text-accent' : 'text-text-sub'}`}>
+                  <span className={`text-[10px] font-sans font-medium ${isActive ? 'text-white/90' : 'text-text-sub'}`}>
                     {evt.dayOfWeek}
                   </span>
                 </div>
@@ -91,11 +91,22 @@ export const ItinerarySection: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -15 }}
           transition={{ duration: 0.3 }}
-          className="bg-surface p-6 sm:p-9 rounded-3xl border border-theme-border shadow-card-subtle text-text-body"
+          className="bg-card-surface p-6 sm:p-9 rounded-3xl border border-theme-border shadow-card-subtle text-text-body"
         >
+          {/* Spiritual Header Accent for November 30 Wedding Day */}
+          {currentEvent.id === 'wedding' && (
+            <div className="w-full flex items-center justify-center gap-2.5 mb-3 select-none">
+              <div className="h-[1px] w-8 bg-brand-blue/30" />
+              <span className="text-[10px] font-sans font-bold uppercase tracking-[0.25em] text-brand-blue">
+                ॥ शुभ विवाह ॥
+              </span>
+              <div className="h-[1px] w-8 bg-brand-blue/30" />
+            </div>
+          )}
+
           {/* Header of Active Event */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-theme-border">
-            <div>
+            <div className="flex-1">
               <span className="text-[10px] font-sans uppercase tracking-[0.25em] text-secondary font-bold">
                 {currentEvent.category}
               </span>
@@ -108,7 +119,7 @@ export const ItinerarySection: React.FC = () => {
             </div>
 
             <div className="flex-shrink-0">
-              <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-subtle text-primary border border-theme-border text-xs font-sans font-bold shadow-xs">
+              <span className="inline-flex items-center gap-1.5 px-4 py-2 hand-drawn-pill bg-surface-subtle text-primary border-brand-blue/30 text-xs font-sans font-bold shadow-xs">
                 <Calendar className="w-3.5 h-3.5 text-primary" />
                 <span>{currentEvent.fullDateText}</span>
               </span>
@@ -194,7 +205,7 @@ export const ItinerarySection: React.FC = () => {
               href={currentEvent.venue.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white text-xs font-sans font-bold transition-all shadow-xs cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-6 py-2.5 hand-drawn-pill bg-primary hover:bg-primary-hover text-white text-xs font-sans font-bold transition-all shadow-xs cursor-pointer border-brand-blue-hover"
             >
               <MapPin className="w-3.5 h-3.5 text-white" />
               <span>Directions to {currentEvent.venue.name}</span>

@@ -67,52 +67,53 @@ export interface ThemeConfig {
  * CURATED MODERN THEME PRESETS (Zero loud/neon colors, editorial luxury aesthetic)
  */
 export const themePresets: Record<string, ThemeConfig> = {
-  // Preset 1: Modern Krishna (Cloud Slate Blue & Blush Lotus Pink + Champagne Gold)
+  // Preset 1: Modern Krishna (French Denim Blue & Soft Pastel Blush Pink + Vibrant Berry Magenta)
   modernKrishna: {
     id: 'modernKrishna',
-    name: 'Modern Krishna (Cloud Slate & Blush Lotus)',
-    description: 'Understated editorial luxury: serene cloud slate blue, soft blush lotus pink, champagne antique gold, and alabaster silk',
-    primary: '#386180',          // Modern Krishna Cloud Slate (Refined, calm, not electric or loud)
-    primaryHover: '#284A63',     // Deep Slate
-    secondary: '#C46882',        // Blush Lotus Pink (Romantic, modern luxury accent)
-    secondaryHover: '#AD526B',   // Deep Lotus Rose
-    accent: '#C5A880',           // Warm Champagne Antique Gold
-    accentSoft: 'rgba(196, 104, 130, 0.12)', // Subtle lotus glow
+    name: 'Modern Krishna (French Denim Blue & Pastel Blush)',
+    description: 'Chic hand-drawn pastel aesthetic: French denim royal blue, soft pastel blush pink, pure crisp white, deep slate blue, and vibrant berry magenta',
+    primary: '#3666A6',          // Handcrafted French/Denim Royal Blue (--color-brand-blue)
+    primaryHover: '#2E5B99',     // Deeper Denim Royal Blue
+    secondary: '#D81B60',        // Vibrant Berry Magenta (--color-accent-magenta)
+    secondaryHover: '#B7154F',   // Deep Berry Magenta
+    accent: '#3666A6',           // Royal Blue accent
+    accentSoft: 'rgba(216, 27, 96, 0.12)', // Subtle berry glow
 
-    canvas: '#FAF6F8',           // Soft Blush Alabaster Silk (Clean, light, airy, modern)
-    surface: '#FFFFFF',          // Pure Crisp Snow White
-    surfaceSubtle: '#F7F0F4',    // Delicate lotus petal silk
-    surfaceHighlight: '#FDF2F6', // Soft lotus blush highlight
+    canvas: '#FCE8E9',           // Soft Pastel Blush Pink (--color-canvas-bg)
+    surface: '#FFFFFF',          // Pure Crisp White (--color-card-surface)
+    surfaceSubtle: '#FFF3F5',    // Delicate pastel blush silk
+    surfaceHighlight: '#FDE8EC', // Soft blush highlight
 
-    border: '#E8D7DF',           // Delicate Rose-Slate Hairline Border
-    borderSubtle: '#F2E8ED',     // Soft Hairline
+    border: '#F3C4CC',           // Soft Hand-Drawn Blush Border
+    borderSubtle: '#F8D9DF',     // Subtle Hairline
 
-    textPrimary: '#243B53',      // Deep Slate Cerulean (Editorial, high-contrast, effortless to read)
-    textBody: '#334E68',         // Slate Charcoal for body text (Passes WCAG AAA)
-    textMuted: '#6C7D8F',        // Sophisticated Muted Slate for dates & subtitles
+    textPrimary: '#3666A6',      // Handcrafted French/Denim Royal Blue
+    textBody: '#2A4B7C',         // Deep Slate Blue (--color-text-body)
+    textMuted: '#5375A6',        // Muted Slate Blue
     textOnPrimary: '#FFFFFF',
 
     envelope: {
-      outer: '#386180',          // Cloud Slate Outer Shell (Tailored luxury)
-      outerBorder: '#284A63',
-      flap: '#C46882',          // Blush Lotus Flap (Distinctive luxury contrast against slate body)
-      flapBorder: '#AD526B',
-      stitching: 'rgba(197, 168, 128, 0.5)', // Champagne Gold embroidery
-      stampBg: '#F7F0F4',        // Soft Lotus Silk Postage Stamp
-      stampText: '#C46882',      // Blush Lotus Stamp Monogram
+      outer: '#3666A6',          // French/Denim Royal Blue outer shell
+      outerBorder: '#2E5B99',
+      flap: '#FBDDE0',           // Soft Pastel Blush Pink flap for chic contrast
+      flapBorder: '#F3C4CC',
+      stitching: 'rgba(54, 102, 166, 0.35)', // Denim embroidery
+      stampBg: '#FFFFFF',        // Pure Crisp White Postage Stamp
+      stampText: '#D81B60',      // Berry Magenta Stamp Monogram
       text: '#FFFFFF',
     },
 
     scratch: {
-      cover: '#F0DEE7',          // Delicate Rose Quartz / Soft Baby Pink Silk
-      innerBorder: 'rgba(197, 168, 128, 0.55)', // Champagne gold hairline
-      flecks: ['#C5A880', '#C46882', '#386180', '#FADCE7', '#FFFFFF'], // Champagne, lotus pink, slate
-      titleColor: '#243B53',     // High contrast slate title
-      promptColor: '#C46882',    // Blush lotus pink prompt
-      textColor: '#334E68',      // High contrast slate charcoal text
+      cover: '#F8B4C0',          // Frosted Rose Pink (--color-scratch-cover)
+      innerBorder: 'rgba(54, 102, 166, 0.35)', // Royal Blue sketched hairline
+      flecks: ['#3666A6', '#D4AF37', '#FBDDE0', '#FFFFFF', '#D81B60'], // Blue, gold, blush
+      titleColor: '#3666A6',     // Brand blue title
+      promptColor: '#3666A6',    // Brand blue prompt
+      textColor: '#2A4B7C',      // Deep slate blue text
     },
 
-    confettiColors: ['#386180', '#C46882', '#C5A880', '#FADCE7', '#FFFFFF'],
+    // Soft blue and gold celebration confetti burst
+    confettiColors: ['#3666A6', '#2E5B99', '#5A82B8', '#D4AF37', '#F3E5AB', '#F59E0B', '#E5C07B', '#FFFFFF'],
   },
 
   // Preset 2: Eucalyptus Sage & French Blue (Earthy, Organic, Modern Luxury)
@@ -224,6 +225,18 @@ export const activeTheme: ThemeConfig = themePresets.modernKrishna;
  * Helper to generate CSS variables map for DOM injection
  */
 export const getThemeCssVariables = (theme: ThemeConfig = activeTheme): Record<string, string> => ({
+  // Direct palette variables from prompt
+  '--color-canvas-bg': theme.canvas,
+  '--color-card-surface': theme.surface,
+  '--color-brand-blue': theme.primary,
+  '--color-brand-blue-hover': theme.primaryHover,
+  '--color-text-body': theme.textBody,
+  '--color-text-muted': theme.textMuted,
+  '--color-accent-magenta': theme.secondary,
+  '--color-accent-magenta-hover': theme.secondaryHover,
+  '--color-scratch-cover': theme.scratch.cover,
+
+  // Semantic variables
   '--color-primary': theme.primary,
   '--color-primary-hover': theme.primaryHover,
   '--color-secondary': theme.secondary,
@@ -237,7 +250,5 @@ export const getThemeCssVariables = (theme: ThemeConfig = activeTheme): Record<s
   '--color-border': theme.border,
   '--color-border-subtle': theme.borderSubtle,
   '--color-text-primary': theme.textPrimary,
-  '--color-text-body': theme.textBody,
-  '--color-text-muted': theme.textMuted,
   '--color-text-on-primary': theme.textOnPrimary,
 });

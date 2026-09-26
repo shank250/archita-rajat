@@ -4,44 +4,58 @@
 
 @layer base {
   :root {
-    --color-primary: #386180;
-    --color-primary-hover: #284A63;
-    --color-secondary: #C46882;
-    --color-secondary-hover: #AD526B;
-    --color-accent: #C5A880;
-    --color-accent-soft: rgba(196, 104, 130, 0.12);
-    --color-canvas: #FAF6F8;
-    --color-surface: #FFFFFF;
-    --color-surface-subtle: #F7F0F4;
-    --color-surface-highlight: #FDF2F6;
-    --color-border: #E8D7DF;
-    --color-border-subtle: #F2E8ED;
-    --color-text-primary: #243B53;
-    --color-text-body: #334E68;
-    --color-text-muted: #6C7D8F;
+    /* Exact Color Tokens from User Specification */
+    --color-canvas-bg: #FCE8E9;
+    --color-card-surface: #FFFFFF;
+    --color-brand-blue: #3666A6;
+    --color-brand-blue-hover: #2E5B99;
+    --color-text-body: #2A4B7C;
+    --color-text-muted: #5375A6;
+    --color-accent-magenta: #D81B60;
+    --color-accent-magenta-hover: #B7154F;
+    --color-scratch-cover: #F8B4C0;
+
+    /* Semantic Mapped Tokens */
+    --color-primary: var(--color-brand-blue);
+    --color-primary-hover: var(--color-brand-blue-hover);
+    --color-secondary: var(--color-accent-magenta);
+    --color-secondary-hover: var(--color-accent-magenta-hover);
+    --color-accent: var(--color-brand-blue);
+    --color-accent-soft: rgba(216, 27, 96, 0.12);
+    --color-canvas: var(--color-canvas-bg);
+    --color-surface: var(--color-card-surface);
+    --color-surface-subtle: #FFF3F5;
+    --color-surface-highlight: #FDE8EC;
+    --color-border: #F3C4CC;
+    --color-border-subtle: #F8D9DF;
+    --color-text-primary: var(--color-brand-blue);
     --color-text-on-primary: #FFFFFF;
   }
 
   html {
     scroll-behavior: smooth;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    background-color: var(--color-canvas);
+    font-family: 'Comfortaa', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--color-canvas-bg);
     color: var(--color-text-body);
   }
+
+*, *::before, *::after {
+  font-family: "Comfortaa", sans-serif;
+}
 
   /* Clean subtle scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--color-canvas);
+    background: var(--color-canvas-bg);
   }
   ::-webkit-scrollbar-thumb {
     background: var(--color-border);
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primary);
+    background: var(--color-brand-blue);
   }
 }
 
@@ -57,4 +71,64 @@
   .backface-hidden {
     backface-visibility: hidden;
   }
+
+  /* Chic Hand-Drawn Pill & Organic Sketched Border utilities */
+  .hand-drawn-pill {
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    border-width: 1.5px;
+    border-style: solid;
+  }
+
+  .hand-drawn-pill-alt {
+    border-radius: 20px 255px 20px 245px / 245px 20px 255px 20px;
+    border-width: 1.5px;
+    border-style: solid;
+  }
+
+  .hand-drawn-pill-soft {
+    border-radius: 255px 25px 225px 25px / 25px 225px 25px 255px;
+    border-width: 1.5px;
+    border-style: solid;
+  }
+
+  .hand-drawn-card {
+    border-radius: 36px 32px 38px 30px / 32px 38px 30px 36px;
+  }
+
+  .font-script {
+    font-family: 'Caveat', cursive, sans-serif;
+  }
+
+  .subheading-tracked {
+    letter-spacing: 0.15em;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .comfortaa-regular {
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .comfortaa-light {
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+  }
+  .comfortaa-medium {
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
+  .comfortaa-bold {
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+  }
 }
+
+

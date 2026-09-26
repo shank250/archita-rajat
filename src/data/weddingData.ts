@@ -25,7 +25,7 @@ export const venuesList: VenueInfo[] = [
     type: "The Grand Wedding Lawn",
     tagline: "Venue for The Grand Wedding (30 Nov)",
     address: "Krishna Lawn (Krishna Farms)",
-    city: "Gwalior, Madhya Pradesh",
+    city: "Varanasi, Uttar Pradesh",
     landmark: "Main Road",
     googleMapsUrl: "https://maps.app.goo.gl/KPjgYH8gRwvL9UtQ6",
     appleMapsUrl: "https://maps.app.goo.gl/KPjgYH8gRwvL9UtQ6",
@@ -35,7 +35,7 @@ export const venuesList: VenueInfo[] = [
     type: "Luxury Hotel & Banquet",
     tagline: "Venue for Engagement & Ring Ceremony (23 Oct)",
     address: "Hotel Elegance, City Centre",
-    city: "Gwalior, Madhya Pradesh",
+    city: "Varanasi, Uttar Pradesh",
     landmark: "Near City Centre",
     googleMapsUrl: "https://www.theelegance.co.in/",
     appleMapsUrl: "https://www.theelegance.co.in/",
@@ -45,7 +45,7 @@ export const venuesList: VenueInfo[] = [
     type: "Family Residence",
     tagline: "Venue for Mehndi & Ladies Sangeet (28 & 29 Nov)",
     address: "Shital Niwas",
-    city: "Gwalior, Madhya Pradesh",
+    city: "Varanasi, Uttar Pradesh",
     landmark: "Our Home",
     googleMapsUrl: "https://maps.app.goo.gl/PK4cnn75HJJR46E16",
     appleMapsUrl: "https://maps.app.goo.gl/PK4cnn75HJJR46E16",
@@ -62,7 +62,7 @@ export const weddingEvents: WeddingEvent[] = [
     fullDateText: "Friday, 23rd October 2026",
     timeRange: "7:00 PM Onwards",
     tagline: "The beginning of forever with rings, toasts, and music",
-    dressCode: "Cocktail Chic / Indo-Western Festive",
+    dressCode: "Mocktail Chic / Indo-Western Festive",
     venue: venuesList[1], // Elegance Hotel
     calendarStartDate: "20261023T190000",
     calendarEndDate: "20261023T235900",
@@ -144,7 +144,7 @@ export const weddingEvents: WeddingEvent[] = [
       {
         time: "7:00",
         period: "PM",
-        title: "Cocktails & Red Carpet Welcome",
+        title: "Mocktails & Red Carpet Welcome",
         description: "Step in for evening mocktails and photo-ops with the couple.",
         iconName: "Sparkles",
       },
@@ -221,8 +221,8 @@ export const eventData: EventDetails = {
   whatsappGroupUrl: "https://chat.whatsapp.com/invite/wedding-celebration-updates",
   calendarEvent: {
     title: "Archita & Rajat's Grand Wedding",
-    description: "Join us to celebrate the auspicious wedding of Archita and Rajat at Krishna Lawn, Gwalior!",
-    location: "Krishna Lawn, Gwalior",
+    description: "Join us to celebrate the auspicious wedding of Archita and Rajat at Krishna Lawn, Varanasi!",
+    location: "Krishna Lawn, Varanasi",
   },
 };
 
