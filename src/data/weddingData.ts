@@ -46,7 +46,7 @@ export const weddingEvents: WeddingEvent[] = [
   {
     id: "haldi-chowki",
     title: "Haldi & Mata Ki Chowki",
-    shortTitle: "Haldi & Chowki",
+    shortTitle: "Haldi & Mata Ki Chowki",
     category: "Sacred Pre-Wedding Ceremonies",
     shortDate: "28 NOV",
     dayOfWeek: "Saturday",
