@@ -195,23 +195,23 @@ export const ScratchDateCard: React.FC = () => {
 
           {/* Prominent Milestone Dates Grid in bold --color-brand-blue */}
           <div className="w-full space-y-2.5 my-2">
-            {/* Milestone Date 1: 23rd October 2026 */}
+            {/* Milestone Date 1: 28th – 29th November 2026 */}
             <div className="p-3 rounded-2xl hand-drawn-pill-soft bg-surface-subtle border border-brand-blue/30 text-center transition-all hover:border-brand-blue/60">
               <span className="text-[10.5px] font-sans font-bold uppercase tracking-[0.16em] text-secondary block mb-0.5">
-                Engagement &amp; Ring Ceremony
+                Haldi, Chowki, Mehndi &amp; Sangeet
               </span>
               <h3 className="font-serif text-2xl sm:text-3xl font-bold text-brand-blue tracking-tight">
-                23rd October 2026
+                28th – 29th November 2026
               </h3>
             </div>
 
-            {/* Milestone Date 2: 28th – 30th November 2026 */}
+            {/* Milestone Date 2: 30th November 2026 */}
             <div className="p-3 rounded-2xl hand-drawn-pill-soft bg-surface-subtle border border-brand-blue/30 text-center transition-all hover:border-brand-blue/60">
               <span className="text-[10.5px] font-sans font-bold uppercase tracking-[0.16em] text-secondary block mb-0.5">
-                Mehndi, Sangeet &amp; The Wedding Ceremony
+                The Auspicious Wedding Day (Vivah)
               </span>
               <h3 className="font-serif text-2xl sm:text-3xl font-bold text-brand-blue tracking-tight">
-                28th – 30th November 2026
+                30th November 2026
               </h3>
             </div>
           </div>

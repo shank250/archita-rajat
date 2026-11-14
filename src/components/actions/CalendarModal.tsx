@@ -12,13 +12,14 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  const [selectedEventId, setSelectedEventId] = useState(weddingEvents[3].id); // default to wedding
+  const weddingEvt = weddingEvents.find(e => e.id === 'wedding') || weddingEvents[weddingEvents.length - 1];
+  const [selectedEventId, setSelectedEventId] = useState(weddingEvt.id); // default to wedding
 
-  const currentSelectedEvent = weddingEvents.find(e => e.id === selectedEventId) || weddingEvents[3];
+  const currentSelectedEvent = weddingEvents.find(e => e.id === selectedEventId) || weddingEvt;
 
   const getGoogleCalUrl = (evt: typeof currentSelectedEvent) => {
     const title = encodeURIComponent(`${evt.title} — Archita & Rajat`);
-    const details = encodeURIComponent(`${evt.tagline}\nVenue: ${evt.venue.name}, ${evt.venue.city}\nDress Code: ${evt.dressCode}`);
+    const details = encodeURIComponent(`${evt.tagline}\nVenue: ${evt.venue.name}, ${evt.venue.city}`);
     const location = encodeURIComponent(`${evt.venue.name}, ${evt.venue.city}`);
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${evt.calendarStartDate}/${evt.calendarEndDate}&details=${details}&location=${location}`;
   };
@@ -37,7 +38,7 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
       `DTSTART:${currentSelectedEvent.calendarStartDate}`,
       `DTEND:${currentSelectedEvent.calendarEndDate}`,
       `SUMMARY:${currentSelectedEvent.title} - Archita & Rajat`,
-      `DESCRIPTION:${currentSelectedEvent.tagline} at ${currentSelectedEvent.venue.name}. Dress Code: ${currentSelectedEvent.dressCode}`,
+      `DESCRIPTION:${currentSelectedEvent.tagline} at ${currentSelectedEvent.venue.name}.`,
       `LOCATION:${currentSelectedEvent.venue.name}\\, ${currentSelectedEvent.venue.city}`,
       'STATUS:CONFIRMED',
       'END:VEVENT',
@@ -134,9 +135,11 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
               <p className="text-xs font-sans text-neutral-700 font-semibold mt-1">
                 📅 {currentSelectedEvent.fullDateText}
               </p>
-              <p className="text-xs font-sans text-neutral-600 mt-1">
-                ⏰ {currentSelectedEvent.timeRange}
-              </p>
+              {currentSelectedEvent.timeRange && (
+                <p className="text-xs font-sans text-neutral-600 mt-1">
+                  ⏰ {currentSelectedEvent.timeRange}
+                </p>
+              )}
               <p className="text-xs font-sans text-neutral-500 mt-1">
                 📍 {currentSelectedEvent.venue.name}, {currentSelectedEvent.venue.city}
               </p>

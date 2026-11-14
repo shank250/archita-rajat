@@ -10,20 +10,14 @@ import { Send, User, CheckCircle2, HeartHandshake, Edit3, Calendar } from 'lucid
 
 const celebrationEvents = [
   {
-    id: 'engagement',
-    title: 'Engagement & Ring Ceremony',
-    date: '23 Oct 2026',
-    venue: 'Elegance Hotel',
-  },
-  {
-    id: 'mehndi',
-    title: 'Mehndi & Haldi Rasam',
+    id: 'haldi-chowki',
+    title: 'Haldi & Mata Ki Chowki',
     date: '28 Nov 2026',
     venue: 'Shital Niwas',
   },
   {
-    id: 'sangeet',
-    title: 'Ladies Sangeet & Musical Night',
+    id: 'mehndi-sangeet',
+    title: 'Mehndi & Ladies Sangeet',
     date: '29 Nov 2026',
     venue: 'Shital Niwas',
   },
@@ -41,9 +35,8 @@ export const GuestbookSection: React.FC = () => {
   // Form State
   const [name, setName] = useState('');
   const [selectedEvents, setSelectedEvents] = useState<string[]>([
-    'engagement',
-    'mehndi',
-    'sangeet',
+    'haldi-chowki',
+    'mehndi-sangeet',
     'wedding',
   ]);
   const [message, setMessage] = useState('');
@@ -64,18 +57,21 @@ export const GuestbookSection: React.FC = () => {
       setSubmittedRsvp(existing);
       setName(existing.guestName);
       if (existing.eventsAttending && Array.isArray(existing.eventsAttending) && existing.eventsAttending.length > 0) {
-        setSelectedEvents(existing.eventsAttending);
+        const mapped = existing.eventsAttending
+          .map((id) => {
+            if (id === 'mehndi') return 'haldi-chowki';
+            if (id === 'sangeet') return 'mehndi-sangeet';
+            return id;
+          })
+          .filter((id) => id !== 'engagement');
+        setSelectedEvents(Array.from(new Set(mapped)));
       } else if (existing.eventAttendance) {
         if (existing.eventAttendance === 'all') {
-          setSelectedEvents(['engagement', 'mehndi', 'sangeet', 'wedding']);
+          setSelectedEvents(['haldi-chowki', 'mehndi-sangeet', 'wedding']);
         } else if (existing.eventAttendance === 'wedding') {
           setSelectedEvents(['wedding']);
-        } else if (existing.eventAttendance === 'engagement') {
-          setSelectedEvents(['engagement']);
-        } else if (existing.eventAttendance === 'rasam') {
-          setSelectedEvents(['mehndi']);
-        } else if (existing.eventAttendance === 'sangeet') {
-          setSelectedEvents(['sangeet']);
+        } else {
+          setSelectedEvents(['haldi-chowki', 'mehndi-sangeet', 'wedding']);
         }
       }
       setMessage(existing.message);
@@ -91,11 +87,11 @@ export const GuestbookSection: React.FC = () => {
     setIsSubmitting(true);
 
     const eventAttendanceText =
-      selectedEvents.length === 4
-        ? 'All Celebrations (23 Oct, 28, 29 & 30 Nov)'
+      selectedEvents.length === celebrationEvents.length
+        ? 'All Celebrations (28, 29 & 30 Nov)'
         : selectedEvents.length === 0
-        ? 'Sending Warm Blessings from Afar'
-        : selectedEvents
+          ? 'Sending Warm Blessings from Afar'
+          : selectedEvents
             .map((id) => celebrationEvents.find((e) => e.id === id)?.title)
             .filter(Boolean)
             .join(', ');
@@ -284,7 +280,7 @@ export const GuestbookSection: React.FC = () => {
                     <span>Events You Plan to Attend</span>
                   </label>
                   <span className="text-[11px] font-sans text-text-sub">
-                    {selectedEvents.length} of 4 selected
+                    {selectedEvents.length} of 3 selected
                   </span>
                 </div>
 
@@ -294,11 +290,10 @@ export const GuestbookSection: React.FC = () => {
                     return (
                       <label
                         key={evt.id}
-                        className={`flex items-start gap-3 p-3 rounded-2xl border transition-all cursor-pointer select-none ${
-                          isChecked
+                        className={`flex items-start gap-3 p-3 rounded-2xl border transition-all cursor-pointer select-none ${isChecked
                             ? 'bg-surface-highlight/70 border-primary shadow-xs'
                             : 'bg-surface border-theme-border hover:border-primary/40'
-                        }`}
+                          }`}
                       >
                         <input
                           type="checkbox"
@@ -309,9 +304,8 @@ export const GuestbookSection: React.FC = () => {
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-1">
                             <span
-                              className={`text-xs font-sans font-bold leading-tight ${
-                                isChecked ? 'text-primary' : 'text-text-body'
-                              }`}
+                              className={`text-xs font-sans font-bold leading-tight ${isChecked ? 'text-primary' : 'text-text-body'
+                                }`}
                             >
                               {evt.title}
                             </span>

@@ -26,7 +26,7 @@ export const downloadIcsFile = (event: EventDetails, couple: CoupleProfile) => {
   const icsContent = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//Royal Vows//Engagement Invitation//EN',
+    'PRODID:-//Royal Vows//Wedding Invitation//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'BEGIN:VEVENT',
@@ -49,7 +49,7 @@ export const downloadIcsFile = (event: EventDetails, couple: CoupleProfile) => {
   const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
   const link = document.createElement('a');
   link.href = window.URL.createObjectURL(blob);
-  link.setAttribute('download', `${couple.groom.firstName}_${couple.bride.firstName}_Engagement.ics`);
+  link.setAttribute('download', `${couple.groom.firstName}_${couple.bride.firstName}_Wedding.ics`);
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

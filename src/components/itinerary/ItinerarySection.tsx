@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { weddingEvents } from '../../data/weddingData';
-import { Sparkles, Flame, HeartHandshake, Music, UtensilsCrossed, Clock, MapPin, Calendar, Shirt, ExternalLink } from 'lucide-react';
+import { Sparkles, Flame, HeartHandshake, Music, UtensilsCrossed, Clock, MapPin, Calendar, ExternalLink } from 'lucide-react';
 
 export const ItinerarySection: React.FC = () => {
-  const [selectedEventId, setSelectedEventId] = useState<string>(weddingEvents[3].id); // Default to Wedding Day (30 Nov)
+  const [selectedEventId, setSelectedEventId] = useState<string>(
+    weddingEvents.find((e) => e.id === 'wedding')?.id || weddingEvents[0].id
+  ); // Default to Wedding Day (30 Nov)
 
   const renderIcon = (name: string, className = "w-4 h-4") => {
     switch (name) {
@@ -33,7 +35,7 @@ export const ItinerarySection: React.FC = () => {
           Celebration Itinerary
         </span>
         <h2 className="font-serif text-3xl sm:text-5xl text-primary font-bold mt-1">
-          Four Auspicious Celebrations
+          Wedding Celebrations
         </h2>
         <p className="text-xs sm:text-sm font-sans text-text-sub mt-1">
           Timings, venues &amp; ceremony schedule
@@ -41,8 +43,8 @@ export const ItinerarySection: React.FC = () => {
         <div className="w-12 h-0.5 bg-primary rounded-full mx-auto mt-3" />
       </div>
 
-      {/* 4-Day Interactive Event Selector with Organic Borders */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-8">
+      {/* Interactive Event Selector with Organic Borders */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 mb-8">
         {weddingEvents.map((evt) => {
           const isActive = evt.id === selectedEventId;
           return (
@@ -70,7 +72,7 @@ export const ItinerarySection: React.FC = () => {
                 </div>
 
                 <h4 className="font-serif text-sm sm:text-base font-bold leading-snug line-clamp-1">
-                  {evt.title.split('&')[0].trim()}
+                  {evt.shortTitle || evt.title}
                 </h4>
               </div>
 
@@ -126,18 +128,20 @@ export const ItinerarySection: React.FC = () => {
             </div>
           </div>
 
-          {/* Key Event Badges Grid (Time, Venue, Dress Code) */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-6">
+          {/* Key Event Badges Grid (Time, Venue) */}
+          <div className={`grid gap-3 my-6 ${currentEvent.timeRange ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
             {/* Time Card */}
-            <div className="p-4 rounded-2xl bg-surface-subtle border border-theme-border">
-              <div className="flex items-center gap-2 text-xs font-sans text-primary font-bold uppercase tracking-wider mb-1">
-                <Clock className="w-3.5 h-3.5 text-primary" />
-                <span>Timing</span>
+            {currentEvent.timeRange && (
+              <div className="p-4 rounded-2xl bg-surface-subtle border border-theme-border">
+                <div className="flex items-center gap-2 text-xs font-sans text-primary font-bold uppercase tracking-wider mb-1">
+                  <Clock className="w-3.5 h-3.5 text-primary" />
+                  <span>Timing</span>
+                </div>
+                <p className="font-sans text-sm font-bold text-text-body">
+                  {currentEvent.timeRange}
+                </p>
               </div>
-              <p className="font-sans text-sm font-bold text-text-body">
-                {currentEvent.timeRange}
-              </p>
-            </div>
+            )}
 
             {/* Venue Card */}
             <div className="p-4 rounded-2xl bg-surface-subtle border border-theme-border">
@@ -150,17 +154,6 @@ export const ItinerarySection: React.FC = () => {
               </p>
               <p className="font-sans text-[11px] text-text-sub truncate mt-0.5">
                 {currentEvent.venue.address}, {currentEvent.venue.city}
-              </p>
-            </div>
-
-            {/* Dress Code Card */}
-            <div className="p-4 rounded-2xl bg-surface-subtle border border-theme-border">
-              <div className="flex items-center gap-2 text-xs font-sans text-primary font-bold uppercase tracking-wider mb-1">
-                <Shirt className="w-3.5 h-3.5 text-primary" />
-                <span>Dress Code</span>
-              </div>
-              <p className="font-sans text-sm font-bold text-text-body">
-                {currentEvent.dressCode}
               </p>
             </div>
           </div>

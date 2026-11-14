@@ -48,13 +48,13 @@ export interface EventMilestone {
 export interface WeddingEvent {
   id: string;
   title: string;
+  shortTitle?: string;
   category: string;
   shortDate: string;
   dayOfWeek: string;
   fullDateText: string;
-  timeRange: string;
+  timeRange?: string;
   tagline: string;
-  dressCode: string;
   venue: VenueInfo;
   milestones: EventMilestone[];
   calendarStartDate: string; // YYYYMMDDTHHMMSS
@@ -117,7 +117,7 @@ export interface WishEntry {
   recipient: RecipientSide;
   message: string;
   attending?: 'yes' | 'no' | 'undecided';
-  eventsAttending?: string[]; // e.g. ['all'] or ['engagement', 'rasam', 'wedding']
+  eventsAttending?: string[]; // e.g. ['all'] or ['mehndi', 'sangeet', 'wedding']
   eventAttendance?: string; // Selected event option from dropdown
   guestCount?: number;
   dietaryPreference?: 'vegetarian' | 'non-vegetarian' | 'jain' | 'no-preference';
