@@ -4,7 +4,7 @@ export const coupleData: CoupleProfile = {
   groom: {
     firstName: "Rajat",
     fullName: "Rajat Ranjan",
-    parents: "Ritu Ranjan Sinha & Madhu Sinha",
+    parents: "Ritu Ranjan Prasad Sinha & Madhu Sinha",
     bio: "Tech enthusiast, passionate foodie, and the guy who fell hopelessly in love.",
   },
   bride: {
@@ -171,7 +171,7 @@ export const weddingEvents: WeddingEvent[] = [
     shortDate: "30 NOV",
     dayOfWeek: "Monday",
     fullDateText: "Monday, 30th November 2026",
-    timeRange: "8:00 PM Onwards",
+    timeRange: "7:00 PM Onwards",
     tagline: "The sacred union, Vedic pheras, and royal wedding feast",
     dressCode: "Royal Indian Traditional / Formal Ethnic",
     venue: venuesList[0], // Krishna Lawn

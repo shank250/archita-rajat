@@ -106,7 +106,7 @@ export const FormalCard: React.FC = () => {
                 Rajat Ranjan
               </h3>
               <p className="text-xs sm:text-sm font-sans text-text-sub mt-1 tracking-wide font-medium">
-                S/O Ritu Ranjan Sinha &amp; Madhu Sinha
+                S/O Ritu Ranjan Prasad Sinha &amp; Madhu Sinha
               </p>
             </div>
           </div>

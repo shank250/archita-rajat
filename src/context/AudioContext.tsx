@@ -20,6 +20,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [hasInteracted, setHasInteracted] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const userPausedRef = useRef<boolean>(false);
   const synthIntervalRef = useRef<number | null>(null);
   const webAudioCtxRef = useRef<AudioContext | null>(null);
 
@@ -86,20 +87,75 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   }, []);
 
-  // Initialize audio tag if custom MP3 exists
+  // Initialize audio tag with background flute music & enable default autoplay on load
   useEffect(() => {
-    const audio = new Audio('/audio/celebration.mp3');
+    const audio = new Audio('/audio/tu-banja-gali-benaras-ki.mp3');
     audio.loop = true;
     audio.volume = 0.5;
+    audio.preload = 'auto';
     audioRef.current = audio;
 
+    const onPlay = () => setIsPlaying(true);
+    const onPause = () => setIsPlaying(false);
+    audio.addEventListener('play', onPlay);
+    audio.addEventListener('pause', onPause);
+
+    let cleanupListeners: (() => void) | null = null;
+
+    // Attempt autoplay immediately on mount
+    const tryAutoplay = () => {
+      if (userPausedRef.current) return;
+      
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+            setHasInteracted(true);
+          })
+          .catch(() => {
+            // Modern browsers restrict unmuted autoplay without prior gesture.
+            // Setup seamless fallback: play upon first touch, click, scroll or keypress anywhere.
+            const handleFirstGesture = () => {
+              if (!userPausedRef.current && audioRef.current) {
+                audioRef.current.play().then(() => {
+                  setIsPlaying(true);
+                  setHasInteracted(true);
+                }).catch(() => {});
+              }
+              if (cleanupListeners) cleanupListeners();
+            };
+
+            cleanupListeners = () => {
+              window.removeEventListener('click', handleFirstGesture);
+              window.removeEventListener('touchstart', handleFirstGesture);
+              window.removeEventListener('pointerdown', handleFirstGesture);
+              window.removeEventListener('keydown', handleFirstGesture);
+              window.removeEventListener('scroll', handleFirstGesture);
+            };
+
+            window.addEventListener('click', handleFirstGesture, { once: true, passive: true });
+            window.addEventListener('touchstart', handleFirstGesture, { once: true, passive: true });
+            window.addEventListener('pointerdown', handleFirstGesture, { once: true, passive: true });
+            window.addEventListener('keydown', handleFirstGesture, { once: true, passive: true });
+            window.addEventListener('scroll', handleFirstGesture, { once: true, passive: true });
+          });
+      }
+    };
+
+    tryAutoplay();
+
     return () => {
+      if (cleanupListeners) cleanupListeners();
+      audio.removeEventListener('play', onPlay);
+      audio.removeEventListener('pause', onPause);
       audio.pause();
       stopAmbientSynth();
     };
   }, [stopAmbientSynth]);
 
   const playAudio = useCallback(() => {
+    userPausedRef.current = false;
     setHasInteracted(true);
     if (audioRef.current) {
       const playPromise = audioRef.current.play();
@@ -109,7 +165,6 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             setIsPlaying(true);
           })
           .catch(() => {
-            // If mp3 file does not exist or blocked, fallback to ambient gentle royal synth chime
             startAmbientSynth();
             setIsPlaying(true);
           });
@@ -121,6 +176,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [startAmbientSynth]);
 
   const pauseAudio = useCallback(() => {
+    userPausedRef.current = true;
     if (audioRef.current) {
       audioRef.current.pause();
     }
