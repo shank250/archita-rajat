@@ -26,7 +26,7 @@ A digital wedding invitation web application celebrating the union of **Archita 
    - Comprehensive multi-event schedule revealed together:
      - **Haldi & Mata Ki Chowki:** 28 November 2026 @ Shital Niwas (Our Home), Varanasi
      - **Mehndi & Ladies Sangeet:** 29 November 2026 @ Shital Niwas (Our Home), Varanasi
-     - **The Grand Wedding (Vivah Sanskar):** 30 November 2026 @ Krishna Lawn, Varanasi
+     - **The Grand Wedding (Vivah Sanskar):** 30 November 2026 @ Krishna Farm & Banquet, Varanasi
    - Direct Google Maps directions and Google Calendar integration.
    - Refined, subtle gold sparkle effect.
 

@@ -4,13 +4,13 @@ export const coupleData: CoupleProfile = {
   groom: {
     firstName: "Rajat",
     fullName: "Rajat Ranjan",
-    parents: "Ritu Ranjan Prasad Sinha & Madhu Sinha",
+    parents: "Ritu Ranjan Prasad Sinha\n&\nMadhu Sinha",
     bio: "Tech enthusiast, passionate foodie, and the guy who fell hopelessly in love.",
   },
   bride: {
     firstName: "Archita",
     fullName: "Archita Srivastava",
-    parents: "Pramendra Kumar Srivastava & Prem Lata Srivastava",
+    parents: "Pramendra Kumar Srivastava\n&\nPrem Lata Srivastava",
     bio: "Creative soul, travel lover, and the bride who stole Rajat's heart.",
   },
   hashtag: "#Rajita",
@@ -21,14 +21,14 @@ export const coupleData: CoupleProfile = {
 
 export const venuesList: VenueInfo[] = [
   {
-    name: "Krishna Lawn",
-    type: "The Grand Wedding Lawn",
+    name: "Krishna Farm & Banquet",
+    type: "The Grand Wedding Lawn & Banquet",
     tagline: "Venue for The Grand Wedding (30 Nov)",
-    address: "Krishna Lawn (Krishna Farms)",
+    address: "Sarnath Road, Opposite Harnarain Vihar Colony, Mawaiya, Sarnath",
     city: "Varanasi, Uttar Pradesh",
-    landmark: "Main Road",
-    googleMapsUrl: "https://maps.app.goo.gl/KPjgYH8gRwvL9UtQ6",
-    appleMapsUrl: "https://maps.app.goo.gl/KPjgYH8gRwvL9UtQ6",
+    landmark: "Opposite Harnarain Vihar Colony, Sarnath",
+    googleMapsUrl: "https://maps.app.goo.gl/jtk658Xhvg5pt4Cq9",
+    appleMapsUrl: "https://maps.app.goo.gl/jtk658Xhvg5pt4Cq9",
   },
   {
     name: "Shital Niwas",
@@ -103,7 +103,7 @@ export const weddingEvents: WeddingEvent[] = [
   },
   {
     id: "wedding",
-    title: "The Wedding Ceremony — The Krishna Farms",
+    title: "The Wedding Ceremony — Krishna Farm & Banquet",
     shortTitle: "The Wedding",
     category: "The Auspicious Wedding",
     shortDate: "30 NOV",
@@ -111,7 +111,7 @@ export const weddingEvents: WeddingEvent[] = [
     fullDateText: "Monday, 30th November 2026",
     timeRange: "7:00 PM Onwards",
     tagline: "The sacred union, Vedic pheras, and royal wedding feast",
-    venue: venuesList[0], // Krishna Lawn
+    venue: venuesList[0], // Krishna Farm & Banquet
     calendarStartDate: "20261130T200000",
     calendarEndDate: "20261130T235900",
     milestones: [
@@ -140,12 +140,12 @@ export const eventData: EventDetails = {
   revealDateText: "30th November 2026",
   startTime: "20:00",
   endTime: "23:59",
-  venue: venuesList[0], // Krishna Lawn
+  venue: venuesList[0], // Krishna Farm & Banquet
   whatsappGroupUrl: "https://chat.whatsapp.com/invite/wedding-celebration-updates",
   calendarEvent: {
     title: "Archita & Rajat's Grand Wedding",
-    description: "Join us to celebrate the auspicious wedding of Archita and Rajat at Krishna Lawn, Varanasi!",
-    location: "Krishna Lawn, Varanasi",
+    description: "Join us to celebrate the auspicious wedding of Archita and Rajat at Krishna Farm & Banquet, Varanasi!",
+    location: "Krishna Farm & Banquet, Sarnath Road, Mawaiya, Sarnath, Varanasi",
   },
 };
 
@@ -153,21 +153,21 @@ export const storyData: StorySlide[] = [
   {
     id: "childhood",
     chapterNumber: "01",
-    chapterBadge: "01 — CHILDHOOD CHRONICLES",
-    title: "Where It All Began",
-    subtitle: "Growing up miles apart with big dreams",
-    narration: "Growing up miles apart, but destined to meet.",
+    chapterBadge: "01 • INNOCENT BEGINNINGS",
+    title: "Two Worlds Apart",
+    subtitle: "Growing up miles apart, destined to cross paths",
+    narration: "Miles apart, two innocent souls grew up with cheerful smiles and boundless dreams — blissfully unaware that destiny was quietly writing a shared forever.",
     images: [
       {
         src: "/images/archita-childhood.jpg",
         caption: "Archita",
-        alt: "Archita childhood photo",
+        alt: "Archita as a child",
         rotation: 0,
       },
       {
         src: "/images/rajat-childhood.jpg",
         caption: "Rajat",
-        alt: "Rajat childhood photo",
+        alt: "Rajat as a child",
         rotation: 0,
       },
     ],
@@ -175,15 +175,15 @@ export const storyData: StorySlide[] = [
   {
     id: "the-spark",
     chapterNumber: "02",
-    chapterBadge: "02 — WHEN PATHS CROSSED",
-    title: "A Casual Hello",
-    subtitle: "From strangers to best friends",
-    narration: "One conversation turned into endless late-night talks.",
+    chapterBadge: "02 • WRITTEN IN THE STARS",
+    title: "Two Hearts, One Soul",
+    subtitle: "From strangers to best friends, and now soulmates for life",
+    narration: "A casual hello blossomed into endless late-night talks, unspoken understanding, and an unbreakable bond. From sharing candid laughs to walking hand in hand towards eternity.",
     images: [
       {
         src: "/images/couple-selfie.png",
-        caption: "Unfiltered smiles & infinite coffee dates",
-        alt: "Archita and Rajat selfie",
+        caption: "Archita & Rajat",
+        alt: "Archita and Rajat together",
         rotation: 0,
       },
     ],

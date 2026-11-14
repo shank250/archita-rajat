@@ -92,7 +92,7 @@ export const ActionHub: React.FC = () => {
               Venues & Directions
             </h3>
             <p className="font-sans text-xs text-text-sub mt-2 leading-relaxed">
-              Krishna Lawn &amp; Shital Niwas. One-tap map navigation.
+              Krishna Farm &amp; Banquet &amp; Shital Niwas. One-tap map navigation.
             </p>
           </div>
           <div className="mt-6 pt-4 border-t border-theme-border flex items-center justify-between text-xs font-sans text-text-body font-bold group-hover:text-primary">

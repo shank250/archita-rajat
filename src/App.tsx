@@ -25,7 +25,7 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-canvas-bg text-text-body overflow-x-hidden antialiased font-sans">
+    <div className="relative min-h-screen bg-canvas-bg text-text-body overflow-x-clip antialiased font-sans">
       {/* Background Floral SVGs & Ambient Pastel Glows */}
       <BackgroundFX />
 
@@ -97,7 +97,7 @@ export const App: React.FC = () => {
 
               <div className="flex items-center justify-center gap-1.5 text-xs font-sans text-text-sub font-medium">
                 <span>With Love &amp; Warm Regards from</span>
-                <strong className="font-bold text-text-body">The Kayastha Family</strong>
+                <strong className="font-bold text-text-body">The Srivastava Family</strong>
               </div>
             </footer>
           </motion.main>

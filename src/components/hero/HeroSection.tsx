@@ -86,9 +86,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
             INVITE YOU TO CELEBRATE THE WEDDING OF
           </span>
 
-          {/* Hero Couple Names in Textured Brush Script (Caveat) */}
-          <h1 className="font-script text-5xl sm:text-6xl md:text-7xl text-brand-blue font-bold tracking-wide leading-tight my-1.5 drop-shadow-xs select-none">
-            Archita &amp; Rajat
+          {/* Hero Couple Names in Textured Brush Script (Caveat) - 3 Lines */}
+          <h1 className="font-script text-5xl sm:text-6xl md:text-7xl text-brand-blue font-bold tracking-wide leading-none my-2 drop-shadow-xs select-none flex flex-col items-center">
+            <span>Archita</span>
+            <span className="text-3xl sm:text-4xl text-secondary my-0.5 font-bold">&amp;</span>
+            <span>Rajat</span>
           </h1>
 
           {/* Personalized Guest Welcome Pill */}

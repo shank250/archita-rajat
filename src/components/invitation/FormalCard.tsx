@@ -18,19 +18,12 @@ export const FormalCard: React.FC = () => {
         <FiligreeBorder className="text-center bg-card-surface shadow-card-subtle">
           {/* Auspicious Sacred Om Blessing Header */}
           <div className="flex flex-col items-center justify-center mb-5">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 p-2 rounded-full hand-drawn-pill bg-surface-subtle border border-brand-blue/25 shadow-xs flex items-center justify-center mb-2.5 hover:scale-105 transition-transform">
-              <img 
-                src="/designs/Beige and Pink Devotional Om Circle Sticker.svg" 
-                alt="Sacred Om" 
-                className="w-full h-full object-contain filter drop-shadow-xs" 
+            <div className="w-16 h-16 sm:w-20 sm:h-20 p-2 rounded-full hand-drawn-pill bg-surface-subtle border border-brand-blue/25 shadow-xs flex items-center justify-center hover:scale-105 transition-transform">
+              <img
+                src="/designs/Beige and Pink Devotional Om Circle Sticker.svg"
+                alt="Sacred Om"
+                className="w-full h-full object-contain filter drop-shadow-xs"
               />
-            </div>
-            <div className="flex items-center justify-center gap-2.5 text-brand-blue/80">
-              <div className="h-[1px] w-8 sm:w-12 bg-brand-blue/25" />
-              <span className="font-serif text-base sm:text-lg font-bold text-brand-blue select-none">
-                ॥ ॐ ॥
-              </span>
-              <div className="h-[1px] w-8 sm:w-12 bg-brand-blue/25" />
             </div>
           </div>
 
@@ -59,7 +52,7 @@ export const FormalCard: React.FC = () => {
             </p>
 
             <p>
-              <strong className="text-text-body font-bold text-base sm:text-lg">The Kayastha Family</strong>
+              <strong className="text-text-body font-bold text-base sm:text-lg">The Srivastava Family</strong>
             </p>
 
             {/* Clean Tracked Uppercase Sub-heading */}
@@ -88,12 +81,14 @@ export const FormalCard: React.FC = () => {
               <h3 className="font-script text-4xl sm:text-5xl md:text-6xl text-brand-blue font-bold tracking-wide leading-none py-1">
                 Archita Srivastava
               </h3>
-              <p className="text-xs sm:text-sm font-sans text-text-sub mt-1 tracking-wide font-medium">
-                D/O Pramendra Kumar Srivastava &amp; Prem Lata Srivastava
-              </p>
+              <div className="text-xs sm:text-sm font-sans text-text-sub mt-1.5 tracking-wide font-medium flex flex-col items-center leading-snug">
+                <span>D/O Pramendra Kumar Srivastava</span>
+                <span className="text-secondary font-bold text-xs my-0.5">&amp;</span>
+                <span>Prem Lata Srivastava</span>
+              </div>
 
               {/* Handcrafted Script Ampersand Accent */}
-              <div className="flex items-center gap-3 my-2.5">
+              <div className="flex items-center gap-3 my-3">
                 <div className="h-[1px] w-12 bg-brand-blue/25" />
                 <span className="w-8 h-8 hand-drawn-pill bg-primary text-white flex items-center justify-center font-script text-xl font-bold shadow-xs border-brand-blue-hover">
                   &amp;
@@ -105,9 +100,11 @@ export const FormalCard: React.FC = () => {
               <h3 className="font-script text-4xl sm:text-5xl md:text-6xl text-brand-blue font-bold tracking-wide leading-none py-1">
                 Rajat Ranjan
               </h3>
-              <p className="text-xs sm:text-sm font-sans text-text-sub mt-1 tracking-wide font-medium">
-                S/O Ritu Ranjan Prasad Sinha &amp; Madhu Sinha
-              </p>
+              <div className="text-xs sm:text-sm font-sans text-text-sub mt-1.5 tracking-wide font-medium flex flex-col items-center leading-snug">
+                <span>S/O Ritu Ranjan Prasad Sinha</span>
+                <span className="text-secondary font-bold text-xs my-0.5">&amp;</span>
+                <span>Madhu Sinha</span>
+              </div>
             </div>
           </div>
 

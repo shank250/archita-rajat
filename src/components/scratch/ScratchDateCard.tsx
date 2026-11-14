@@ -64,7 +64,7 @@ export const ScratchDateCard: React.FC = () => {
 
     ctx.font = '600 11px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = activeTheme.scratch.textColor;
-    ctx.fillText('THE AUSPICIOUS CELEBRATION DATES', width / 2, centerY + 14);
+    ctx.fillText('THE AUSPICIOUS WEDDING DATE', width / 2, centerY + 14);
 
     setIsRevealed(false);
   }, []);
@@ -165,13 +165,13 @@ export const ScratchDateCard: React.FC = () => {
       {/* Section Header */}
       <div className="text-center mb-8">
         <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-secondary font-bold">
-          Save the Dates
+          Save the Date
         </span>
         <h2 className="font-serif text-3xl sm:text-4xl text-primary font-bold mt-1">
-          The Auspicious Dates
+          The Auspicious Date
         </h2>
         <p className="text-xs sm:text-sm font-sans text-text-sub mt-1">
-          Scratch to unveil our sacred milestone dates
+          Scratch to unveil our sacred wedding date
         </p>
         <div className="w-12 h-0.5 bg-primary rounded-full mx-auto mt-3" />
       </div>
@@ -179,40 +179,32 @@ export const ScratchDateCard: React.FC = () => {
       {/* Interactive Scratch Card Container (Pure Crisp White Surface) */}
       <div
         ref={containerRef}
-        className="relative w-full min-h-[280px] sm:min-h-[295px] rounded-3xl overflow-hidden shadow-card-subtle border border-theme-border bg-card-surface"
+        className="relative w-full min-h-[250px] sm:min-h-[270px] rounded-3xl overflow-hidden shadow-card-subtle border border-theme-border bg-card-surface"
       >
         {/* 
           Hidden Content Revealed Underneath:
-          Crisp white surface (#FFFFFF) with milestone dates in bold --color-brand-blue (#3666A6)
+          Crisp white surface (#FFFFFF) with milestone date in bold --color-brand-blue (#3666A6)
           Uncluttered: No duplicate timings/venues (detailed in the Itinerary section below)
         */}
         <div className="absolute inset-0 flex flex-col items-center justify-between p-6 sm:p-7 text-center bg-card-surface text-text-body">
           {/* Top Pill Header */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1 hand-drawn-pill bg-surface-subtle border-brand-blue/30 text-primary text-xs font-sans font-bold shadow-xs">
             <Calendar className="w-3.5 h-3.5 text-primary" />
-            <span className="tracking-wide">Official Celebration Dates</span>
+            <span className="tracking-wide">Official Wedding Date</span>
           </div>
 
-          {/* Prominent Milestone Dates Grid in bold --color-brand-blue */}
-          <div className="w-full space-y-2.5 my-2">
-            {/* Milestone Date 1: 28th – 29th November 2026 */}
-            <div className="p-3 rounded-2xl hand-drawn-pill-soft bg-surface-subtle border border-brand-blue/30 text-center transition-all hover:border-brand-blue/60">
-              <span className="text-[10.5px] font-sans font-bold uppercase tracking-[0.16em] text-secondary block mb-0.5">
-                Haldi, Chowki, Mehndi &amp; Sangeet
-              </span>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-brand-blue tracking-tight">
-                28th – 29th November 2026
-              </h3>
-            </div>
-
-            {/* Milestone Date 2: 30th November 2026 */}
-            <div className="p-3 rounded-2xl hand-drawn-pill-soft bg-surface-subtle border border-brand-blue/30 text-center transition-all hover:border-brand-blue/60">
-              <span className="text-[10.5px] font-sans font-bold uppercase tracking-[0.16em] text-secondary block mb-0.5">
+          {/* Prominent Milestone Wedding Date in bold --color-brand-blue */}
+          <div className="w-full my-auto py-3">
+            <div className="p-4 sm:p-5 rounded-2xl hand-drawn-pill-soft bg-surface-subtle border border-brand-blue/30 text-center transition-all hover:border-brand-blue/60 shadow-xs">
+              <span className="text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-secondary block mb-1">
                 The Auspicious Wedding Day (Vivah)
               </span>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-brand-blue tracking-tight">
-                30th November 2026
+              <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-blue tracking-tight">
+                Monday, 30th November 2026
               </h3>
+              <p className="text-xs font-sans text-brand-blue/70 font-semibold mt-1.5">
+                Krishna Farm &amp; Banquet, Varanasi
+              </p>
             </div>
           </div>
 

@@ -25,7 +25,7 @@ const celebrationEvents = [
     id: 'wedding',
     title: 'The Grand Wedding (Vivah)',
     date: '30 Nov 2026',
-    venue: 'Krishna Lawn',
+    venue: 'Krishna Farm & Banquet',
   },
 ];
 
