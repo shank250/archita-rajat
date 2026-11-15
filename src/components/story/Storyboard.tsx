@@ -12,41 +12,45 @@ export const Storyboard: React.FC = () => {
     offset: ['start start', 'end end'],
   });
 
-  // Smooth buttery spring interpolation
+  // Responsive spring interpolation with crisper response
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 140,
-    damping: 26,
+    stiffness: 180,
+    damping: 24,
     restDelta: 0.001,
   });
 
-  // Stage 1: Childhood Photos (Active from 0% -> ~45%)
-  const childhoodOpacity = useTransform(smoothProgress, [0, 0.08, 0.38, 0.48], [0.2, 1, 1, 0]);
-  const childhoodScale = useTransform(smoothProgress, [0, 0.12, 0.38, 0.48], [0.92, 1, 1, 0.88]);
-  const childhoodY = useTransform(smoothProgress, [0, 0.12, 0.38, 0.48], [30, 0, 0, -40]);
+  // Stage 1: Childhood Photos (Starts fully visible, gracefully exits ~20% -> 34%)
+  const childhoodOpacity = useTransform(smoothProgress, [0, 0.04, 0.20, 0.34], [1, 1, 1, 0]);
+  const childhoodScale = useTransform(smoothProgress, [0, 0.04, 0.20, 0.34], [1, 1, 1, 0.9]);
+  const childhoodY = useTransform(smoothProgress, [0, 0.04, 0.20, 0.34], [0, 0, 0, -35]);
 
   // Individual parallax float for Archita & Rajat
-  const architaX = useTransform(smoothProgress, [0, 0.15, 0.38, 0.48], [-40, 0, 0, -25]);
-  const architaRotate = useTransform(smoothProgress, [0, 0.15, 0.38, 0.48], [-4, -1, -1, 0]);
+  const architaX = useTransform(smoothProgress, [0, 0.20, 0.34], [0, 0, -30]);
+  const architaRotate = useTransform(smoothProgress, [0, 0.20, 0.34], [-1.5, -1.5, 0]);
 
-  const rajatX = useTransform(smoothProgress, [0, 0.15, 0.38, 0.48], [40, 0, 0, 25]);
-  const rajatRotate = useTransform(smoothProgress, [0, 0.15, 0.38, 0.48], [4, 1, 1, 0]);
+  const rajatX = useTransform(smoothProgress, [0, 0.20, 0.34], [0, 0, 30]);
+  const rajatRotate = useTransform(smoothProgress, [0, 0.20, 0.34], [1.5, 1.5, 0]);
 
-  // Stage 1.5: Destiny Connector / Convergence Bloom (Active around 40% -> 58%)
-  const connectorOpacity = useTransform(smoothProgress, [0.36, 0.46, 0.52, 0.60], [0, 1, 1, 0]);
-  const connectorScale = useTransform(smoothProgress, [0.36, 0.48, 0.60], [0.6, 1.15, 0.85]);
+  // Stage 1.5: Destiny Connector / Convergence Bloom (Active around 20% -> 44%)
+  const connectorOpacity = useTransform(smoothProgress, [0.20, 0.30, 0.36, 0.44], [0, 1, 1, 0]);
+  const connectorScale = useTransform(smoothProgress, [0.20, 0.32, 0.44], [0.6, 1.15, 0.85]);
 
-  // Stage 2: Couple Portrait (Emerges from 48% -> 100%)
-  const coupleOpacity = useTransform(smoothProgress, [0.46, 0.58, 0.95, 1], [0, 1, 1, 1]);
-  const coupleScale = useTransform(smoothProgress, [0.46, 0.62, 0.95, 1], [0.84, 1, 1, 1]);
-  const coupleY = useTransform(smoothProgress, [0.46, 0.62, 0.95, 1], [60, 0, 0, 0]);
-  const coupleRotate = useTransform(smoothProgress, [0.46, 0.62], [2.5, 0]);
+  // Stage 2: Couple Portrait (Emerges swiftly from 32% -> 46%, stays fully revealed)
+  const coupleOpacity = useTransform(smoothProgress, [0.32, 0.46, 0.95, 1], [0, 1, 1, 1]);
+  const coupleScale = useTransform(smoothProgress, [0.32, 0.48, 0.95, 1], [0.88, 1, 1, 1]);
+  const coupleY = useTransform(smoothProgress, [0.32, 0.48, 0.95, 1], [40, 0, 0, 0]);
+  const coupleRotate = useTransform(smoothProgress, [0.32, 0.48], [2, 0]);
+
+  // Interactive pointer events toggle so inactive layer doesn't block interactions
+  const childhoodPointerEvents = useTransform(smoothProgress, (v) => (v < 0.35 ? 'auto' : 'none'));
+  const couplePointerEvents = useTransform(smoothProgress, (v) => (v >= 0.35 ? 'auto' : 'none'));
 
   // Dynamic Scroll Indicator prompt
-  const hintOpacity = useTransform(smoothProgress, [0, 0.12], [1, 0]);
+  const hintOpacity = useTransform(smoothProgress, [0, 0.08], [1, 0]);
 
   // Progress Track Dots (Step 1 vs Step 2)
-  const stepOneHighlight = useTransform(smoothProgress, [0, 0.46], [1, 0.3]);
-  const stepTwoHighlight = useTransform(smoothProgress, [0.46, 0.65], [0.3, 1]);
+  const stepOneHighlight = useTransform(smoothProgress, [0, 0.34], [1, 0.3]);
+  const stepTwoHighlight = useTransform(smoothProgress, [0.34, 0.48], [0.3, 1]);
 
   const childhoodStory = storyData[0];
   const coupleStory = storyData[1];
@@ -55,7 +59,7 @@ export const Storyboard: React.FC = () => {
     <section
       id="our-story"
       ref={containerRef}
-      className="relative h-[250vh] w-full z-10"
+      className="relative h-[140vh] sm:h-[170vh] w-full z-10"
     >
       {/* Pinned / Sticky Theater Viewport */}
       <div className="sticky top-8 sm:top-12 h-[88vh] sm:h-[90vh] max-h-[820px] w-full flex flex-col justify-between items-center py-3 sm:py-5 px-3 sm:px-6 max-w-4xl mx-auto overflow-hidden">
@@ -104,8 +108,9 @@ export const Storyboard: React.FC = () => {
               opacity: childhoodOpacity,
               scale: childhoodScale,
               y: childhoodY,
+              pointerEvents: childhoodPointerEvents,
             }}
-            className="absolute inset-0 flex flex-col items-center justify-center w-full my-auto pointer-events-auto"
+            className="absolute inset-0 flex flex-col items-center justify-center w-full my-auto"
           >
             {/* Stage 1 Subtitle */}
             <p className="text-center font-sans text-xs sm:text-sm text-text-sub max-w-md mx-auto mb-3 sm:mb-4 px-2 leading-snug">
@@ -210,8 +215,9 @@ export const Storyboard: React.FC = () => {
               scale: coupleScale,
               y: coupleY,
               rotate: coupleRotate,
+              pointerEvents: couplePointerEvents,
             }}
-            className="absolute inset-0 flex flex-col items-center justify-center w-full my-auto pointer-events-auto"
+            className="absolute inset-0 flex flex-col items-center justify-center w-full my-auto"
           >
             {/* Showstopper Regal Centerpiece Frame */}
             <div className="relative w-full max-w-[310px] sm:max-w-[420px] bg-card-surface rounded-2xl sm:rounded-3xl border-2 border-brand-blue/30 shadow-[0_20px_50px_rgba(54,102,166,0.18)] p-3 sm:p-5 flex flex-col items-center justify-between group hover:shadow-[0_25px_60px_rgba(54,102,166,0.22)] transition-all">
