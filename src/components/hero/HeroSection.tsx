@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { WaxSeal } from './WaxSeal';
 import { useGuest } from '../../context/GuestContext';
@@ -15,9 +15,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
   const { guestName, isPersonalized } = useGuest();
   const { playAudio } = useAudio();
   const [isAnimating, setIsAnimating] = useState(false);
+  const isTriggeredRef = useRef(false);
 
-  const handleSealClick = () => {
-    if (isOpen || isAnimating) return;
+  const handleOpenInvitation = useCallback(() => {
+    if (isOpen || isAnimating || isTriggeredRef.current) return;
+    isTriggeredRef.current = true;
 
     setIsAnimating(true);
     triggerCelebrationFireworks();
@@ -34,7 +36,25 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
         }
       }, 700);
     }, 450);
-  };
+  }, [isOpen, isAnimating, onOpen, playAudio]);
+
+  useEffect(() => {
+    if (isOpen) return;
+
+    const handleGlobalClick = (e: MouseEvent) => {
+      // Don't trigger if user clicked on audio controls
+      const target = e.target as HTMLElement | null;
+      if (target?.closest('button[aria-label*="music" i]')) {
+        return;
+      }
+      handleOpenInvitation();
+    };
+
+    window.addEventListener('click', handleGlobalClick);
+    return () => {
+      window.removeEventListener('click', handleGlobalClick);
+    };
+  }, [isOpen, handleOpenInvitation]);
 
   return (
     <section className="relative min-h-[90vh] sm:min-h-screen flex flex-col items-center justify-center py-8 sm:py-12 px-4 text-center z-10 max-w-3xl mx-auto">
@@ -112,7 +132,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isOpen, onOpen }) => {
           {/* Modern Interactive Wax Seal Action */}
           <div className="relative mt-6 mb-3">
             <WaxSeal
-              onClick={handleSealClick}
+              onClick={handleOpenInvitation}
               isOpening={isAnimating || isOpen}
             />
           </div>

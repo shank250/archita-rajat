@@ -39,13 +39,8 @@ export const WaxSeal: React.FC<WaxSealProps> = ({
           {/* Concentric Subtle Hairline Ring */}
           <div className="absolute inset-1.5 rounded-full border border-white/20 pointer-events-none" />
 
-          {/* Clean Embossed Monogram "A & R" */}
-          <span className="font-serif text-lg sm:text-xl font-bold text-white tracking-widest drop-shadow-sm select-none leading-none mt-0.5">
-            A &amp; R
-          </span>
-
           {/* Stamped Seal Text */}
-          <span className="text-[8px] sm:text-[8.5px] font-sans font-bold text-white/90 tracking-[0.25em] uppercase mt-1 drop-shadow-xs">
+          <span className="text-xs sm:text-sm font-sans font-bold text-white tracking-[0.25em] uppercase drop-shadow-xs select-none">
             OPEN
           </span>
         </div>
