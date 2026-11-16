@@ -58,13 +58,13 @@ export const FormalCard: React.FC = () => {
             {/* Clean Tracked Uppercase Sub-heading */}
             <div className="py-2.5">
               <span className="inline-block px-5 py-1.5 hand-drawn-pill bg-surface-subtle text-brand-blue border-brand-blue/35 subheading-tracked shadow-xs">
-                INVITE YOU TO THEIR WEDDING
+                INVITE YOU TO THEIR DAUGHTER WEDDING
               </span>
             </div>
 
-            <p className="text-xs font-sans text-text-sub">
+            {/* <p className="text-xs font-sans text-text-sub">
               at the auspicious wedding celebrations of their beloved daughter
-            </p>
+            </p> */}
           </div>
 
           {/* Minimalist Hairline Divider */}

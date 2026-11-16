@@ -63,7 +63,7 @@ export const Storyboard: React.FC = () => {
     >
       {/* Pinned / Sticky Theater Viewport */}
       <div className="sticky top-8 sm:top-12 h-[88vh] sm:h-[90vh] max-h-[820px] w-full flex flex-col justify-between items-center py-3 sm:py-5 px-3 sm:px-6 max-w-4xl mx-auto overflow-hidden">
-        
+
         {/* Fixed Top Header & Chapter Progress Tracker */}
         <div className="text-center w-full z-20 flex flex-col items-center flex-shrink-0">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 hand-drawn-pill bg-surface-subtle border-brand-blue/30 text-primary text-[11px] sm:text-xs font-sans font-bold shadow-xs mb-1.5">
@@ -72,7 +72,7 @@ export const Storyboard: React.FC = () => {
           </div>
 
           <h2 className="font-serif text-2xl sm:text-4xl text-primary font-bold">
-            The Chapters of Our Love Story
+            The Beginning of Forever
           </h2>
 
           {/* Dynamic Chapter Step Indicators */}
@@ -99,7 +99,7 @@ export const Storyboard: React.FC = () => {
 
         {/* Center Stage: Smooth Scroll-Driven Transition Canvas */}
         <div className="relative w-full flex-1 flex items-center justify-center my-auto overflow-hidden">
-          
+
           {/* ========================================================
               STAGE 1: BOTH CHILDHOOD PHOTOS (ARCHITA & RAJAT)
              ======================================================== */}
@@ -119,7 +119,7 @@ export const Storyboard: React.FC = () => {
 
             {/* Side-by-Side Dual Frames */}
             <div className="grid grid-cols-2 gap-3 sm:gap-6 max-w-[560px] w-full mx-auto px-1 sm:px-2">
-              
+
               {/* Archita's Childhood Frame */}
               <motion.div
                 style={{
@@ -221,7 +221,7 @@ export const Storyboard: React.FC = () => {
           >
             {/* Showstopper Regal Centerpiece Frame */}
             <div className="relative w-full max-w-[310px] sm:max-w-[420px] bg-card-surface rounded-2xl sm:rounded-3xl border-2 border-brand-blue/30 shadow-[0_20px_50px_rgba(54,102,166,0.18)] p-3 sm:p-5 flex flex-col items-center justify-between group hover:shadow-[0_25px_60px_rgba(54,102,166,0.22)] transition-all">
-              
+
               {/* Delicate Inner Hairline */}
               <div className="absolute inset-2 sm:inset-3 border border-brand-blue/15 rounded-xl pointer-events-none" />
 
